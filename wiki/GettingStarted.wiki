@@ -1,4 +1,4 @@
-#summary Getting Started page describing Lexer specification and usage example.
+#summary Getting Started page describing Lexer specification and usage example
 
 = Introduction =
 
@@ -7,8 +7,10 @@ Lexer specification and usage example.
 
 = Details =
 
-Lexer and States will be specified in following way (see examples below):
+==Lexer, State and Tokens==
 
+Lexer and States will be specified in following way (see examples below):
+{{{
 // ============ Lexer ===================
 package impl.lexer.lex;
 
@@ -19,7 +21,6 @@ public class LexClass {
     LexStateClass stateClass;
 
 }
-
 
 // ============ State ===================
 package impl.lexer.lex;
@@ -55,10 +56,12 @@ public class SimpleToken {
     static public final String DOT = "DOT";
 
 }
+}}}
 
+==Usage==
 
 Following is an example of Lexer usage class:
-
+{{{
 package common;
 
 import impl.lexer.lex.LexClassFactory;
@@ -90,3 +93,4 @@ public class Common {
     }
 
 }
+}}}
