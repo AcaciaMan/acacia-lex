@@ -1,4 +1,4 @@
-#summary Getting Started page describing Lexer specification and usage example
+#summary Getting Started page describing Lexer specification and usage example.
 
 = Introduction =
 
