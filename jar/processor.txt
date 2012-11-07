@@ -1,0 +1,4 @@
+META-INF/services/javax.annotation.processing.Processor
+eu.javaspecialists.tools.apt.NoArgsConstructorProcessor
+
+C:\Java\jdk1.6.0_12\bin\jar uf Acacia.jar META-INF/services/javax.annotation.processing.Processor
