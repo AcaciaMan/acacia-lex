@@ -1,8 +1,9 @@
 #summary One-sentence summary of this page.
+Getting Started page describing Lexer specification and usage example
 
 = Introduction =
 
-Lexer specification and usage example
+Lexer specification and usage example.
 
 
 = Details =
