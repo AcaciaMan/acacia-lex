@@ -64,4 +64,15 @@ public class TestCommon {
             assertTrue(true);
     }
 
+                @Test
+    public void exprRun() {
+
+            org.apache.log4j.BasicConfigurator.configure();
+            Common common = new Common();
+            common.exprRun();
+            assertTrue(true);
+    }
+
+
+
 }

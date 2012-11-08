@@ -20,6 +20,8 @@
 
 package common;
 
+import impl.lexer.lex.ExprLexFactory;
+import impl.lexer.lex.ExprLexImpl;
 import impl.lexer.lex.LexClassFactory;
 import impl.lexer.lex.LexClassImpl;
 import java.io.File;
@@ -45,6 +47,14 @@ public class Common {
         } catch (IOException ex) {
             log.log(Level.FATAL, "IOException", ex);
         }
+        lexer.run();
+    }
+
+    public void exprRun() {
+        ExprLexFactory factory = new ExprLexFactory();
+        ExprLexImpl lexer = factory.getExprLexImpl();
+        CharSequence charSequence = "11 + 22 + 33";
+        lexer.setInput(charSequence);
         lexer.run();
     }
 
