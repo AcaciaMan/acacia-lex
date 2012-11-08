@@ -2,12 +2,42 @@
 
 = Introduction =
 
-Add your content here.
-
+Real life example is taken from web article written by Carlo Cielo http://www.giocc.com/writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups.html
+As input is used expression "11 + 22 + 33" and lexer returns following tokens:
+  * NUMBER 11
+  * BINARYOP +
+  * NUMBER 22
+  * BINARYOP -
+  * NUMBER 33
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Lexer and State ==
+Lexer and State is specified in AcaciaLex project:
+{{{
+
+
+}}}
+
+== Run Lexer ==
+Lexer is run from AcaciaTest project:
+{{{
+
+
+}}}
+
+== Test Lexer ==
+Lexer is tested in AcaciaTest project:
+{{{
+//===================TestCommon.java ======================
+    @Test
+    public void exprRun() {
+
+        org.apache.log4j.BasicConfigurator.configure();
+        Common common = new Common();
+        common.exprRun();
+        assertTrue(true);
+    }
+
+
+}}}
