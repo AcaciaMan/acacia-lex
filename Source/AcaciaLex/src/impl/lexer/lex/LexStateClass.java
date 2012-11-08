@@ -29,7 +29,7 @@ import lexer.Token;
 public class LexStateClass {
 
     @ann.lexer.AnnTokens({
-        @ann.lexer.AnnToken(type = SimpleToken.DOT, value = SimpleToken.DOT),
+        @ann.lexer.AnnToken(type = SimpleToken.DOT, value = "."),
         @ann.lexer.AnnToken(type = SimpleToken.FROM, value = SimpleToken.FROM),
         @ann.lexer.AnnToken(type = SimpleToken.SELECT, value = SimpleToken.SELECT)
     })
@@ -38,9 +38,9 @@ public class LexStateClass {
     }
 
     @ann.lexer.AnnToken(type=LexToken.WORD, value="\\w")
-    public void getName(lexer.Lexer lexer) {
-        //lexer.getStatus().setNoObject(true);
-        //return lexer.getToken().getString();
+    public String getName(lexer.Lexer lexer) {
+        lexer.getStatus().setNoObject(true);
+        return "";
     }
 
 
