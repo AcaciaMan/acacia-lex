@@ -41,6 +41,25 @@ public class ImplState implements StateDesc {
     @Override
     public void addTokens() {
 
+        Integer L = 3;
+        Integer N = 0;
+        char C = 3;
+        //@values
+        //@valueArr
+        char[] charArrayZ = new char[L];
+        //\@valueArr
+        //@valueChar
+        charArrayZ[N] = C;
+        //\@valueChar
+
+        charArrayZ[1] = 3;
+
+        char[] charArray2 = new char[3];
+        charArray2[0] = 3;
+
+        //\@values
+
+
         Token newToken;
 
         //@newTokens
