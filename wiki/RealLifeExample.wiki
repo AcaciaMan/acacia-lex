@@ -1,4 +1,5 @@
 #summary Real life example
+#labels Featured,Phase-Design
 
 = Introduction =
 
