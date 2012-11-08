@@ -1,4 +1,5 @@
 #summary Getting Started page describing Lexer specification and usage example
+#labels Featured,Phase-Design
 
 = Introduction =
 
