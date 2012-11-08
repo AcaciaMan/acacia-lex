@@ -36,11 +36,20 @@ import javax.tools.Diagnostic;
 
 public class MakeState extends MakeManager {
 
+    final String CHAR_VALUES = "values";
+    final String CHAR_VALUE_ARR = "valueArr";
+    final String CHAR_VALUE_CHAR = "valueChar";
+
+    final String CHAR_ARR_NUM = "Z";
+    final String CHAR_ARR_LENGTH = "L";
+    final String CHAR_NUM = "N";
+    final String CHAR_CHAR = "C";
+
     final String NEW_TOKENS = "newTokens";
     final String ADD_TOKEN = "addToken";
 
     final String TOKEN_TYPE = "SimpleToken.SELECT";
-    final String TOKEN_VALUE = "SELECTS";
+    final String TOKEN_VALUE = "\"SELECTS\"";
     final String TOKEN_METHOD_NUM = "0";
 
 
@@ -107,6 +116,7 @@ public class MakeState extends MakeManager {
     public void replaceImplParameters() {
         super.replaceImplParameters();
 
+        addCharArrays();
         addTokens();
         addMethods();
     }
@@ -126,15 +136,11 @@ public class MakeState extends MakeManager {
         message = "Found New Tokens " + newTokens;
         processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
 
-        int i = 0;
+        Integer i = 0;
         for(AnnToken a:lAnnToken){
             String result = replaceToken;
             result = result.replace(TOKEN_TYPE, a.type());
-
-            String sValue = a.value();
-            sValue = sValue.replace("\\", "\\\\");
-            result = result.replace(TOKEN_VALUE, sValue);
-
+            result = result.replace(TOKEN_VALUE, "new String(charArray"+i.toString()+")");
             result = result.replace(TOKEN_METHOD_NUM, lAnnTokenMethodNum.get(i).toString());
 
             sTokens = sTokens + result;
@@ -147,6 +153,55 @@ public class MakeState extends MakeManager {
         getReplacements().replaceAllIdentified(NEW_TOKENS, sTokens);
 
     }
+
+    public void addCharArrays() {
+
+        String sValues = " ";
+
+        String message = "Adding Token Values ... ";
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+        String replaceValueArr = getReplacements().getFragment(CHAR_VALUE_ARR);
+        message = "Found Value Arr " + replaceValueArr;
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+        String replaceValueChar = getReplacements().getFragment(CHAR_VALUE_CHAR);
+        message = "Found Value Char " + replaceValueChar;
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+        String values = getReplacements().getFragment(CHAR_VALUES);
+        message = "Found Values " + values;
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+        Integer i = 0;
+        for(AnnToken a:lAnnToken){
+            String result = replaceValueArr;
+            result = result.replace(CHAR_ARR_NUM, i.toString());
+            result = result.replace(CHAR_ARR_LENGTH, Integer.toString(a.value().length()));
+
+            sValues = sValues + result;
+
+            for (int n = 0; n < a.value().length(); n++) {
+
+            String resultChar = replaceValueChar;
+            resultChar = resultChar.replace(CHAR_ARR_NUM, i.toString());
+            resultChar = resultChar.replace(CHAR_NUM, Integer.toString(n));
+            resultChar = resultChar.replace(CHAR_CHAR, Integer.toString(a.value().charAt(n)));
+
+            sValues = sValues + resultChar;
+            }
+
+
+            i++;
+        }
+
+        message = "New Values " + sValues;
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+        getReplacements().replaceAllIdentified(CHAR_VALUES, sValues);
+
+    }
+
 
     public void addMethods() {
 
