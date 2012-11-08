@@ -15,21 +15,56 @@ As input is used expression "11 + 22 + 33" and lexer returns following tokens:
 == Lexer and State ==
 Lexer and State is specified in AcaciaLex project:
 {{{
+//====================== ExprLex.java ====================== 
 
+package impl.lexer.lex;
+
+@ann.lexer.AnnLexer
+public class ExprLex {
+
+    @ann.lexer.AnnStartState
+    ExprState stateClass;
+
+}
+
+//============================== ExprState.java ======================
+
+package impl.lexer.lex;
+
+@ann.lexer.AnnState
+public class ExprState {
+
+    @ann.lexer.AnnTokens({
+        @ann.lexer.AnnToken(type = "NUMBER", value = "-?[0-9]+"),
+        @ann.lexer.AnnToken(type = "BINARYOP", value = "[*|/|+|-]"),
+        @ann.lexer.AnnToken(type = "WHITESPACE", value = "[ \t\f\r\n]+")
+    })
+    public String getStr(lexer.Lexer lexer) {
+        return lexer.getToken().getString();
+    }
+}
 
 }}}
 
 == Run Lexer ==
 Lexer is run from AcaciaTest project:
 {{{
+//======================= Common.java =====================
 
-
+    public void exprRun() {
+        ExprLexFactory factory = new ExprLexFactory();
+        ExprLexImpl lexer = factory.getExprLexImpl();
+        CharSequence charSequence = "11 + 22 + 33";
+        lexer.setInput(charSequence);
+        lexer.run();
+    }
 }}}
 
 == Test Lexer ==
 Lexer is tested in AcaciaTest project:
 {{{
-//===================TestCommon.java ======================
+//=================== TestCommon.java ======================
+
     @Test
     public void exprRun() {
 
@@ -38,6 +73,4 @@ Lexer is tested in AcaciaTest project:
         common.exprRun();
         assertTrue(true);
     }
-
-
 }}}
