@@ -1,0 +1,594 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0088)http://www.giocc.com/writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Writing a Lexer in Java 1.7 using Regex Named Capturing Groups</title>
+<meta name="robots" content="index,follow">
+<link rel="pingback" href="http://www.giocc.com/xmlrpc.php">
+<link rel="alternate" type="application/rss+xml" title="Gio Carlo Cielo » Feed" href="http://www.giocc.com/feed">
+<link rel="alternate" type="application/rss+xml" title="Gio Carlo Cielo » Comments Feed" href="http://www.giocc.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="Gio Carlo Cielo » Writing a Lexer in Java 1.7 using Regex Named Capturing Groups Comments Feed" href="http://www.giocc.com/writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups.html/feed">
+<link rel="stylesheet" id="thematic_style-css" href="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/style.css" type="text/css" media="all">
+<script type="text/javascript" src="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/comment-reply.js"></script>
+<script type="text/javascript" src="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/jquery.js"></script>
+<script type="text/javascript" src="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/superfish.js"></script>
+<script type="text/javascript" src="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/supersubs.js"></script>
+<script type="text/javascript" src="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/thematic-dropdowns.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.giocc.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.giocc.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Underscorejs: Text Processing on the Document Object Model (DOM)" href="http://www.giocc.com/underscorejs-text-processing-on-the-document-object-model-dom.html">
+<link rel="next" title="Historical Problems with Closures in JavaScript and Python" href="http://www.giocc.com/problems-with-closures-in-javascript-and-python.html">
+
+<link rel="canonical" href="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/Writing a Lexer in Java 1.7 using Regex Named Capturing Groups.htm">
+<link rel="shortlink" href="http://www.giocc.com/?p=1164">
+<link rel="stylesheet" title="Default" href="http://www.giocc.com/wp-content/plugins/lphpjs//highlight/styles/ir_black.css"> 
+<script type="text/javascript" src="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/highlight.pack.js"></script>
+    <link rel="shortcut icon" href="http://www.giocc.com/wp-content/themes/puffyfish/images/favicon.ico">
+<style type="text/css">
+/* <![CDATA[ */
+img.latex { vertical-align: middle; border: none; }
+/* ]]> */
+</style>
+</head>
+
+<body class="single single-post postid-1164 single-format-standard windows chrome ch23">
+
+	
+
+		<div id="header-wrap"><div id="header">
+
+        		<div id="branding">
+    
+    	<div id="blog-title"><span><a href="http://www.giocc.com/" title="Gio Carlo Cielo" rel="home">Gio Carlo Cielo</a></span></div>
+    
+    	<div id="blog-description">a personal discourse</div>
+
+		</div><!--  #branding -->
+       		
+    	</div><!-- #header--></div>		        
+    	<div id="wrapper" class="hfeed">    	
+	<div id="main">
+<div id="access">
+
+    <div class="skip-link"><a href="http://www.giocc.com/writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups.html#content" title="Skip navigation to the content">Skip to content</a></div><!-- .skip-link -->
+
+    <a id="home-link" href="http://www.giocc.com/" title="Home">Home</a>
+
+    <div class="menu"><ul id="menu-main" class="sf-menu sf-js-enabled"><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-7"><a href="http://www.giocc.com/category/ingenuity">Ingenuity</a></li>
+<li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8"><a href="http://www.giocc.com/category/innovation">Innovation</a></li>
+<li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="http://www.giocc.com/category/inspiration">Inspiration</a></li>
+</ul></div>
+</div><!-- #access -->
+
+
+		<div id="container">
+			
+			<div id="content">
+
+				<div id="nav-above" class="navigation">
+				
+					<div class="nav-previous"><a href="http://www.giocc.com/underscorejs-text-processing-on-the-document-object-model-dom.html" rel="prev"><span class="meta-nav">«</span> Underscorejs: Text Processing on the Document Object Model (DOM)</a></div>
+					
+					<div class="nav-next"><a href="http://www.giocc.com/problems-with-closures-in-javascript-and-python.html" rel="next">Historical Problems with Closures in JavaScript and Python <span class="meta-nav">»</span></a></div>
+					
+				</div>
+					
+				<div id="post-1164" class="hentry p post publish author-giocc category-ingenuity tag-java-1-7 tag-lexer tag-lexical-analysis tag-named-capturing tag-parsing tag-regex is-full has-teaser comments-open pings-open y2012 m07 d28 h18 alt slug-writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups">
+
+					<h1 class="entry-title">Writing a Lexer in Java 1.7 using Regex Named Capturing Groups</h1>
+<div class="entry-meta"><span class="meta-prep meta-prep-entry-date">Published: </span><span class="entry-date"><abbr class="published" title="2012-07-29T02:33:38+0000">July 29, 2012</abbr></span></div><!-- .entry-meta -->
+     				
+					<div class="entry-content">
+					
+						<p>One of my favorite features in the new Java 1.7 aside from the <code>try-with-resources</code> statement are named capturing groups in the regular expression API. Although, captured groups can be referenced numerically in the order of which they are declared from left to right, named capturing makes this more intuitive as I will demonstrate in the construction of a lexer.</p>
+<p><span id="more-1164"></span></p>
+<h2>Lexer, a Definition</h2>
+<p>To describe lexers, we must first describe a <strong>tokenizer</strong>. Tokenizers simply break up strings into a set of tokens which are, of course, more strings. Subsequently, a lexer is a type of tokenizer that adds a context to the tokens such as the type of token extracted e.g. <code>(NUMBER 1234)</code> whereas a simple token would be <code>1234</code>. Lexers are important for parsing languages, however, that is a discussion beyond the scope of this tutorial.</p>
+<p>For example, given the input <code>"11 + 22 + 33"</code>, we should receive the following tokens from a lexer:</p>
+<pre><code class="no-highlight">(NUMBER 11)
+(BINARYOP +)
+(NUMBER 22)
+(BINARYOP -)
+(NUMBER 33)</code></pre>
+<blockquote><div class="icon idea"></div>
+<p>Note that <code>BINARYOP</code> refers to <em>binary operator</em>. Binary operators includes any operator that accepts two arguments. The archetypal example is addition which accepts two numbers, one to the left and the other to the right of the operator.</p></blockquote>
+<h2>Setting-Up the Program</h2>
+<p>The input is a sentence to be scanned. For this tutorial, we will scan a simple arithmetic grammar that includes addition, multiplication and subtraction. Consequently, we will parse the following input:</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Lexer</span> {</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        String input = <span class="string">"11 + 22 - 33"</span>;
+    }
+}
+</code></pre>
+<p>Next, we must define the types of the tokens that we are extracting and the regular expression that they match.</p>
+<dl>
+<dt>Number</dt>
+<dd><code>-?[0-9]+</code> Matches negative infinity to positive infinity without decimals.</dd>
+<dt>Binary Operator</dt>
+<dd><code>[*|/|+|-]</code> Matches any standard arithmetic operators.</dd>
+<dt>Whitespace</dt>
+<dd><code>[ \t\f\r\n]+</code> Matches whitespace, tabs, form feeds or newlines in a sequence. Will be skipped.</dd>
+</dl>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Lexer</span> {</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">enum</span> TokenType {
+        <span class="comment">// Token types cannot have underscores</span>
+        NUMBER(<span class="string">"-?[0-9]+"</span>), BINARYOP(<span class="string">"[*|/|+|-]"</span>), WHITESPACE(<span class="string">"[ \t\f\r\n]+"</span>);
+
+        <span class="keyword">public</span> <span class="keyword">final</span> String pattern;
+
+        <span class="keyword">private</span> TokenType(String pattern) {
+            <span class="keyword">this</span>.pattern = pattern;
+        }
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        String input = <span class="string">"11 + 22 - 33"</span>;
+    }
+}
+</code></pre>
+<blockquote><div class="icon idea"></div>
+<p>Enumerations in Java can only have <code>private</code> constructors because there is only a finite set of objects created at run-time. Consequently, their data fields are frequently declared as <code>final</code>.</p></blockquote>
+<p>Finally, we declare a data structure for holding the token data. Additionally, I will override the <code>toString()</code> method for printing out the token’s contextual data at the end of this tutorial in the format I have mentioned earlier: <code>(&lt;TYPE&gt; &lt;DATA&gt;)</code>.</p>
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Lexer</span> {</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">enum</span> TokenType {
+        <span class="comment">// Token types cannot have underscores</span>
+        NUMBER(<span class="string">"-?[0-9]+"</span>), BINARYOP(<span class="string">"[*|/|+|-]"</span>), WHITESPACE(<span class="string">"[ \t\f\r\n]+"</span>);
+
+        <span class="keyword">public</span> <span class="keyword">final</span> String pattern;
+
+        <span class="keyword">private</span> TokenType(String pattern) {
+            <span class="keyword">this</span>.pattern = pattern;
+        }
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Token</span> {</span>
+        <span class="keyword">public</span> TokenType type;
+        <span class="keyword">public</span> String data;
+
+        <span class="keyword">public</span> Token(TokenType type, String data) {
+            <span class="keyword">this</span>.type = type;
+            <span class="keyword">this</span>.data = data;
+        }
+
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> String toString() {
+            <span class="keyword">return</span> String.format(<span class="string">"(%s %s)"</span>, type.name(), data);
+        }
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        String input = <span class="string">"11 + 22 - 33"</span>;
+    }
+}
+</code></pre>
+<p>Now that we have our input, token types and data structure for tokens, we may begin lexical analysis of the input string into a set of tokens with its corresponding token type.</p>
+<h2>Lexical Analysis with Regular Expressions</h2>
+<p>We begin by framing our lexical analysis method as <code>lex()</code>, a function which returns a list of <code>Token</code> objects. Additionally, we will need to import <code>ArrayList</code> in order to store the <code>Token</code> objects into the list.</p>
+<pre><code class="java"><span class="keyword">import</span> java.util.ArrayList;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Lexer</span> {</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">enum</span> TokenType {
+        <span class="comment">// Token types cannot have underscores</span>
+        NUMBER(<span class="string">"-?[0-9]+"</span>), BINARYOP(<span class="string">"[*|/|+|-]"</span>), WHITESPACE(<span class="string">"[ \t\f\r\n]+"</span>);
+
+        <span class="keyword">public</span> <span class="keyword">final</span> String pattern;
+
+        <span class="keyword">private</span> TokenType(String pattern) {
+            <span class="keyword">this</span>.pattern = pattern;
+        }
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Token</span> {</span>
+        <span class="keyword">public</span> TokenType type;
+        <span class="keyword">public</span> String data;
+
+        <span class="keyword">public</span> Token(TokenType type, String data) {
+            <span class="keyword">this</span>.type = type;
+            <span class="keyword">this</span>.name = data;
+        }
+
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> String toString() {
+            <span class="keyword">return</span> String.format(<span class="string">"(%s %s)"</span>, type.name(), data);
+        }
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;Token&gt; lex(String input) {
+        <span class="comment">// The tokens to return</span>
+        ArrayList&lt;Token&gt; tokens = <span class="keyword">new</span> ArrayList&lt;Token&gt;();
+
+        <span class="comment">// Lexer logic begins here</span>
+
+        <span class="keyword">return</span> tokens;
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        String input = <span class="string">"11 + 22 - 33"</span>;
+
+        <span class="comment">// Create tokens and print them</span>
+        ArrayList&lt;Token&gt; tokens = lex(input);
+        <span class="keyword">for</span> (Token token : tokens)
+            System.out.println(token);
+    }
+}
+</code></pre>
+<p>Now, we need to encode all of the regular expression patterns for each of the token types into a single pattern in the algorithm shown below. This is the case where we use <strong>named capturing groups</strong> in regular expressions as <code>(?&lt;TYPE&gt; PATTERN)</code> so that once a pattern is matched, we can retrieve the token by calling its group name, the <code>TYPE</code>.</p>
+<p>Additionally, we import the <code>Pattern</code> class to compile regular expression patterns.</p>
+<pre><code class="java"><span class="keyword">import</span> java.util.regex.Pattern;
+
+<span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;Token&gt; lex(String input) {
+    <span class="comment">// The tokens to return</span>
+    ArrayList&lt;Token&gt; tokens = <span class="keyword">new</span> ArrayList&lt;Token&gt;();
+
+    <span class="comment">// Lexer logic begins here</span>
+    StringBuffer tokenPatternsBuffer = <span class="keyword">new</span> StringBuffer();
+    <span class="keyword">for</span> (TokenType tokenType : TokenType.values())
+        tokenPatternsBuffer.append(String.format(<span class="string">"|(?&lt;%s&gt;%s)"</span>, tokenType.name(), tokenType.pattern));
+    String tokenPatterns = Pattern.compile(<span class="keyword">new</span> String(tokenPatternsBuffer.substring(<span class="number">1</span>)));
+
+    <span class="keyword">return</span> tokens;
+}
+</code></pre>
+<p>Next, we begin tokenizing by creating a <code>Matcher</code> object from the compiled pattern, <code>tokenPatterns</code>, from earlier. The matcher will return any token matched with any of the corresponding token type patterns. Note that we must also import the <code>Matcher</code> class here.</p>
+<p>We will iterate through the list of token types and ask if the token type was matched. If the token returns a match, we will add it to our list of tokens with the corresponding token type and continue parsing the input.</p>
+<pre><code class="java"><span class="keyword">import</span> java.util.regex.Pattern;
+<span class="keyword">import</span> java.util.regex.Matcher;
+
+<span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;Token&gt; lex(String input) {
+    <span class="comment">// The tokens to return</span>
+    ArrayList&lt;Token&gt; tokens = <span class="keyword">new</span> ArrayList&lt;Token&gt;();
+
+    <span class="comment">// Lexer logic begins here</span>
+    StringBuffer tokenPatternsBuffer = <span class="keyword">new</span> StringBuffer();
+    <span class="keyword">for</span> (TokenType tokenType : TokenType.values())
+        tokenPatternsBuffer.append(String.format(<span class="string">"|(?&lt;%s&gt;%s)"</span>, tokenType.name(), tokenType.pattern));
+    Pattern tokenPatterns = Pattern.compile(<span class="keyword">new</span> String(tokenPatternsBuffer.substring(<span class="number">1</span>)));
+
+    <span class="comment">// Begin matching tokens</span>
+    Matcher matcher = tokenPatterns.matcher(input);
+    <span class="keyword">while</span> (matcher.find()) {
+        <span class="keyword">if</span> (matcher.group(TokenType.NUMBER.name()) != <span class="keyword">null</span>) {
+            tokens.add(<span class="keyword">new</span> Token(TokenType.NUMBER, matcher.group(TokenType.NUMBER.name())));
+            <span class="keyword">continue</span>;
+        } <span class="keyword">else</span> <span class="keyword">if</span> (matcher.group(TokenType.BINARYOP.name()) != <span class="keyword">null</span>) {
+            tokens.add(<span class="keyword">new</span> Token(TokenType.BINARYOP, matcher.group(TokenType.BINARYOP.name())));
+            <span class="keyword">continue</span>;
+        } <span class="keyword">else</span> <span class="keyword">if</span> (matcher.group(TokenType.WHITESPACE.name()) != <span class="keyword">null</span>)
+            <span class="keyword">continue</span>;
+    }
+
+    <span class="keyword">return</span> tokens;
+}
+</code></pre>
+<p>And the algorithm is complete! The magic of named capturing groups here happens as we match of the token types. Note that instead of matching groups by their numerical reference, <code>matcher.group(0)</code>, we use the actual name which is far more intuitive and much easier to maintain.</p>
+<p>Here is the complete source code:</p>
+<pre><code class="java"><span class="keyword">import</span> java.util.ArrayList;
+<span class="keyword">import</span> java.util.regex.Pattern;
+<span class="keyword">import</span> java.util.regex.Matcher;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Lexer</span> {</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">enum</span> TokenType {
+        <span class="comment">// Token types cannot have underscores</span>
+        NUMBER(<span class="string">"-?[0-9]+"</span>), BINARYOP(<span class="string">"[*|/|+|-]"</span>), WHITESPACE(<span class="string">"[ \t\f\r\n]+"</span>);
+
+        <span class="keyword">public</span> <span class="keyword">final</span> String pattern;
+
+        <span class="keyword">private</span> TokenType(String pattern) {
+            <span class="keyword">this</span>.pattern = pattern;
+        }
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Token</span> {</span>
+        <span class="keyword">public</span> TokenType type;
+        <span class="keyword">public</span> String data;
+
+        <span class="keyword">public</span> Token(TokenType type, String data) {
+            <span class="keyword">this</span>.type = type;
+            <span class="keyword">this</span>.data = data;
+        }
+
+        <span class="annotation">@Override</span>
+        <span class="keyword">public</span> String toString() {
+            <span class="keyword">return</span> String.format(<span class="string">"(%s %s)"</span>, type.name(), data);
+        }
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;Token&gt; lex(String input) {
+        <span class="comment">// The tokens to return</span>
+        ArrayList&lt;Token&gt; tokens = <span class="keyword">new</span> ArrayList&lt;Token&gt;();
+
+        <span class="comment">// Lexer logic begins here</span>
+        StringBuffer tokenPatternsBuffer = <span class="keyword">new</span> StringBuffer();
+        <span class="keyword">for</span> (TokenType tokenType : TokenType.values())
+            tokenPatternsBuffer.append(String.format(<span class="string">"|(?&lt;%s&gt;%s)"</span>, tokenType.name(), tokenType.pattern));
+        Pattern tokenPatterns = Pattern.compile(<span class="keyword">new</span> String(tokenPatternsBuffer.substring(<span class="number">1</span>)));
+
+        <span class="comment">// Begin matching tokens</span>
+        Matcher matcher = tokenPatterns.matcher(input);
+        <span class="keyword">while</span> (matcher.find()) {
+            <span class="keyword">if</span> (matcher.group(TokenType.NUMBER.name()) != <span class="keyword">null</span>) {
+                tokens.add(<span class="keyword">new</span> Token(TokenType.NUMBER, matcher.group(TokenType.NUMBER.name())));
+                <span class="keyword">continue</span>;
+            } <span class="keyword">else</span> <span class="keyword">if</span> (matcher.group(TokenType.BINARYOP.name()) != <span class="keyword">null</span>) {
+                tokens.add(<span class="keyword">new</span> Token(TokenType.BINARYOP, matcher.group(TokenType.BINARYOP.name())));
+                <span class="keyword">continue</span>;
+            } <span class="keyword">else</span> <span class="keyword">if</span> (matcher.group(TokenType.WHITESPACE.name()) != <span class="keyword">null</span>)
+                <span class="keyword">continue</span>;
+        }
+
+        <span class="keyword">return</span> tokens;
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        String input = <span class="string">"11 + 22 - 33"</span>;
+
+        <span class="comment">// Create tokens and print them</span>
+        ArrayList&lt;Token&gt; tokens = lex(input);
+        <span class="keyword">for</span> (Token token : tokens)
+            System.out.println(token);
+    }
+}
+</code></pre>
+<h3>Running the Algorithm</h3>
+<p>For completeness, when we run the program, we should receive the following output.</p>
+<pre><code class="no-highlight">(NUMBER 11)
+(BINARYOP +)
+(NUMBER 22)
+(BINARYOP -)
+(NUMBER 33)</code></pre>
+<h2>Conclusion</h2>
+<p>Although lexical analysis is doable without it, named capturing groups in regular expressions certainly makes the code more intuitive and easier to maintain. It’s also nice that Java is beginning to provide features that act as syntactic sugar.</p>
+
+												
+					</div><!-- .entry-content -->
+					
+					<div class="entry-utility">
+
+						<span class="cat-links">This entry was posted in <a href="http://www.giocc.com/category/ingenuity" title="View all posts in Ingenuity" rel="category tag">Ingenuity</a></span><span class="tag-links">  and tagged <a href="http://www.giocc.com/tag/java-1-7" rel="tag">java-1.7</a>, <a href="http://www.giocc.com/tag/lexer" rel="tag">lexer</a>, <a href="http://www.giocc.com/tag/lexical-analysis" rel="tag">lexical analysis</a>, <a href="http://www.giocc.com/tag/named-capturing" rel="tag">named capturing</a>, <a href="http://www.giocc.com/tag/parsing" rel="tag">parsing</a>, <a href="http://www.giocc.com/tag/regex" rel="tag">regex</a></span>. Bookmark the <a href="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/Writing a Lexer in Java 1.7 using Regex Named Capturing Groups.htm" title="Permalink to Writing a Lexer in Java 1.7 using Regex Named Capturing Groups">permalink</a>.  <a class="comment-link" href="http://www.giocc.com/writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups.html#respond" title="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="http://www.giocc.com/writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups.html/trackback" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.
+
+					</div><!-- .entry-utility -->
+					
+				</div><!-- #post -->
+		
+			<div id="nav-below" class="navigation">
+				<div class="nav-previous"><a href="http://www.giocc.com/underscorejs-text-processing-on-the-document-object-model-dom.html" rel="prev"><span class="meta-nav">«</span> Underscorejs: Text Processing on the Document Object Model (DOM)</a></div>
+				<div class="nav-next"><a href="http://www.giocc.com/problems-with-closures-in-javascript-and-python.html" rel="next">Historical Problems with Closures in JavaScript and Python <span class="meta-nav">»</span></a></div>
+			</div>
+
+								
+				<div id="comments">
+	
+					
+					
+										
+												
+					
+											
+					<div id="comments-list-wrapper" class="comments">
+
+						<h3><span>One</span> Comment</h3>
+	
+						<ol id="comments-list">
+							    
+       	<li id="comment-1305" class="comment even thread-even depth-1 thm-c-y2012 thm-c-m09 thm-c-d24 thm-c-h11">
+    	
+    		    		
+    		<div class="comment-author vcard"><img alt="" src="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/5264f2b9367eea6b2d1e4181a2d96d2f" class="photo avatar avatar-80 photo" height="80" width="80"> <span class="fn n"><a href="http://pfmiles.github.com/" rel="external nofollow" class="url url">Yue</a></span></div>
+    		
+    			<div class="comment-meta">Posted September 24, 2012 <span class="meta-sep">|</span> <a href="http://www.giocc.com/writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups.html#comment-1305" title="Permalink to this comment">Permalink</a></div>
+    		
+    			    			
+            <div class="comment-content">
+            
+        		<p>Seems good, but I feel a little despaired that it looks no greater progress than the version I wrote before, using an old java version: <a href="https://gist.github.com/2464374" rel="nofollow">https://gist.github.com/2464374</a><br>
+The most important code here is the “group recognition” section: </p>
+<p>while (matcher.find()) {<br>
+            if (matcher.group(TokenType.NUMBER.name()) != null) {<br>
+                tokens.add(new Token(TokenType.NUMBER, matcher.group(TokenType.NUMBER.name())));<br>
+                continue;<br>
+            } else if (matcher.group(TokenType.BINARYOP.name()) != null) {<br>
+                tokens.add(new Token(TokenType.BINARYOP, matcher.group(TokenType.BINARYOP.name())));<br>
+                continue;<br>
+            } else if (matcher.group(TokenType.WHITESPACE.name()) != null)<br>
+                continue;<br>
+        }</p>
+<p>It’s a looping and traversal style, just as I did in the code I mentioned in the gist, except that you did this by calling the groups’ names, and I using groups’ indexes, but they are almost the same thing…<br>
+I wish there could be a more elegant way of finding matched group in new version of java. Something like ‘matcher.findMatchedGroupName’ for convenient , that would be nice.</p>
+        		
+    		</div>
+    		
+			<div class="comment-reply-link"><a class="comment-reply-link" href="http://www.giocc.com/writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups.html?replytocom=1305#respond" onclick="return addComment.moveForm(&quot;comment-1305&quot;, &quot;1305&quot;, &quot;respond&quot;, &quot;1164&quot;)">Reply</a></div>			
+			
+</li>
+						</ol>
+										
+					</div><!-- #comments-list-wrapper .comments -->
+					
+												
+										
+										
+					<div id="comments-nav-below" class="comment-navigation">
+	        		
+	        			<div class="paginated-comments-links"></div>
+	                
+	                </div>	
+	                	                  
+					
+											
+						
+					<div id="respond">
+					
+	    				<h3>Post a Comment</h3>
+	
+	    				<div id="cancel-comment-reply"><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.giocc.com/writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups.html#respond" style="display:none;">Click here to cancel reply.</a></div>
+	
+												<div class="formcontainer">	
+	
+												
+	
+							<form id="commentform" action="http://www.giocc.com/wp-comments-post.php" method="post">
+	
+								
+								<p id="comment-notes">Your email is <em>never</em> published nor shared. Required fields are marked <span class="required">*</span></p>
+	
+	                            <div id="form-section-author" class="form-section">
+	    							<div class="form-label"><label for="author">Name</label> <span class="required">*</span></div>
+	    							<div class="form-input"><input id="author" name="author" type="text" value="" size="30" maxlength="20" tabindex="3"></div>
+	                            </div><!-- #form-section-author .form-section -->
+	
+	                            <div id="form-section-email" class="form-section">
+	    							<div class="form-label"><label for="email">Email</label> <span class="required">*</span></div>
+	    							<div class="form-input"><input id="email" name="email" type="text" value="" size="30" maxlength="50" tabindex="4"></div>
+	                            </div><!-- #form-section-email .form-section -->
+	
+	                            <div id="form-section-url" class="form-section">
+	    							<div class="form-label"><label for="url">Website</label></div>
+	    							<div class="form-input"><input id="url" name="url" type="text" value="" size="30" maxlength="50" tabindex="5"></div>
+	                            </div><!-- #form-section-url .form-section -->
+	
+								
+	                            <div id="form-section-comment" class="form-section">
+	    							<div class="form-label"><label for="comment">Comment</label></div>
+	    							<div class="form-textarea"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="6"></textarea></div>
+	                            </div><!-- #form-section-comment .form-section -->
+	                            
+	                            <div id="form-allowed-tags" class="form-section">
+	                                <p><span>You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:</span> <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>
+	                            </div>
+								
+	                  			<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7dd6581d2e"></p>	                  
+								<div class="form-submit"><input id="submit" name="submit" type="submit" value="Post Comment" tabindex="7"><input type="hidden" name="comment_post_ID" value="1164"></div>
+	
+	                            <input type="hidden" name="comment_post_ID" value="1164" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+    
+	
+							</form><!-- #commentform -->
+	
+								
+						</div><!-- .formcontainer -->
+							
+						</div><!-- #respond -->
+						
+							
+				</div><!-- #comments -->
+				
+						
+			</div><!-- #content -->
+			
+			 
+		</div><!-- #container -->
+		
+
+		<div id="primary" class="aside main-aside">
+
+			<ul class="xoxo">
+
+				<li id="text-3" class="widgetcontainer widget_text"><h3 class="widgettitle">About Gio</h3>
+			<div class="textwidget"><p>I am a torrent of ingenuity (or insanity) with a myriad of innovations (sometimes fallacies) and a wealth of inspiration (possibly naiveté). My name is Gio Carlo Cielo Borje and I like puffer fish because they're just cooltalkin', highwalkin' and fastlivin'.</p>
+<p>I'm also eighteen, current student at UC Irvine for Computer Science, and Senior Developer at the upcoming MetaZaku Foundation.</p>
+</div>
+		</li><li id="search-2" class="widgetcontainer widget_search"><h3 class="widgettitle"><label for="s">Search</label></h3>
+
+						<form id="searchform" method="get" action="http://www.giocc.com/">
+
+							<div>
+								<input id="s" name="s" type="text" value="To search, type and hit enter" onfocus="if (this.value == &#39;To search, type and hit enter&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;To search, type and hit enter&#39;;}" size="32" tabindex="1">
+
+								<input id="searchsubmit" name="searchsubmit" type="submit" value="Search" tabindex="2">
+							</div>
+
+						</form>
+
+					</li>
+				</ul>
+
+		</div><!-- #primary .aside -->
+
+				
+		</div><!-- #main -->
+    	
+    	</div><div id="footer">	
+        	
+        	        
+        <div id="subsidiary">
+        
+    
+		<div id="first" class="aside sub-aside">
+
+			<ul class="xoxo">
+
+				<li id="categories-2" class="widgetcontainer widget_categories"><h3 class="widgettitle">Categories</h3>
+		<ul>
+	<li class="cat-item cat-item-1"><a href="http://www.giocc.com/category/ingenuity" title="Things that I create.">Ingenuity</a> (14)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.giocc.com/category/innovation" title="Things that I think of.">Innovation</a> (8)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.giocc.com/category/inspiration" title="Things that inspire me.">Inspiration</a> (12)
+</li>
+		</ul>
+</li>
+				</ul>
+
+		</div><!-- #first .aside -->
+
+
+		<div id="second" class="aside sub-aside">
+
+			<ul class="xoxo">
+
+						<li id="recent-posts-5" class="widgetcontainer widget_recent_entries">		<h3 class="widgettitle">Recent Posts</h3>
+		<ul>
+				<li><a href="http://www.giocc.com/projects-matching-problem-of-ics-clubs-and-small-organizations.html" title="Projects Matching Problem of ICS Clubs and Small Organizations">Projects Matching Problem of ICS Clubs and Small Organizations</a></li>
+				<li><a href="http://www.giocc.com/problems-with-closures-in-javascript-and-python.html" title="Historical Problems with Closures in JavaScript and Python">Historical Problems with Closures in JavaScript and Python</a></li>
+				<li><a href="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/Writing a Lexer in Java 1.7 using Regex Named Capturing Groups.htm" title="Writing a Lexer in Java 1.7 using Regex Named Capturing Groups">Writing a Lexer in Java 1.7 using Regex Named Capturing Groups</a></li>
+				<li><a href="http://www.giocc.com/underscorejs-text-processing-on-the-document-object-model-dom.html" title="Underscorejs: Text Processing on the Document Object Model (DOM)">Underscorejs: Text Processing on the Document Object Model (DOM)</a></li>
+				<li><a href="http://www.giocc.com/prelude-into-underscorejs-higher-order-functions.html" title="Prelude into Underscorejs: Higher-Order Functions">Prelude into Underscorejs: Higher-Order Functions</a></li>
+				</ul>
+		</li>
+				</ul>
+
+		</div><!-- #second .aside -->
+
+
+		<div id="third" class="aside sub-aside">
+
+			<ul class="xoxo">
+
+				<li id="linkcat-2" class="widgetcontainer widget_links"><h3 class="widgettitle">Projects</h3>
+
+	<ul class="xoxo blogroll">
+<li><a href="https://www.github.com/Hydrotoast" rel="me" title="My other projects">GitHub</a></li>
+<li><a href="http://www.metazaku.com/" title="Development network" target="_blank">MetaZaku</a></li>
+<li><a href="http://www.zerozaku.com/" title="An internet supernova" target="_blank">ZeroZaku</a></li>
+
+	</ul>
+</li>
+
+				</ul>
+
+		</div><!-- #third .aside -->
+
+        
+        </div><!-- #subsidiary -->
+        
+        
+	<div id="siteinfo">        
+
+   			Copyright © 2011 Gio Borje. Powered by <a class="wp-link" href="http://wordpress.org/" title="WordPress" rel="generator">WordPress</a>.
+
+	</div><!-- #siteinfo -->
+	
+   	        	
+		</div><!-- #footer -->
+    	
+	<script type="text/javascript">
+	(function(){
+		hljs.tabReplace = '    ';
+		hljs.initHighlightingOnLoad();
+		//	hljs.highlightBlock(e,'    ');
+	})();
+</script><script type="text/javascript" src="./Writing a Lexer in Java 1.7 using Regex Named Capturing Groups_files/hoverIntent.js"></script>
+
+
+</body></html>
