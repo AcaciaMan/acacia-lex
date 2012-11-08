@@ -47,8 +47,8 @@ public class ImplState implements StateDesc {
         //@addToken
         newToken = new Token(
                 this,
-                SimpleToken.SELECT,
-                "SELECT",
+                "SimpleToken.SELECT",
+                "SELECTS",
                 0);
         tokens.add(newToken);
         //\@addToken
