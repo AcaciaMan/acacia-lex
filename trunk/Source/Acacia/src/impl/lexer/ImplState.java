@@ -102,7 +102,10 @@ public class ImplState implements StateDesc {
 
     @Override
     public Object newStateInstance() {
+        //@instanceClass
         return new SimpleState();
+        //\@instanceClass
+
     }
 
     @Override

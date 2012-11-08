@@ -41,9 +41,21 @@ public class MakeState extends MakeManager {
 
     final String TOKEN_TYPE = "SimpleToken.SELECT";
     final String TOKEN_VALUE = "SELECTS";
+    final String TOKEN_METHOD_NUM = "0";
 
+
+    final String TOKEN_METHODS = "tokenMethods";
+    final String TOKEN_METHOD = "tokenMethod";
+    final String INSTANCE_CLASS = "instanceClass";
+
+    final String METHOD_CLASS = "SimpleState";
+    final String METHOD_NAME = "returnPlus";
+    final String METHOD_NUM = "0";
 
     List<AnnToken> lAnnToken = new ArrayList<AnnToken>();
+    List<Integer> lAnnTokenMethodNum = new ArrayList<Integer>();
+    List<String> lMethod = new ArrayList<String>();
+
 
     public MakeState(TypeElement clazz, ProcessingEnvironment processingEnv, EnumMakeClass enumMakeClass) {
         super(clazz, processingEnv, enumMakeClass);
@@ -52,6 +64,9 @@ public class MakeState extends MakeManager {
     @Override
     public void readImplClass() throws UnsupportedEncodingException, IOException {
         super.readImplClass();
+
+        Integer methodNum = 0;
+
         Elements elements = this.getProcessingEnv().getElementUtils();
         List<ExecutableElement> lElement = ElementFilter.methodsIn(elements.getAllMembers(this.getClazz()));
 
@@ -66,6 +81,9 @@ public class MakeState extends MakeManager {
                 processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
 
                 lAnnToken.add(annToken);
+                lAnnTokenMethodNum.add(methodNum);
+                lMethod.add(el.getSimpleName().toString());
+                methodNum++;
             }
 
             AnnTokens annTokens = el.getAnnotation(AnnTokens.class);
@@ -75,7 +93,10 @@ public class MakeState extends MakeManager {
                     processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
 
                     lAnnToken.add(a);
+                    lAnnTokenMethodNum.add(methodNum);
                 }
+                lMethod.add(el.getSimpleName().toString());
+                methodNum++;
             }
 
         }
@@ -87,6 +108,7 @@ public class MakeState extends MakeManager {
         super.replaceImplParameters();
 
         addTokens();
+        addMethods();
     }
 
     public void addTokens() {
@@ -104,6 +126,7 @@ public class MakeState extends MakeManager {
         message = "Found New Tokens " + newTokens;
         processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
 
+        int i = 0;
         for(AnnToken a:lAnnToken){
             String result = replaceToken;
             result = result.replace(TOKEN_TYPE, a.type());
@@ -112,7 +135,10 @@ public class MakeState extends MakeManager {
             sValue = sValue.replace("\\", "\\\\");
             result = result.replace(TOKEN_VALUE, sValue);
 
+            result = result.replace(TOKEN_METHOD_NUM, lAnnTokenMethodNum.get(i).toString());
+
             sTokens = sTokens + result;
+            i++;
         }
 
         message = "New Tokens " + sTokens;
@@ -122,6 +148,44 @@ public class MakeState extends MakeManager {
 
     }
 
+    public void addMethods() {
 
+        String sMethods = " ";
+
+        String message = "Adding Methods ... ";
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+        String replaceMethod = getReplacements().getFragment(TOKEN_METHOD);
+        message = "Found Method " + replaceMethod;
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+        String newMethods = getReplacements().getFragment(TOKEN_METHODS);
+        message = "Found New Methods " + newMethods;
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+        Integer i = 0;
+        for(String methodName:lMethod){
+            String result = replaceMethod;
+            result = result.replace(METHOD_NAME, methodName);
+            result = result.replace(METHOD_CLASS, getClassName());
+            result = result.replace(METHOD_NUM, i.toString());
+
+            sMethods = sMethods + result;
+            i++;
+        }
+
+        message = "New Methods " + sMethods;
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+        getReplacements().replaceAllIdentified(TOKEN_METHODS, sMethods);
+
+                String instanceClass = getReplacements().getFragment(INSTANCE_CLASS);
+        message = "Found New Instance Class " + instanceClass;
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+        instanceClass = instanceClass.replace(METHOD_CLASS, getClassName());
+        getReplacements().replaceAllIdentified(INSTANCE_CLASS, instanceClass);
+
+    }
 
 }
