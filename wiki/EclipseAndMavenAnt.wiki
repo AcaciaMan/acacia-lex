@@ -1,14 +1,6 @@
-#summary One-sentence summary of this page.
+#summary Running in Eclipse with Maven Ant
 #labels Featured
 
 = Introduction =
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+This project is developed with NetBeans 6.9.1. There is no obvious reason, why it cannot be run in Eclipse with Maven Ant. Though it is not tested, but here is good source of information, how to enable Annotation processor in Eclipse with Maven Ant (see http://deors.wordpress.com/2011/10/08/annotation-processors/).
