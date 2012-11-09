@@ -33,3 +33,6 @@ AcaciaTest.jar uses combined.jar library. It is join of Acacia.jar and AcaciaLex
     # copy AcaciaLex.jar from its dist location to trunk/jar
     # unjar Acacia.jar and AcaciaLex.jar in trunk/jar/tmp folder
     # make combine.jar from trunk/jar/tmp folder
+
+In Common.java class Lexers are initialized and executed.
+In TestCommon.java class Lexers execution is tested.
