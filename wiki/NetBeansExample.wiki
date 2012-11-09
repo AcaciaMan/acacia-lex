@@ -1,14 +1,35 @@
-#summary One-sentence summary of this page.
+#summary Acacia.jar, AcaciaLex.jar and AcaciaTest.jar are developed in NetBeans 6.9.1
 #labels Featured
 
 = Introduction =
-
-Add your content here.
-
+Acacia.jar, AcaciaLex.jar and AcaciaTest.jar are developed in NetBeans 6.9.1
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Acacia.jar ==
+Acacia library contains Javax annotation specification for following ann.lexer annotations:
+  # AnnLexer - Lexer class annotation
+  # AnnStartState - Lexer start state annotation
+  # AnnState - Lexer State class annotation
+  # AnnToken - Token annotation
+  # AnnTokens -  Token list annotation
+
+Acacia library also contains javax annotation proc.lexer processor ProcessAnnLexer. To enable the processor, to Acacia.jar is added META-INF/services folder with file javax.annotation.processing.Processor. It is done by trunk/jar/copy.bat script:
+  * Locate to trunk/jar folder
+  * Execute copy.bat script:
+    # copy Acacia.jar from its dist location to trunk/jar
+    # add javax.annotatio.processing.Processor file to Acacia.jar
+    # copy Acacia.jar back to its dist location
+
+== AcaciaLex.jar ==
+AcaciaLex.jar uses Acacia.jar library.
+In AcaciaLex project is defined Lexers, their states and tokens.
+
+== AcaciaTest.jar ==
+AcaciaTest.jar uses combined.jar library. It is join of Acacia.jar and AcaciaLex.jar classes. It is done by trunk/jar/combine.bat script:
+  * Locate to trunk/jar folder
+  * Execute combine.bat script:
+    # copy Acacia.jar from its dist location to trunk/jar
+    # copy AcaciaLex.jar from its dist location to trunk/jar
+    # unjar Acacia.jar and AcaciaLex.jar in trunk/jar/tmp folder
+    # make combine.jar from trunk/jar/tmp folder
