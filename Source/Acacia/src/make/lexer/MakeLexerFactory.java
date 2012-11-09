@@ -20,18 +20,30 @@
 
 package make.lexer;
 
-import impl.ImplReplacements;
+import ann.lexer.AnnStartState;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.lang.model.element.VariableElement;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.ElementFilter;
+import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
+
 
 public class MakeLexerFactory extends MakeManager {
 
     final String ADD_STATE_DESC = "addStateDesc";
 
+    final String FACTORY_FROM_STATE = "ImplState.class";
+    final String FACTORY_TO_STATE = "Impl.class";
+
     private MakeLexer makeLexer;
     private List<MakeState> lMakeState;
+
+    List<String> lStartState = new ArrayList<String>();
 
     public MakeLexerFactory(TypeElement clazz, ProcessingEnvironment processingEnv, EnumMakeClass enumMakeClass) {
         super(clazz, processingEnv, enumMakeClass);
@@ -40,6 +52,30 @@ public class MakeLexerFactory extends MakeManager {
     public void init(MakeLexer makeLexer, List<MakeState> lMakeState) {
         this.makeLexer = makeLexer;
         this.lMakeState = lMakeState;
+    }
+
+        @Override
+    public void readImplClass() throws UnsupportedEncodingException, IOException {
+        super.readImplClass();
+
+        Elements elements = this.getProcessingEnv().getElementUtils();
+        List<VariableElement> lElement = ElementFilter.fieldsIn(elements.getAllMembers(this.getClazz()));
+
+        for (VariableElement el : lElement) {
+            String message = "Found State annotation " + el.getSimpleName();
+            processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+
+            AnnStartState annStartState = el.getAnnotation(AnnStartState.class);
+            if (annStartState != null) {
+                message = "Found start state annotation " + el.asType();
+                processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+
+                lStartState.add(el.asType().toString());
+            }
+
+        }
+
     }
 
     @Override
@@ -56,22 +92,20 @@ public class MakeLexerFactory extends MakeManager {
         String message = "Adding start StateDesc ... ";
         processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
 
-        StringBuilder result = new StringBuilder();
-        String replaceToken = getReplacements().getFragment(ADD_STATE_DESC);
-        StringBuilder sbToken = new StringBuilder(replaceToken);
-        ImplReplacements ir;
 
-        for(MakeState ms:lMakeState) {
-            ir = new ImplReplacements(sbToken);
-            ir.replaceAll(ms.getEnumMakeClass().getName(), ms.getOutputClassName());
-            result.append(ir.getSource());
+        String replaceStartState = getReplacements().getFragment(ADD_STATE_DESC);
 
-            message = "Replaced " + ms.getEnumMakeClass().getName() + " with " + ms.getOutputClassName();
-            processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+        String startStates = " ";
+        String result = " ";
 
+        for(String s:lStartState) {
+            result = replaceStartState;
+            result = result.replace(FACTORY_FROM_STATE, s+FACTORY_TO_STATE);
+
+            startStates = startStates + result;
         }
 
-        getReplacements().replaceAllIdentified(ADD_STATE_DESC, result.toString());
+        getReplacements().replaceAllIdentified(ADD_STATE_DESC, startStates);
     }
 
     /**
