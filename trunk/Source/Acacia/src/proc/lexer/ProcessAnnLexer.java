@@ -20,7 +20,6 @@
 
 package proc.lexer;
 
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -36,16 +35,6 @@ import make.lexer.EnumMakeClass;
 import make.lexer.MakeLexer;
 import make.lexer.MakeLexerFactory;
 import make.lexer.MakeState;
-import org.apache.log4j.Appender;
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Layout;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
-import org.apache.log4j.spi.ErrorHandler;
-import org.apache.log4j.spi.Filter;
-import org.apache.log4j.spi.LoggingEvent;
 
 @SupportedAnnotationTypes("*")
 @SupportedSourceVersion(SourceVersion.RELEASE_6)

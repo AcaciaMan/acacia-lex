@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://code.google.com/p/acris/wiki/AnnotationProcessing_Eclipse -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ 
+ <meta name="ROBOTS" content="NOARCHIVE">
+ 
+ <link rel="icon" type="image/vnd.microsoft.icon" href="http://www.gstatic.com/codesite/ph/images/phosting.ico">
+ 
+ 
+ <link rel="canonical" href="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting.htm">
+ 
+ <script src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/plusone.js" gapi_processed="true"></script><script type="text/javascript">
+ 
+ 
+ 
+ 
+ var codesite_token = "oVRgv7XTv4pMf1x93yxnpW7l3DI:1352562494682";
+ 
+ 
+ var CS_env = {"profileUrl":"/u/110698719132709453541/","token":"oVRgv7XTv4pMf1x93yxnpW7l3DI:1352562494682","assetHostPath":"http://www.gstatic.com/codesite/ph","domainName":null,"assetVersionPath":"http://www.gstatic.com/codesite/ph/17134919371905794448","projectHomeUrl":"/p/acris","relativeBaseUrl":"","projectName":"acris","loggedInUserEmail":"manacacia@gmail.com"};
+ var _gaq = _gaq || [];
+ _gaq.push(
+ ['siteTracker._setAccount', 'UA-18071-1'],
+ ['siteTracker._trackPageview']);
+ 
+ _gaq.push(
+ ['projectTracker._setAccount', 'UA-569687-13'],
+ ['projectTracker._trackPageview']);
+ 
+ (function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+ })();
+ 
+ </script><script type="text/javascript" async="" src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/ga.js"></script>
+ 
+ 
+ <title>AnnotationProcessing_Eclipse - 
+ acris -
+ 
+ How to setup annotation processors with eclipse - 
+ Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting
+ </title>
+ <link type="text/css" rel="stylesheet" href="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/core.css">
+ 
+ <link type="text/css" rel="stylesheet" href="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/ph_detail.css">
+ 
+ 
+ 
+ <link type="application/atom+xml" rel="alternate" href="http://code.google.com/feeds/p/acris/svnchanges/basic?path=/wiki/AnnotationProcessing_Eclipse.wiki">
+ 
+ 
+<!--[if IE]>
+ <link type="text/css" rel="stylesheet" href="http://www.gstatic.com/codesite/ph/17134919371905794448/css/d_ie.css" >
+<![endif]-->
+ <style type="text/css">
+ .menuIcon.off { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -42px }
+ .menuIcon.on { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -28px }
+ .menuIcon.down { background: no-repeat url(http://www.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 0; }
+ 
+ 
+ #maincol {
+ padding-top: 0;
+ padding-bottom: 0;
+ }
+
+ 
+ </style>
+</head>
+<body class="t6">
+<script type="text/javascript">
+ window.___gcfg = {lang: 'en'};
+ (function() 
+ {var po = document.createElement("script");
+ po.type = "text/javascript"; po.async = true;po.src = "https://apis.google.com/js/plusone.js";
+ var s = document.getElementsByTagName("script")[0];
+ s.parentNode.insertBefore(po, s);
+ })();
+</script>
+<div class="headbg">
+
+ <div id="gaia">
+ 
+
+ <span>
+ 
+ 
+ 
+ <b>manacacia@gmail.com</b>
+ 
+ 
+ | <a href="http://code.google.com/u/110698719132709453541/" id="projects-dropdown" onclick="return false;"><u>My favorites</u> <small>▼</small></a>
+ | <a href="http://code.google.com/u/110698719132709453541/" onclick="_CS_click(&#39;/gb/ph/profile&#39;);" title="Profile, Updates, and Settings"><u>Profile</u></a>
+ | <a href="https://www.google.com/accounts/Logout?continue=http%3A%2F%2Fcode.google.com%2Fp%2Facris%2Fwiki%2FAnnotationProcessing_Eclipse" onclick="_CS_click(&#39;/gb/ph/signout&#39;);"><u>Sign out</u></a>
+ 
+ </span>
+
+ </div>
+
+ <div class="gbh" style="left: 0pt;"></div>
+ <div class="gbh" style="right: 0pt;"></div>
+ 
+ 
+ <div style="height: 1px"></div>
+<!--[if lte IE 7]>
+<div style="text-align:center;">
+Your version of Internet Explorer is not supported. Try a browser that
+contributes to open source, such as <a href="http://www.firefox.com">Firefox</a>,
+<a href="http://www.google.com/chrome">Google Chrome</a>, or
+<a href="http://code.google.com/chrome/chromeframe/">Google Chrome Frame</a>.
+</div>
+<![endif]-->
+
+
+
+ <table style="padding:0px; margin: 0px 0px 10px 0px; width:100%" cellpadding="0" cellspacing="0" itemscope="" itemtype="http://schema.org/CreativeWork">
+ <tbody><tr style="height: 58px;">
+ 
+ 
+ 
+ <td id="plogo">
+ <link itemprop="url" href="http://code.google.com/p/acris">
+ <a href="http://code.google.com/p/acris/">
+ 
+ 
+ <img src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/logo" alt="Logo" itemprop="image">
+ 
+ </a>
+ </td>
+ 
+ <td style="padding-left: 0.5em">
+ 
+ <div id="pname">
+ <a href="http://code.google.com/p/acris/"><span itemprop="name">acris</span></a>
+ </div>
+ 
+ <div id="psum">
+ <a id="project_summary_link" href="http://code.google.com/p/acris/"><span itemprop="description">Web framework for building applications, web sites and portals using Google Web Toolkit</span></a>
+ 
+ </div>
+ 
+ 
+ </td>
+ <td style="white-space:nowrap;text-align:right; vertical-align:bottom;">
+ 
+ <form action="http://code.google.com/hosting/search">
+ <input size="30" name="q" value="" type="text">
+ 
+ <input type="submit" name="projectsearch" value="Search projects">
+ </form>
+ 
+ </td></tr>
+ </tbody></table>
+
+</div>
+
+ 
+<div id="mt" class="gtb"> 
+ <a href="http://code.google.com/p/acris/" class="tab ">Project&nbsp;Home</a>
+ 
+ 
+ 
+ 
+ <a href="http://code.google.com/p/acris/downloads/list" class="tab ">Downloads</a>
+ 
+ 
+ 
+ 
+ 
+ <a href="http://code.google.com/p/acris/w/list" class="tab active">Wiki</a>
+ 
+ 
+ 
+ 
+ 
+ <a href="http://code.google.com/p/acris/issues/list" class="tab ">Issues</a>
+ 
+ 
+ 
+ 
+ 
+ <a href="http://code.google.com/p/acris/source/checkout" class="tab ">Source</a>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <div class="gtbc"></div>
+</div>
+<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0" class="st">
+ <tbody><tr>
+ 
+ 
+ 
+ 
+ <td class="subt">
+ <div class="issueDetail">
+<div class="isf">
+ 
+ <span class="inIssueList"> 
+ <span>Search</span>
+ <form action="http://code.google.com/p/acris/w/list" method="GET" style="display:inline">
+ <select id="can" name="can">
+ <option disabled="disabled">Search within:</option>
+ 
+ <option value="1">&nbsp;All wiki pages</option>
+ <option value="3">&nbsp;Featured pages</option>
+ <option value="2" selected="selected">&nbsp;Current pages</option>
+ 
+ 
+ <option value="5">&nbsp;My starred pages</option>
+ 
+ <option value="4">&nbsp;Deprecated pages</option>
+ 
+ </select>
+ <span>for</span>
+ <span id="qq"><input type="text" size="38" id="searchq" name="q" value="" autocomplete="off"></span>
+ 
+ 
+ 
+ <input type="submit" value="Search">
+ </form>
+ </span>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</div>
+</div>
+
+ </td>
+ 
+ 
+ 
+ 
+ 
+ 
+ <td align="right" valign="top" class="bevel-right"></td>
+ </tr>
+</tbody></table>
+
+
+<script type="text/javascript">
+ var cancelBubble = false;
+ function _go(url) { document.location = url; }
+</script>
+<div id="maincol" style="padding:0 3px 3px 0; margin:0">
+
+ 
+
+
+
+
+
+
+ 
+<style type="text/css">
+ #wikimaincol { padding-top: 6px; padding-left:1em}
+ #sidebarcontainer {
+ padding: 1.5em 2px 2px 2px;
+ min-width: 15em;
+ max-width: 20em;
+ overflow:hidden;
+}
+ .sidebartop ul { margin:0 0 0 .5em; padding-left:0 !important; list-style:none}
+ .sidebartop ul ul { margin-left:1em; padding-left:0; list-style:none; display:none}
+ .sidebartop li { margin:0 0 2px 0; padding:1px; padding-left:14px; cursor:pointer}
+ .sidebartop li a { padding:2px}
+ .sidebartop li { background: url(http://www.gstatic.com/codesite/ph/images/plus.gif) no-repeat 1px 3px}
+ .sidebartop li.treeopen { background: url(http://www.gstatic.com/codesite/ph/images/minus.gif) no-repeat 1px 3px}
+ .sidebartop li.treeleaf { background:none}
+ .currentpagelink { 
+ font-weight: bold;
+ text-decoration: none;
+ color: black !important; 
+ background: #c3d9ff;
+ }
+ .sidebartop ul.treeleafcontainer { display:block;}
+ .sidebarcontent { 
+ vertical-align:top;
+ padding-right: 3px;
+ border-right: 2px solid #ccc;
+ }
+</style>
+
+
+
+ <style type="text/css">
+ .delcom { background: #e8e8e8 }
+ .commentcontent {
+ margin: 2em;
+ padding: 0px 10px;
+ width: 66em;
+ }
+ .artifactcomment {
+ border-top: 3px solid #c3d9ff;
+ }
+ #commentform {
+ border-top: 3px solid #c3d9ff;
+ }
+ </style>
+
+<div id="wikipage">
+<table>
+ <tbody><tr>
+ 
+ 
+ <td class="sidebarcontent">
+ <div class="vt expand" id="wikisidebar">
+ <div>
+ 
+ <div style="float:right;">
+ <a class="ifExpand" style="font-size:130%; color:blue; text-decoration:none" href="http://code.google.com/p/acris/wiki/AnnotationProcessing_Eclipse#" onclick="_DW_toggleSidebar(this); return false;" title="Hide sidebar"><b>‹‹</b></a>
+ </div>
+ <div class="ifCollapse" style="padding:0 2px">
+ <a style="font-size:130%; color:blue; text-decoration:none" href="http://code.google.com/p/acris/wiki/AnnotationProcessing_Eclipse#" onclick="_DW_toggleSidebar(this); return false;" title="Show sidebar"><b>››</b></a>
+ </div>
+ 
+ 
+ <div id="sidebarcontainer" class="sidebartop ifExpand">
+ <ul class="treeleafcontainer"><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Introduction">Introduction</a> </li><li>Project </li><ul><li><a href="http://code.google.com/p/acris/wiki/ProjectQuickStart">Quick-start AcrIS project</a><sup><font color="red">Start here</font></sup> </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/ProfilesWebToolkit">Google Web Toolkit profiles</a><sup><font color="red">1.2.0</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/ProfilesAppEngine">Google AppEngine profiles</a><sup><font color="red">1.2.0</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/ProfilesAnnotationProcessing">SeSAM Annotation Processing profiles</a><sup><font color="red">1.2.0</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/ProfilesTesting">Testing profiles</a><sup><font color="red">1.2.1-S</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/QuickStartCustomized">Customized quick-start</a> </li></ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/ProjectSupport">Project structures description</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/HowTo">Build AcrIS from sources</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/CodeStyle">Code style conventions</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Releasing">Release process</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/SVNPostCommitHook">How SVN postcommit hook works</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Roadmap">Roadmap</a> </li><li><a href="http://code.google.com/p/acris/wiki/Migration">Migration guide</a> </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Migration1_0_1">From version 1.0.0 to 1.0.1</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Migration1_1_0">From version 1.0.1 to 1.1.0</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Migration1_1_1">From version 1.1.0 to 1.1.1</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Migration1_1_2">From version 1.1.1 to 1.1.2</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Migration1_2_0">From version 1.1.2 to 1.2.0</a><sup><font color="red">New</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Migration1_2_1">From version 1.2.0 to 1.2.1</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Migration1_2_2">From version 1.2.1 to 1.2.2</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/CommonIssues">3rd party libraries</a> </li></ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/GoogleSummerOfCode2011">Google Summer of Code 2011</a> </li></ul><li><a href="http://code.google.com/p/acris/wiki/BeansBinding">Beans binding</a><sup><font color="red">Deprecated</font></sup> </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/BeansBindingQuickStart">Quick-start</a> <sup><font color="red">Deprecated</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/BeansBindingInExamplesPart1">Example no.1</a> <sup><font color="red">Deprecated</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/BeansBindingInExamplesPart2">Form with validation</a> <sup><font color="red">Deprecated</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/BeanWrappers">Bean wrappers</a> <sup><font color="red">Deprecated</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/BeansBindingCollections">Collections</a> <sup><font color="red">Deprecated</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/BeansBindingConditional">Conditions</a> <sup><font color="red">Deprecated</font></sup> </li></ul><li><a href="http://code.google.com/p/acris/wiki/Security">Security</a> </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/SecurityQuickStart">Quick-start</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/SecurityConcept">Concept</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/SecurityClient">Client</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/SecurityServer">Server</a> </li></ul><li>Tools </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/Benchmarking">Benchmarking</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/GileadSupport">Gilead support</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/SeparateClientAndServer">Separating client and server</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/TrackingAsyncCallback">Tracking asynchronous calls</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/GWTEmulation">Emulation of non-acceptable classes for GWT</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/GWTJsonizer">JSON deserialization using annotations</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AsyncSync">Semaphores and asynchronous synchronization</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/JSONDataMigration">JSON data migration</a><sup><font color="red">1.2.0</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AsmantMonitoring">Asmant - Site monitoring tool</a><sup><font color="red">1.2.0</font></sup> </li></ul><li>User interaction </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/UserEventRecording">Recording user actions</a> </li></ul><li>Web </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AcrisWeb">Navigation and layout</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AcrisSEO">SEO</a> </li></ul><li>Testing <sup><font color="red">1.2.0</font></sup> </li><ul><li><a href="http://code.google.com/p/acris/wiki/SeleniumSupport">Selenium support</a> <sup><font color="red">1.2.0</font></sup> </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/WebDriverBasics">Web driver</a> <sup><font color="red">1.2.1</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/SeleniumConfiguration">Configuration</a> <sup><font color="red">1.2.1</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/SeleniumReporting">Reporting</a> <sup><font color="red">1.2.1</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/SeleniumCI">Continuous integration</a> <sup><font color="red">1.2.1</font></sup> </li></ul></ul><li class="treeopen">Plugable Annotation Processors <sup><font color="red">1.2.1</font></sup> </li><ul class="treeleafcontainer"><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AnnotationProcessing_OwnProcessor">Quick-start Own Annotation Processor</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AnnotationProcessing_Maven">Annotation processing maven integration</a> </li><li class="treeleaf"><a href="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting.htm" class="currentpagelink">Annotation processing eclipse integration</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AnnotationProcessing_DebuggingMaven">Debugging annotation processorts using maven</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AnnotationProcessing_DebuggingEclipse">Debugging annotation processors using eclipse</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AnnotationProcessing_Testing">Testing annotation processors</a> <sup><font color="red">1.2.1</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AnnotationProcessing_MutableAPI">Annotation processor Mutable API</a> <sup><font color="red">1.2.0</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AnnotationProcessing_Configurer">Annotation processor delegate configuration</a> <sup><font color="red">1.2.0</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AnnotationProcessing_Advanced">Advanced features of the annotation processors</a> <sup><font color="red">1.2.0</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/CodeGenerationPlatform_Accessors">Annotation accessor</a> <sup><font color="red">1.2.1</font></sup> </li></ul><li>Platform<sup><font color="red">New</font></sup> </li><ul><li><a href="http://code.google.com/p/acris/wiki/CodeGenerationPlatform">Generate application skelet</a><sup><font color="red">New</font></sup> </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/CodeGenerationPlatform_IDAO">Data Access Object interface annotation processor</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/CodeGenerationPlatform_Async">Async remote service</a> <sup><font color="red">1.2.0</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/CodeGeneratorsEvaluation">Evalution brainstorming</a> </li></ul><li><a href="http://code.google.com/p/acris/wiki/PortableApplication">Writing portable application</a> </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/PortableObjects">Portable objects</a> </li></ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AppConstructor">Creating business applications from a model</a> </li></ul><li>App engine integration </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AppEngineDatanucleus">Datanucleus integration - JDO/JPA with maven</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AppEngineSpring">Spring with appengine</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AppEngineMaven">GAE/GEP with maven</a> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/AppEngineSecurity">Acris security on appengine</a> </li></ul><li>Widgets </li><ul><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/DynamicUiBinder">Dynamic UI Binder</a><sup><font color="red">1.2.0</font></sup> </li><li class="treeleaf"><a href="http://code.google.com/p/acris/wiki/MicroTemplate">Micro-template UI</a><sup><font color="red">1.2.0</font></sup> </li></ul></ul>
+ </div>
+ </div>
+</div>
+
+ </td>
+ 
+ <td style="vertical-align:top; padding-left:5px">
+ 
+ <div id="wikiheader">
+ 
+ <img width="15" height="15" id="star_img" src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/star_off.gif" style="cursor:pointer" onclick="_CS_toggleStar(this,
+ {&#39;scope&#39;: &#39;wiki&#39;,
+ &#39;user&#39;: &#39;_CURRENT_USER&#39;,
+ &#39;item&#39;: &#39;acris:AnnotationProcessing_Eclipse&#39;
+ });">
+ 
+ <span style="font-size:120%;font-weight:bold">AnnotationProcessing_Eclipse</span>
+ &nbsp;
+ <div> 
+ 
+ <i>How to setup annotation processors with eclipse</i>
+ 
+ 
+ <br>
+ 
+ <a class="label" style="padding-top: 2px" href="http://code.google.com/p/acris/w/list?q=label:Eclipse" title="">Eclipse</a>, 
+ 
+ <a class="label" style="padding-top: 2px" href="http://code.google.com/p/acris/w/list?q=label:JSR269" title="">JSR269</a>, 
+ 
+ <a class="label" style="padding-top: 2px" href="http://code.google.com/p/acris/w/list?q=label:Codeplatform" title="">Codeplatform</a>
+ 
+ 
+ 
+ <div id="wikiauthor" style="float:right">
+ Updated <span title="Mon Jan 17 08:09:27 2011">
+ Jan 17, 2011</span>
+ 
+ by 
+
+ <a class="userlink" href="http://code.google.com/u/102481738408772452674/">nejakyus...@gmail.com</a>
+ 
+ </div>
+ </div>
+ </div>
+ 
+ <div id="wikicontent">
+ <div class="vt" id="wikimaincol">
+ <h1><a name="Eclipse_configuration"></a>Eclipse configuration<a href="http://code.google.com/p/acris/wiki/AnnotationProcessing_Eclipse#Eclipse_configuration" class="section_anchor"></a></h1><p>Running annotation processors in the eclipse can be done in a few very easy steps. Annotation processor and the usage of the annotation should be divided into 2 separate projects (there is a possiblity how support also single project architecture, but the processors was designed to lay in separate jar - so let's follow this rule). </p><p>There are plenty of ways, how to enable annotation processing in eclipse. First one is to register eclipse plugin (in this way you can also debug annotation processor) or you can activate native support in the eclipse settings. This requires processor registration in <i>META-INF/services/javax.annotation.processing.Processor</i>  </p><p><img src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/pap_eclipse_service_registra.png"> </p><p>Next step is to enable annotation processing in the project <strong>Preferences -&gt; Java compiler -&gt; Annotation processing</strong>. Check all the checkboxes :-) </p><p><img src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/pap_eclipse_apt.png"> </p><p>Now, the most important step. You have to configure a classpath for the processor (aka Factory path). In our example there are no more dependencies, just the library with the processor itself (do not forget another libraries if they are needed for running the processor. Otherwise it won't starts) </p><p><img src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/pap_eclipse_factory_path.png"> </p><p>Done. After rebuilding the application, or saving the java class with the appropriate annotation, procesor runs and should log some NOTE messages. But where they are? </p><p><img src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/pap_eclipse_editing.png"> </p><p>Show log error view from <strong>Window -&gt; Show view -&gt; Error log</strong> and here are located all output messages from the annotation processors. </p><p><img src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/pap_eclipse_output.png"> </p><p>We are done. </p><p>Happy coding :-) </p><h2><a name="Eclipse_compiler_pitfalls"></a>Eclipse compiler pitfalls<a href="http://code.google.com/p/acris/wiki/AnnotationProcessing_Eclipse#Eclipse_compiler_pitfalls" class="section_anchor"></a></h2><p>You probably know that eclipse has own compiler in order to reach inceremental build. This custom compilation process is perfectly fine but it has some drawbacks. They have to reach the same behavious as the java compiler, otherwise it's fail. An currently it is little bit fail, because there are some cases that are not working in eclipse but in standard java compiler does. For example, lets try to gain all classes from the specified package: </p><ul><li>With the java compiler it is not a problem with following code: </li><p></p><pre class="prettyprint"><span class="typ">Elements</span><span class="pln"> elements </span><span class="pun">=</span><span class="pln"> processingEnv</span><span class="pun">.</span><span class="pln">getElementUtils</span><span class="pun">();</span><span class="pln"><br></span><span class="typ">TypeElement</span><span class="pln"> typeElement </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Elements</span><span class="pun">.</span><span class="pln">getTypeElement</span><span class="pun">(</span><span class="typ">SomeClass</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">getCanonicalName</span><span class="pun">());</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br></span><span class="typ">List</span><span class="pun">&lt;?</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Element</span><span class="pun">&gt;</span><span class="pln"> enclosedElements </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Elements</span><span class="pun">.</span><span class="pln">getPackageOf</span><span class="pun">(</span><span class="pln">typeElement</span><span class="pun">).</span><span class="pln">getEnclosedElements</span><span class="pun">();</span></pre></ul><p>It returns all classes in the package </p><ul><li>but with the eclipse compiler it is a problem, it returns an empty list </li></ul><p></p>
+ </div>
+ </div>
+ </td></tr><tr>
+</tr></tbody></table>
+ </div>
+
+
+ 
+ 
+ 
+ 
+ 
+ <div id="commentform">
+ <form action="http://code.google.com/p/acris/w/detail.do" method="post">
+ <table>
+ <tbody><tr><td class="vt">
+ <input type="hidden" name="pagename" value="AnnotationProcessing_Eclipse">
+ <input type="hidden" name="token" value="oVRgv7XTv4pMf1x93yxnpW7l3DI:1352562494682">
+ <div class="graytext" style="float: right;">
+ Hint: You can use <a href="http://code.google.com/p/support/wiki/WikiSyntax">Wiki Syntax.</a>
+ </div>
+ <div>Enter a comment:</div>
+ <textarea name="content" rows="6" cols="100"></textarea><br><br>
+ <input type="submit" name="submit" value="Submit">
+ </td>
+ </tr></tbody></table>
+ </form>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ <form name="delcom" action="http://code.google.com/p/acris/w/delComment.do" method="POST">
+ <input type="hidden" name="sequence_num" value="">
+ <input type="hidden" name="create_time" value="">
+ <input type="hidden" name="mode" value="">
+ <input type="hidden" name="pagename" value="AnnotationProcessing_Eclipse">
+ <input type="hidden" name="token" value="oVRgv7XTv4pMf1x93yxnpW7l3DI:1352562494682">
+ </form>
+
+
+ <script src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/prettify.js"></script>
+ <script type="text/javascript">
+ prettyPrint();
+ </script>
+
+<script type="text/javascript" src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/dit_scripts.js"></script>
+
+
+
+  
+ 
+ 
+ <script type="text/javascript" src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/ph_core.js"></script>
+ 
+ <script type="text/javascript" src="./AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting_files/ph_dwiki.js"></script>
+ 
+ 
+ 
+ 
+</div> 
+
+<div id="footer" dir="ltr">
+ <div class="text">
+ <a href="http://code.google.com/projecthosting/terms.html">Terms</a> -
+ <a href="http://www.google.com/privacy.html">Privacy</a> -
+ <a href="http://code.google.com/p/support/">Project Hosting Help</a>
+ </div>
+</div>
+ <div class="hostedBy" style="margin-top: -20px;">
+ <span style="vertical-align: top;">Powered by <a href="http://code.google.com/projecthosting/">Google Project Hosting</a></span>
+ </div>
+
+ 
+ 
+
+
+ 
+ 
+
+
+
+<div class="menuDiv instance0" id="menuDiv-projects-dropdown" style="position: absolute; top: 19px; left: 980px; display: none;"><div class="menuCategory default" style="display: none;"></div><b class="categoryTitle projects" style="display: block;">Projects</b><div class="menuCategory projects first" style=""><a class="menuItem" style="display: block;" href="http://code.google.com/p/acacia-lex/">acacia-lex</a><a class="menuItem" style="display: block;" href="http://code.google.com/p/acacia-parse/">acacia-parse</a></div><div class="menuCategory controls" style=""><hr class="menuSeparator"><a class="menuItem" style="display: block;" href="http://code.google.com/hosting/">Find open source projects...</a><a class="menuItem" style="display: block;" href="http://code.google.com/hosting/createProject">Create a project...</a></div></div></body></html>
