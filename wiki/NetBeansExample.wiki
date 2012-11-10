@@ -1,20 +1,22 @@
-#summary Acacia.jar, AcaciaLex.jar and AcaciaTest.jar are developed in NetBeans 6.9.1
+#summary AcaciaAnn.jar, Acacia.jar, AcaciaLex.jar and AcaciaTest.jar are developed in NetBeans 6.9.1
 #labels Featured
 
 = Introduction =
-Acacia.jar, AcaciaLex.jar and AcaciaTest.jar are developed in NetBeans 6.9.1
+AcaciaAnn.jar, Acacia.jar, AcaciaLex.jar and AcaciaTest.jar are developed in NetBeans 6.9.1
 
 = Details =
 
-== Acacia.jar ==
-Acacia library contains Javax annotation specification for following ann.lexer annotations:
+== AcaciaAnn.jar ==
+AcaciaAnn library contains Javax annotation specification for following ann.lexer annotations:
   # AnnLexer - Lexer class annotation
   # AnnStartState - Lexer start state annotation
   # AnnState - Lexer State class annotation
   # AnnToken - Token annotation
   # AnnTokens -  Token list annotation
 
-Acacia library also contains javax annotation proc.lexer processor ProcessAnnLexer. To enable the processor, to Acacia.jar is added META-INF/services folder with file javax.annotation.processing.Processor. It is done by trunk/jar/copy.bat script:
+== Acacia.jar ==
+Acacia.jar uses AcaciaAnn.jar library.
+Acacia library contains javax annotation proc.lexer processor ProcessAnnLexer. To enable the processor, to Acacia.jar is added META-INF/services folder with file javax.annotation.processing.Processor. It is done by trunk/jar/copy.bat script:
   * Locate to trunk/jar folder
   * Execute copy.bat script:
     # copy Acacia.jar from its dist location to trunk/jar
@@ -22,7 +24,7 @@ Acacia library also contains javax annotation proc.lexer processor ProcessAnnLex
     # copy Acacia.jar back to its dist location
 
 == AcaciaLex.jar ==
-AcaciaLex.jar uses Acacia.jar library.
+AcaciaLex.jar uses AcaciaAnn.jar and Acacia.jar library.
 In AcaciaLex project is defined Lexers, their states and tokens.
 
 == AcaciaTest.jar ==
