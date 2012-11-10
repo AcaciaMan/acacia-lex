@@ -1,0 +1,18 @@
+#summary How to run acacia-lex in eclipse?
+#labels Featured
+
+= Introduction =
+
+This project is developed with NetBeans? 6.9.1. It can also be executed from Eclipse. Good resources (with pictures) are accesible at following links:
+  # http://code.google.com/p/acris/wiki/AnnotationProcessing_Eclipse
+  # http://deors.wordpress.com/2011/10/08/annotation-processors/
+
+
+= Details =
+
+To enable acacia-lex in Eclipse, follow these steps:
+  # Download AcaciaAnn.jar
+  # Download Acacia.jar
+  # Make a new project AcaciaLex in Eclipse
+  # Follow 1. reference directions to enable annotation processing in AcaciaLex (see http://code.google.com/p/acris/wiki/AnnotationProcessing_Eclipse)
+  # See also NetBeansExample Wiki, for how to make combine.jar and what should contain a new Eclipse project AcaciaTest
