@@ -25,6 +25,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringReplaceTest {
 
@@ -58,7 +60,19 @@ public class StringReplaceTest {
  */
  @Test
     public void testReplacements(){
-    String s = "aaa";
+      final String EXAMPLE_TEST = "*)";
+
+      Pattern pattern = Pattern.compile("\\*\\)");
+    // In case you would like to ignore case sensitivity you could use this
+    // statement
+    // Pattern pattern = Pattern.compile("\\s+", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(EXAMPLE_TEST);
+    // Check all occurance
+    while (matcher.find()) {
+      System.out.print("Start index: " + matcher.start());
+      System.out.print(" End index: " + matcher.end() + " ");
+      System.out.println(matcher.group());
+    }
 
     assertTrue(true);
   }

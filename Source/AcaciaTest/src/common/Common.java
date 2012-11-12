@@ -20,6 +20,8 @@
 
 package common;
 
+import ebnf.lexer.EbnfLexFactory;
+import ebnf.lexer.EbnfLexImpl;
 import impl.lexer.lex.ExprLexFactory;
 import impl.lexer.lex.ExprLexImpl;
 import impl.lexer.lex.LexClassFactory;
@@ -57,5 +59,20 @@ public class Common {
         lexer.setInput(charSequence);
         lexer.run();
     }
+
+    public void ebnfRun() {
+        EbnfLexFactory factory = new EbnfLexFactory();
+        EbnfLexImpl lexer = factory.getEbnfLexImpl();
+        CharSequence charSequence =
+"(* a simple program syntax in EBNF − Wikipedia *) " +
+"program = 'PROGRAM', white space, identifier, white space, "+
+"           'BEGIN', white space, "+
+"           { assignment, \";\", white space }, " +
+"           'END.' ;";
+        lexer.setInput(charSequence);
+        lexer.run();
+    }
+
+
 
 }

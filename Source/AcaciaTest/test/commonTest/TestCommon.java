@@ -73,6 +73,14 @@ public class TestCommon {
         assertTrue(true);
     }
 
+    @Test
+    public void ebnfRun() {
+
+        org.apache.log4j.BasicConfigurator.configure();
+        Common common = new Common();
+        common.ebnfRun();
+        assertTrue(true);
+    }
 
 
 }
