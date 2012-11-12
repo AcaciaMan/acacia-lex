@@ -1,0 +1,161 @@
+
+C:\Darbs\Acacia\jar>rem  
+
+C:\Darbs\Acacia\jar>rem Copyright 2012 Acacia Man 
+
+C:\Darbs\Acacia\jar>rem The program is distributed under the terms of the GNU General Public License 
+
+C:\Darbs\Acacia\jar>rem  
+
+C:\Darbs\Acacia\jar>rem This file is part of acacia-lex. 
+
+C:\Darbs\Acacia\jar>rem
+
+C:\Darbs\Acacia\jar>rem acacia-lex is free software: you can redistribute it and/or modify 
+
+C:\Darbs\Acacia\jar>rem it under the terms of the GNU General Public License as published by 
+
+C:\Darbs\Acacia\jar>rem the Free Software Foundation, either version 3 of the License, or 
+
+C:\Darbs\Acacia\jar>rem (at your option) any later version. 
+
+C:\Darbs\Acacia\jar>rem
+
+C:\Darbs\Acacia\jar>rem acacia-lex is distributed in the hope that it will be useful, 
+
+C:\Darbs\Acacia\jar>rem but WITHOUT ANY WARRANTY; without even the implied warranty of 
+
+C:\Darbs\Acacia\jar>rem MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+
+C:\Darbs\Acacia\jar>rem GNU General Public License for more details. 
+
+C:\Darbs\Acacia\jar>rem  
+
+C:\Darbs\Acacia\jar>rem You should have received a copy of the GNU General Public License 
+
+C:\Darbs\Acacia\jar>rem along with acacia-lex.  If not, see <http://www.gnu.org/licenses/>. 
+
+C:\Darbs\Acacia\jar>rem  
+
+C:\Darbs\Acacia\jar>xcopy /y "C:\Darbs\Acacia\Source\AcaciaAnn\dist\AcaciaAnn.jar" "C:\Darbs\Acacia\jar\AcaciaAnn.jar" 
+C:\Darbs\Acacia\Source\AcaciaAnn\dist\AcaciaAnn.jar
+1 File(s) copied
+
+C:\Darbs\Acacia\jar>xcopy /y "C:\Darbs\Acacia\Source\Acacia\dist\Acacia.jar" "C:\Darbs\Acacia\jar\Acacia.jar" 
+C:\Darbs\Acacia\Source\Acacia\dist\Acacia.jar
+1 File(s) copied
+
+C:\Darbs\Acacia\jar>xcopy /y ""C:\Darbs\Acacia\Source\AcaciaLex\dist\AcaciaLex.jar"" "C:\Darbs\Acacia\jar\AcaciaLex.jar" 
+C:\Darbs\Acacia\Source\AcaciaLex\dist\AcaciaLex.jar
+1 File(s) copied
+
+C:\Darbs\Acacia\jar>cd tmp 
+
+C:\Darbs\Acacia\jar\tmp>C:\Java\jdk1.6.0_12\bin\jar -xf ../AcaciaAnn.jar 
+
+C:\Darbs\Acacia\jar\tmp>C:\Java\jdk1.6.0_12\bin\jar -xf ../Acacia.jar 
+
+C:\Darbs\Acacia\jar\tmp>C:\Java\jdk1.6.0_12\bin\jar -xf ../AcaciaLex.jar 
+
+C:\Darbs\Acacia\jar\tmp>cd .. 
+
+C:\Darbs\Acacia\jar>C:\Java\jdk1.6.0_12\bin\jar -cvf combined.jar -C tmp . 
+added manifest
+adding: ann/(in = 0) (out= 0)(stored 0%)
+adding: ann/lexer/(in = 0) (out= 0)(stored 0%)
+adding: ann/lexer/AnnLexer.class(in = 280) (out= 191)(deflated 31%)
+adding: ann/lexer/AnnLexer.java(in = 957) (out= 514)(deflated 46%)
+adding: ann/lexer/AnnStartState.class(in = 291) (out= 200)(deflated 31%)
+adding: ann/lexer/AnnStartState.java(in = 962) (out= 520)(deflated 45%)
+adding: ann/lexer/AnnState.class(in = 280) (out= 189)(deflated 32%)
+adding: ann/lexer/AnnState.java(in = 956) (out= 513)(deflated 46%)
+adding: ann/lexer/AnnToken.class(in = 328) (out= 226)(deflated 31%)
+adding: ann/lexer/AnnToken.java(in = 998) (out= 534)(deflated 46%)
+adding: ann/lexer/AnnTokens.class(in = 318) (out= 217)(deflated 31%)
+adding: ann/lexer/AnnTokens.java(in = 984) (out= 532)(deflated 45%)
+adding: common/(in = 0) (out= 0)(stored 0%)
+adding: common/AcaciaException.class(in = 287) (out= 209)(deflated 27%)
+adding: common/AcaciaException.java(in = 871) (out= 473)(deflated 45%)
+adding: common/LexerException.class(in = 287) (out= 207)(deflated 27%)
+adding: common/LexerException.java(in = 877) (out= 477)(deflated 45%)
+adding: ebnf/(in = 0) (out= 0)(stored 0%)
+adding: ebnf/lexer/(in = 0) (out= 0)(stored 0%)
+adding: ebnf/lexer/EbnfLex.class(in = 419) (out= 276)(deflated 34%)
+adding: ebnf/lexer/EbnfLexFactory.class(in = 576) (out= 341)(deflated 40%)
+adding: ebnf/lexer/EbnfLexImpl.class(in = 6821) (out= 3034)(deflated 55%)
+adding: ebnf/lexer/EbnfState.class(in = 1313) (out= 683)(deflated 47%)
+adding: ebnf/lexer/EbnfStateImpl.class(in = 4180) (out= 2083)(deflated 50%)
+adding: ebnf/lexer/EbnfTypes.class(in = 945) (out= 502)(deflated 46%)
+adding: EbnfLexFactory.java(in = 1118) (out= 558)(deflated 50%)
+adding: EbnfLexImpl.java(in = 7367) (out= 2085)(deflated 71%)
+adding: EbnfStateImpl.java(in = 7444) (out= 1469)(deflated 80%)
+adding: ExprLexFactory.java(in = 1126) (out= 560)(deflated 50%)
+adding: ExprLexImpl.java(in = 7371) (out= 2086)(deflated 71%)
+adding: ExprStateImpl.java(in = 3962) (out= 1238)(deflated 68%)
+adding: impl/(in = 0) (out= 0)(stored 0%)
+adding: impl/ImplReplacements.class(in = 3374) (out= 1602)(deflated 52%)
+adding: impl/ImplReplacements.java(in = 3214) (out= 1064)(deflated 66%)
+adding: impl/ImplUtility.class(in = 1272) (out= 747)(deflated 41%)
+adding: impl/ImplUtility.java(in = 1518) (out= 735)(deflated 51%)
+adding: impl/lexer/(in = 0) (out= 0)(stored 0%)
+adding: impl/lexer/common/(in = 0) (out= 0)(stored 0%)
+adding: impl/lexer/common/Simple.class(in = 440) (out= 279)(deflated 36%)
+adding: impl/lexer/common/Simple.java(in = 933) (out= 498)(deflated 46%)
+adding: impl/lexer/common/SimpleState.class(in = 1306) (out= 692)(deflated 47%)
+adding: impl/lexer/common/SimpleState.java(in = 1636) (out= 761)(deflated 53%)
+adding: impl/lexer/common/SimpleToken.class(in = 426) (out= 290)(deflated 31%)
+adding: impl/lexer/common/SimpleToken.java(in = 1001) (out= 522)(deflated 47%)
+adding: impl/lexer/ImplLexer.class(in = 7053) (out= 3147)(deflated 55%)
+adding: impl/lexer/ImplLexer.java(in = 7363) (out= 2078)(deflated 71%)
+adding: impl/lexer/ImplLexerFactory.class(in = 570) (out= 333)(deflated 41%)
+adding: impl/lexer/ImplLexerFactory.java(in = 1098) (out= 549)(deflated 50%)
+adding: impl/lexer/ImplState.class(in = 2573) (out= 1330)(deflated 48%)
+adding: impl/lexer/ImplState.java(in = 3528) (out= 1128)(deflated 68%)
+adding: impl/lexer/lex/(in = 0) (out= 0)(stored 0%)
+adding: impl/lexer/lex/ExprLex.class(in = 431) (out= 279)(deflated 35%)
+adding: impl/lexer/lex/ExprLexFactory.class(in = 600) (out= 344)(deflated 42%)
+adding: impl/lexer/lex/ExprLexImpl.class(in = 6829) (out= 3036)(deflated 55%)
+adding: impl/lexer/lex/ExprState.class(in = 801) (out= 492)(deflated 38%)
+adding: impl/lexer/lex/ExprStateImpl.class(in = 2732) (out= 1422)(deflated 47%)
+adding: impl/lexer/lex/LexClass.class(in = 438) (out= 277)(deflated 36%)
+adding: impl/lexer/lex/LexClassFactory.class(in = 611) (out= 343)(deflated 43%)
+adding: impl/lexer/lex/LexClassImpl.class(in = 6832) (out= 3036)(deflated 55%)
+adding: impl/lexer/lex/LexStateClass.class(in = 997) (out= 559)(deflated 43%)
+adding: impl/lexer/lex/LexStateClassImpl.class(in = 2745) (out= 1408)(deflated 48%)
+adding: impl/lexer/lex/LexToken.class(in = 213) (out= 170)(deflated 20%)
+adding: LexClassFactory.java(in = 1136) (out= 560)(deflated 50%)
+adding: LexClassImpl.java(in = 7373) (out= 2081)(deflated 71%)
+adding: lexer/(in = 0) (out= 0)(stored 0%)
+adding: lexer/Lexer.class(in = 971) (out= 481)(deflated 50%)
+adding: lexer/Lexer.java(in = 2308) (out= 861)(deflated 62%)
+adding: lexer/Pool.class(in = 1928) (out= 925)(deflated 52%)
+adding: lexer/Pool.java(in = 1907) (out= 846)(deflated 55%)
+adding: lexer/StateDesc.class(in = 503) (out= 285)(deflated 43%)
+adding: lexer/StateDesc.java(in = 1372) (out= 671)(deflated 51%)
+adding: lexer/StateInst.class(in = 860) (out= 417)(deflated 51%)
+adding: lexer/StateInst.java(in = 1699) (out= 667)(deflated 60%)
+adding: lexer/Status.class(in = 538) (out= 312)(deflated 42%)
+adding: lexer/Status.java(in = 1188) (out= 574)(deflated 51%)
+adding: lexer/Token.class(in = 3971) (out= 1623)(deflated 59%)
+adding: lexer/Token.java(in = 5106) (out= 1442)(deflated 71%)
+adding: LexStateClassImpl.java(in = 3977) (out= 1205)(deflated 69%)
+adding: make/(in = 0) (out= 0)(stored 0%)
+adding: make/lexer/(in = 0) (out= 0)(stored 0%)
+adding: make/lexer/EnumMakeClass.class(in = 1469) (out= 712)(deflated 51%)
+adding: make/lexer/EnumMakeClass.java(in = 1272) (out= 606)(deflated 52%)
+adding: make/lexer/MakeLexer.class(in = 596) (out= 325)(deflated 45%)
+adding: make/lexer/MakeLexer.java(in = 1142) (out= 584)(deflated 48%)
+adding: make/lexer/MakeLexerFactory.class(in = 5276) (out= 2353)(deflated 55%)
+adding: make/lexer/MakeLexerFactory.java(in = 3963) (out= 1353)(deflated 65%)
+adding: make/lexer/MakeManager.class(in = 6677) (out= 2612)(deflated 60%)
+adding: make/lexer/MakeManager.java(in = 6177) (out= 1671)(deflated 72%)
+adding: make/lexer/MakeState.class(in = 8491) (out= 3918)(deflated 53%)
+adding: make/lexer/MakeState.java(in = 8827) (out= 1970)(deflated 77%)
+ignoring entry META-INF/
+ignoring entry META-INF/MANIFEST.MF
+adding: META-INF/services/(in = 0) (out= 0)(stored 0%)
+adding: META-INF/services/javax.annotation.processing.Processor(in = 26) (out= 24)(deflated 7%)
+adding: proc/(in = 0) (out= 0)(stored 0%)
+adding: proc/lexer/(in = 0) (out= 0)(stored 0%)
+adding: proc/lexer/ProcessAnnLexer.class(in = 3601) (out= 1653)(deflated 54%)
+adding: proc/lexer/ProcessAnnLexer.java(in = 3744) (out= 1215)(deflated 67%)
