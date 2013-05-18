@@ -77,6 +77,17 @@
     </target>
     -->
     
-    <target name="-post-jar" depends="-javadoc-build" />
+    <target name="-post-jar" depends="-javadoc-build" >
+        <jar destfile="${dist.jar}" update="true">
+            <zipfileset dir="../../jar/META-INF" prefix="META-INF" />
+        </jar>
+                
+        <copy file="${dist.jar}" todir="../../jar"/>    
+        
+        <unzip src="${dist.jar}" dest="../../jar/tmp"/>
+        
+        <jar basedir="../../jar/tmp" destfile="../../jar/AcaciaLexLib.jar"/>
+    
+    </target> 
     
 </project>

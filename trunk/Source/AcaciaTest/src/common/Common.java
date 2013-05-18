@@ -43,7 +43,7 @@ public class Common {
         LexClassImpl lexer = factory.getLexClassImpl();
         //CharSequence charSequence = "SELECT FROM ... ELSE";
 
-        File f = new File("c:/Darbs/Acacia/Source/Acacia/src/impl/lexer/ImplLexerFactory.java");
+        File f = new File("c:/Acc/trunk/Source/Acacia/src/impl/lexer/ImplLexerFactory.java");
         try {
             lexer.setInput(f);
         } catch (IOException ex) {
