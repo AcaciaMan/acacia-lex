@@ -1,4 +1,4 @@
-#summary AcaciaAnn.jar, Acacia.jar, AcaciaLex.jar and AcaciaTest.jar are developed in NetBeans 6.9.1
+#summary AcaciaAnn.jar, Acacia.jar, AcaciaLex.jar, AcaciaLexLib.jar and AcaciaTest.jar are developed in NetBeans 6.9.1
 #labels Featured
 
 = Introduction =
@@ -22,7 +22,10 @@ Acacia library contains javax annotation proc.lexer processor ProcessAnnLexer. T
 AcaciaLex.jar uses AcaciaAnn.jar and Acacia.jar library.
 In AcaciaLex project is defined Lexers, their states and tokens.
 
+== AcaciaLexLib.jar ==
+AcaciaLexLib.jar is join of Acacia.jar and AcaciaLex.jar. It is the library, which is the result of the lexer build and should be used in further projects, where to run the made lexers.
+
 == AcaciaTest.jar ==
-AcaciaTest.jar uses AcaciaLexLib.jar library, which is join of Acacia.jar and AcaciaLex.jar.
+AcaciaTest.jar uses AcaciaLexLib.jar library.
 In Common.java class Lexers are initialized and executed.
 In TestCommon.java class Lexers execution is tested.
