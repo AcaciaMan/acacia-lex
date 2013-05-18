@@ -2,7 +2,7 @@
 #labels Featured
 
 = Introduction =
-AcaciaAnn.jar, Acacia.jar, AcaciaLex.jar and AcaciaTest.jar are developed in NetBeans 6.9.1
+AcaciaAnn.jar, Acacia.jar, AcaciaLex.jar, AcaciaLexLib.jar and AcaciaTest.jar are developed in NetBeans 6.9.1
 
 = Details =
 
