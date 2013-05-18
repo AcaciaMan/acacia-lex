@@ -21,6 +21,7 @@ Acacia library contains javax annotation proc.lexer processor ProcessAnnLexer. T
 == AcaciaLex.jar ==
 AcaciaLex.jar uses AcaciaAnn.jar and Acacia.jar library.
 In AcaciaLex project is defined Lexers, their states and tokens.
+It contains also ant tasks to rebuildLib and makeVersion.
 
 == AcaciaLexLib.jar ==
 AcaciaLexLib.jar is join of Acacia.jar and AcaciaLex.jar. It is the library, which is the result of the lexer build and should be used in further projects, where to run the made lexers.
