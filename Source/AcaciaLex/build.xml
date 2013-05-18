@@ -71,4 +71,49 @@
     nbproject/build-impl.xml file. 
 
     -->
+    
+        <target name="-post-jar"> 
+            <copy file="${dist.jar}" todir="../../jar"/> 
+            
+            <unzip src="${dist.jar}" dest="../../jar/tmp"/>
+            
+            <jar basedir="../../jar/tmp" destfile="../../jar/AcaciaLexLib.jar"/>
+        </target> 
+
+        <target name="rebuildLib"> 
+
+            <delete dir="../../jar/tmp"/>
+            
+            <unzip src="../../jar/AcaciaAnn.jar" dest="../../jar/tmp"/>
+                        
+            <unzip src="../../jar/Acacia.jar" dest="../../jar/tmp"/>
+
+            <unzip src="../../jar/AcaciaLex.jar" dest="../../jar/tmp"/>
+            
+            <jar basedir="../../jar/tmp" destfile="../../jar/AcaciaLexLib.jar"/>
+        </target> 
+        
+        <target name="makeVersion">
+            
+            <input message="Version number:" addproperty="this.version" /> 
+
+            <delete dir="C:\BuildWorkSpace"/>
+                        
+            <exec executable="svn" failonerror="true">
+                <arg line="export file:///C:/svn/acc/trunk/darbs C:\BuildWorkSpace\project" />
+            </exec>
+            
+            <!-- make jars with version number -->
+            <copy file="C:\BuildWorkSpace\project\jar\AcaciaAnn.jar" tofile="C:\BuildWorkSpace\version\AcaciaAnn_${this.version}.jar"/> 
+            <copy file="C:\BuildWorkSpace\project\jar\Acacia.jar" tofile="C:\BuildWorkSpace\version\Acacia_${this.version}.jar"/> 
+            <copy file="C:\BuildWorkSpace\project\jar\AcaciaLexLib.jar" tofile="C:\BuildWorkSpace\version\AcaciaLexLib_${this.version}.jar"/>             
+ 
+            <!-- zip source  -->
+            <zip destfile="C:\BuildWorkSpace\version\AcaciaLexSrc.zip">
+                <fileset dir="C:\BuildWorkSpace\project\Source"/>
+                <fileset dir="C:\BuildWorkSpace\project" includes="COPYING"/>
+            </zip>
+           
+        </target> 
+            
 </project>

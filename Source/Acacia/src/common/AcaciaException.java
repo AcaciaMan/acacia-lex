@@ -21,5 +21,6 @@
 package common;
 
 public class AcaciaException extends Exception {
+    
 
 }
