@@ -1,4 +1,5 @@
-#Downloads
+#summary Downloads
+#labels Featured
 
 = Introduction =
 
