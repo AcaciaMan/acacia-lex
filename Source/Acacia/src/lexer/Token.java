@@ -188,8 +188,14 @@ public class Token {
         } else {
             objStr = "null";
         }
-
-        result = result + " " + objStr + " STR(" + this.getString() +")";
+        
+        String resStr = this.getString();
+        
+        if(objStr.equals(resStr)) {
+          result = result + " STR(" + resStr +")";
+        } else {
+          result = result + " " + objStr + " STR(" + resStr +")";
+        }
 
         return result;
     }
