@@ -51,6 +51,7 @@ public class ImplLexer implements Lexer {
     protected Status status = new Status();
     protected Stack<StateInst> states = new Stack<StateInst>();
     protected CharSequence input;
+    protected File file;
     /**
      * Index of the character in CharSequence, where started last search for the return Object
      */
@@ -233,6 +234,7 @@ public class ImplLexer implements Lexer {
 
     @Override
     public void setInput(File f) throws FileNotFoundException, IOException {
+        this.file = f;
         Reader reader = new FileReader(f);
         try {
             this.setInput(reader);
@@ -262,5 +264,10 @@ public class ImplLexer implements Lexer {
         }
 
         return result;
+    }
+
+    @Override
+    public File getFile() {
+        return file;
     }
 }

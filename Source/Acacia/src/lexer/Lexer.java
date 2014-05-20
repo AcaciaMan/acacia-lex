@@ -29,6 +29,8 @@ public interface Lexer {
 
     public void setInput(CharSequence input);
     public CharSequence getInput();
+    
+    public java.io.File getFile();
 
     public Token getToken();
 
