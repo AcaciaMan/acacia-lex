@@ -4,7 +4,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/make/lexer/EnumMakeClass.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/impl/lexer/ImplLexerFactory.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/impl/lexer/ImplState.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/make/lexer/MakeState.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/lexer/Lexer.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/proc/lexer/ProcessAnnLexer.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/lexer/Status.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/lexer/StateDesc.java</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/lexer/Token.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/test/test/common/TreeSetTest.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/lexer/TokenStatus.java</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/impl/lexer/ImplLexer.java</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/test/test/common/InitTest.java</file>
         </group>
