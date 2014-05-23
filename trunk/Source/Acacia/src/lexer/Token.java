@@ -47,9 +47,16 @@ public class Token {
      */
     private boolean found;
     /**
-     * token method order number in state class
+     * token method order number in status class
      */
     private int methodNum;
+    
+    /**
+     * token order number in status class
+     */
+    private int orderNum;
+    
+    private TokenStatus status = TokenStatus.NOT_MATCHED;
 
     public Token() {
     }
@@ -201,7 +208,7 @@ public class Token {
     }
 
     /**
-     * token method order number in state class
+     * token method order number in status class
      * @return the methodNum
      */
     public int getMethodNum() {
@@ -209,7 +216,7 @@ public class Token {
     }
 
     /**
-     * token method order number in state class
+     * token method order number in status class
      * @param methodNum the methodNum to set
      */
     public void setMethodNum(int methodNum) {
@@ -222,6 +229,34 @@ public class Token {
      */
     public String getString() {
         return desc.getLexer().getInput().subSequence(getStart(), getEnd()).toString();
+    }
+
+    /**
+     * @return the orderNum
+     */
+    public int getOrderNum() {
+        return orderNum;
+    }
+
+    /**
+     * @param orderNum the orderNum to set
+     */
+    public void setOrderNum(int orderNum) {
+        this.orderNum = orderNum;
+    }
+
+    /**
+     * @return the status
+     */
+    public TokenStatus getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(TokenStatus status) {
+        this.status = status;
     }
 
 }

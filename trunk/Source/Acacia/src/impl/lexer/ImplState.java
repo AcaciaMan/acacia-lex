@@ -70,6 +70,7 @@ public class ImplState implements StateDesc {
                 "SELECTS",
                 0);
         tokens.add(newToken);
+        newToken.setOrderNum(tokens.size());
         //\@addToken
 
         newToken = new Token(
@@ -78,6 +79,7 @@ public class ImplState implements StateDesc {
                 "FROM",
                 0);
         tokens.add(newToken);
+        newToken.setOrderNum(tokens.size());
 
         newToken = new Token(
                 this,
@@ -85,6 +87,7 @@ public class ImplState implements StateDesc {
                 ".",
                 1);
         tokens.add(newToken);
+        newToken.setOrderNum(tokens.size());
         //\@newTokens
 
     }
