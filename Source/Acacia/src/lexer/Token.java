@@ -45,10 +45,6 @@ public class Token implements Comparable<Token>{
     private Object object;
 
     /**
-     * if Lexer.findNext founds this token, then this property is set to true
-     */
-    private boolean found;
-    /**
      * token method order number in status class
      */
     private int methodNum;
@@ -69,7 +65,7 @@ public class Token implements Comparable<Token>{
         this.regularExpression = regularExpression;
         this.pattern = Pattern.compile(regularExpression);
         this.methodNum = methodNum;
-        this.found = false;
+        this.status = TokenStatus.NOT_MATCHED;
     }
 
     public void setPattern(Pattern pattern) {
@@ -135,15 +131,7 @@ public class Token implements Comparable<Token>{
      * @return the found
      */
     public boolean isFound() {
-        return found;
-    }
-
-    /**
-     * if Lexer.findNext founds this token, then this property is set to true
-     * @param found the found to set
-     */
-    public void setFound(boolean found) {
-        this.found = found;
+        return TokenStatus.FOUND.equals(status);
     }
 
     /**
@@ -174,18 +162,16 @@ public class Token implements Comparable<Token>{
         this.desc = desc;
     }
 
-    public Token findMatchingToken(Token token, Matcher matcher) {
-        Token result = token;
+    public void findToken(Matcher matcher, int startFind) {
         matcher.usePattern(getPattern());
-        if (matcher.lookingAt()) {
-            // if matched regular expression is longer
-            if (result.getLength() < matcher.end() - matcher.start()) {
+        if (matcher.find(startFind)) {
                 setStart(matcher.start());
                 setEnd(matcher.end());
-                result = this;
+                setStatus(TokenStatus.FOUND);
             }
+        else {
+            setStatus(TokenStatus.NOT_FOUND);
         }
-        return result;
     }
 
     @Override
@@ -298,7 +284,7 @@ public class Token implements Comparable<Token>{
             d = start - t.start;
         }
         if (d == 0) {
-            d = getLength() - t.getLength();
+            d = t.getLength() - getLength();
         }
         if (d == 0) {
             d = orderNum - t.orderNum;

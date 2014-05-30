@@ -91,18 +91,41 @@ public class ImplLexer implements Lexer {
     }
 
     public Token findNextToken() {
-
-        Token nextToken = emptyToken;
-        matcher.region(position, input.length());
-
-        // Current state
-        nextToken = states.peek().getDesc().findMatchingToken(nextToken, matcher);
-        // found next token
-        if (nextToken.getLength() > 0) {
-            nextToken.setFound(true);
+        
+        if (tokens.isEmpty()||position>=input.length()) {
+            return getEmptyToken(); 
         }
+        
+        boolean foundToken = false;
 
-        return nextToken;
+        while(foundToken == false) {
+            foundToken = true;
+            Token t = tokens.first();
+            
+            // NOT Matched
+            if (TokenStatus.NOT_MATCHED.equals(t.getStatus())) {
+                foundToken = false;
+                tokens.remove(t);
+                t.findToken(matcher, position);
+                tokens.add(t);
+            // Found, but earlier    
+            } else if (TokenStatus.FOUND.equals(t.getStatus()) &&
+                    position > t.getStart() ) {
+                foundToken = false;
+                tokens.remove(t);
+                t.findToken(matcher, position);
+                tokens.add(t);
+            }
+        }
+        
+        Token t = tokens.first();
+        if(TokenStatus.FOUND.equals(t.getStatus())
+          && position == t.getStart()) {
+            return t;
+        }
+        
+        return getEmptyToken();
+
     }
 
     /**
@@ -207,13 +230,7 @@ public class ImplLexer implements Lexer {
 
     @Override
     public Matcher getMatcher() {
-        Matcher m = null;
-
-        m = curToken.getPattern().matcher(input);
-        m.region(curToken.getStart(), input.length());
-        m.lookingAt();
-
-        return m;
+        return matcher;
     }
 
     public void addStartState(Class<? extends StateDesc> stateDesc) {
@@ -295,5 +312,40 @@ public class ImplLexer implements Lexer {
             tokens.add(t);
         }
         
+    }
+
+    private Token getEmptyToken() {
+
+      emptyToken.setStatus(TokenStatus.NOT_FOUND); 
+        
+      if (tokens.isEmpty())   {     
+        
+          if (position<input.length()) {
+              emptyToken.setStatus(TokenStatus.FOUND);
+              emptyToken.setStart(position);
+              emptyToken.setEnd(input.length());
+              status.setNoObject(true);
+          }
+          
+
+      } else {
+          if (position<input.length()) {
+          emptyToken.setStatus(TokenStatus.FOUND);
+          status.setNoObject(true);
+          
+          Token t = tokens.first();
+          if(TokenStatus.FOUND.equals(t.getStatus())) {
+              emptyToken.setStart(position);
+              emptyToken.setEnd(t.getStart());
+          } else if (TokenStatus.NOT_FOUND.equals(t.getStatus())) {
+              emptyToken.setStart(position);
+              emptyToken.setEnd(input.length());
+          }
+          
+          }
+          
+      }
+
+        return emptyToken;
     }
 }

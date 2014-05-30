@@ -59,7 +59,7 @@ public class InitTest {
     public void initRun() {
         ImplLexerFactory factory = new ImplLexerFactory();
         Lexer lexer = factory.getImplLexer();
-        CharSequence charSequence = "SELECT FROM ... ELSE";
+        CharSequence charSequence = "SELECTS FROM ... ELSE";
 
         lexer.setInput(charSequence);
         lexer.run();
