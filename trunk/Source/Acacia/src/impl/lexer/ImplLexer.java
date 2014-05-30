@@ -30,6 +30,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Map;
 import java.util.Stack;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -40,8 +41,11 @@ import lexer.StateDesc;
 import lexer.StateInst;
 import lexer.Status;
 import lexer.Token;
+import lexer.TokenStatus;
 
 public class ImplLexer implements Lexer {
+    
+    protected TreeSet<Token> tokens = new TreeSet<Token>();
 
     protected Token curToken;
     protected Pool pool = new Pool();
@@ -72,12 +76,18 @@ public class ImplLexer implements Lexer {
 
     @Override
     public StateInst pushState(StateInst state) {
-        return states.push(state);
+        StateInst res;
+        res = states.push(state);
+        addStateTokens(states.peek());
+        return res;
     }
 
     @Override
     public StateInst popState() {
-        return states.pop();
+        StateInst res;
+        res = states.pop();
+        addStateTokens(states.peek());
+        return res;
     }
 
     public Token findNextToken() {
@@ -269,5 +279,21 @@ public class ImplLexer implements Lexer {
     @Override
     public File getFile() {
         return file;
+    }
+
+    @Override
+    public TreeSet<Token> getTokens() {
+        return tokens;
+    }
+    
+    public void addStateTokens(StateInst state) {
+        
+        tokens.clear();
+        
+        for(Token t: state.getDesc().getTokens()) {
+            t.setStatus(TokenStatus.NOT_MATCHED);
+            tokens.add(t);
+        }
+        
     }
 }

@@ -22,8 +22,10 @@ package lexer;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class Token {
+public class Token implements Comparable<Token>{
 
     private StateDesc desc;
 
@@ -257,6 +259,53 @@ public class Token {
      */
     public void setStatus(TokenStatus status) {
         this.status = status;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 31). // two randomly chosen prime numbers
+            // if deriving: appendSuper(super.hashCode()).
+            append(this.status).
+            append(this.start).
+            append(this.getLength()).
+            append(this.orderNum).    
+            toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+       if (!(obj instanceof Token))
+            return false;
+        if (obj == this)
+            return true;
+
+        Token rhs = (Token) obj;
+        return new EqualsBuilder().
+            // if deriving: appendSuper(super.equals(obj)).
+            append(this.status, rhs.status).
+            append(this.start, rhs.start).
+            append(this.getLength(), rhs.getLength()).
+            append(this.orderNum, rhs.orderNum).    
+            isEquals();
+    
+    }
+
+    @Override
+    public int compareTo(Token t) {
+
+        int d = status.compareTo(t.status);
+        if (d == 0) {
+            d = start - t.start;
+        }
+        if (d == 0) {
+            d = getLength() - t.getLength();
+        }
+        if (d == 0) {
+            d = orderNum - t.orderNum;
+        }
+        
+        return d;
+    
     }
 
 }
