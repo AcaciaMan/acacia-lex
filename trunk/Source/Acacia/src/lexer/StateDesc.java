@@ -32,8 +32,6 @@ public interface StateDesc {
 
     public List<Token> getTokens();
 
-    public Token findMatchingToken(Token token, Matcher matcher);
-
     /**
      * @return the lexer
      */

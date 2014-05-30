@@ -97,15 +97,6 @@ public class ImplState implements StateDesc {
         return this.tokens;
     }
 
-    @Override
-    public Token findMatchingToken(Token token, Matcher matcher) {
-        Token result = token;
-        for (Token t : this.tokens) {
-            result = t.findMatchingToken(result, matcher);
-        }
-        return result;
-    }
-
     /**
      * @return the lexer
      */
