@@ -20,6 +20,8 @@
 
 package test.common;
 
+import java.util.TreeSet;
+import lexer.Token;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -51,6 +53,13 @@ public class TreeSetTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void hello() {
+    
+        TreeSet<Token> sTokens = new TreeSet<Token>();
+        
+        
+        
+        
+    }
 }

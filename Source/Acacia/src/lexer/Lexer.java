@@ -22,7 +22,7 @@ package lexer;
 
 public interface Lexer {
 
-    public Token findNext() throws CloneNotSupportedException;
+    public Token findNext();
     
     public StateInst pushState(StateInst state);
     public StateInst popState();
@@ -33,6 +33,7 @@ public interface Lexer {
     public java.io.File getFile();
 
     public Token getToken();
+    public java.util.TreeSet<Token> getTokens();
 
     public Status getStatus();
 
