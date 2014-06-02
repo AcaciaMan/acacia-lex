@@ -317,6 +317,7 @@ public class ImplLexer implements Lexer {
     private Token getEmptyToken() {
 
       emptyToken.setStatus(TokenStatus.NOT_FOUND); 
+      emptyToken.setMethodNum(-1);
         
       if (tokens.isEmpty())   {     
         
