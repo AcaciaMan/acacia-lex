@@ -40,9 +40,7 @@ public class EbnfState {
         @ann.lexer.AnnToken(type = EbnfTypes.special_sequence, value = "\\?"),
         @ann.lexer.AnnToken(type = EbnfTypes.exception, value = "-"),
         @ann.lexer.AnnToken(type = EbnfTypes.whitespaces, value = "\\s+"),
-        @ann.lexer.AnnToken(type = EbnfTypes.identifier, value = "\\w+"),
-        @ann.lexer.AnnToken(type = EbnfTypes.dot, value = ".")
-    })
+        @ann.lexer.AnnToken(type = EbnfTypes.identifier, value = "\\w+")})
     public String getStr(lexer.Lexer lexer) {
         return lexer.getToken().getString();
     }

@@ -26,10 +26,15 @@ import impl.lexer.lex.ExprLexFactory;
 import impl.lexer.lex.ExprLexImpl;
 import impl.lexer.lex.LexClassFactory;
 import impl.lexer.lex.LexClassImpl;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import url.lexer.UrlLexFactory;
+import url.lexer.UrlLexImpl;
 
 public class Common {
 
@@ -73,6 +78,21 @@ public class Common {
         lexer.run();
     }
 
+    public void urlRun() {
+        try {
+            UrlLexFactory factory = new UrlLexFactory();
+            UrlLexImpl lexer = factory.getUrlLexImpl();
+            
+            URL oracle = new URL("http://www.oracle.com/");
+            
+            lexer.setInput(oracle.openStream());
+            lexer.run();
+        } catch (MalformedURLException ex) {
+            java.util.logging.Logger.getLogger(Common.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(Common.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
 
 
 }
