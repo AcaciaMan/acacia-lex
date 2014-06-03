@@ -150,6 +150,8 @@ public class ImplLexer implements Lexer {
     }
 
     private void processToken() {
+        if(curToken.getMethodNum()<0) return;
+        
         //Execute token state method
         Object curTokenObject = curToken.getDesc().executeMethod(
                 states.peek().getInstance(),
