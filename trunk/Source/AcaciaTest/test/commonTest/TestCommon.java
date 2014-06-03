@@ -82,5 +82,13 @@ public class TestCommon {
         assertTrue(true);
     }
 
+    @Test
+    public void urlRun() {
+
+        org.apache.log4j.BasicConfigurator.configure();
+        Common common = new Common();
+        common.urlRun();
+        assertTrue(true);
+    }
 
 }
