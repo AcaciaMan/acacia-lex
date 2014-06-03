@@ -184,8 +184,12 @@ public class Token implements Comparable<Token>{
             objStr = "null";
         }
         
-        String resStr = this.getString();
-        
+        String resStr;
+        if(this.desc!=null) {
+            resStr = this.getString();
+        } else {
+            resStr = "Start: " + start + " End: " + end;
+        }
         if(objStr.equals(resStr)) {
           result = result + " STR(" + resStr +")";
         } else {
@@ -215,8 +219,19 @@ public class Token implements Comparable<Token>{
      * returns token's found string
      * @return found string
      */
+    public String getString(Lexer l) {
+        return l.getInput().subSequence(getStart(), getEnd()).toString();
+    }
+
+    
+    
+    
+    /**
+     * returns token's found string
+     * @return found string
+     */
     public String getString() {
-        return desc.getLexer().getInput().subSequence(getStart(), getEnd()).toString();
+        return getString(desc.getLexer());
     }
 
     /**
