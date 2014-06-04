@@ -84,6 +84,7 @@ public class Common {
             UrlLexImpl lexer = factory.getUrlLexImpl();
             
             URL oracle = new URL("http://www.oracle.com/");
+            //URL oracle = new URL("http://www.delfi.lv/");
             
             lexer.setInput(oracle.openStream());
             lexer.run();

@@ -22,6 +22,8 @@ package test.common;
 
 import lexer.Lexer;
 import impl.lexer.ImplLexerFactory;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -66,4 +68,16 @@ public class InitTest {
         assertTrue(true);
     }
 
+        @Test
+    public void checkPattern() {
+        String charSequence = "SELECTS * <!- from .. else";
+
+           Pattern pattern = Pattern.compile("<![ \\r\\n\\t]*-");
+    Matcher matcher = pattern.matcher(charSequence);
+        
+            System.out.println("Matches " + matcher.find());
+        assertTrue(true);
+    }
+
+    
 }
