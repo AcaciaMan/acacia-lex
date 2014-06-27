@@ -95,3 +95,7 @@ public class Common {
 
 }
 }}}
+
+= Documents =
+
+In Source there is docs folder containing some useful references to related documents.
