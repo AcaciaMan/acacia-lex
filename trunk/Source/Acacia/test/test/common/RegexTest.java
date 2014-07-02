@@ -29,6 +29,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+
 public class RegexTest {
     
     public RegexTest() {
@@ -57,15 +58,19 @@ public class RegexTest {
     // public void hello() {}
 
     @Test
-    public void comments() {
+    public void comments() throws Exception {
     
-          final String EXAMPLE_TEST = "/*   */ -- something";
+          //final String EXAMPLE_TEST = "/*   */ -- something";
 
-      Pattern pattern = Pattern.compile("/\\*|\\*/|--|[\\r\\n]+");
+        java.net.URL url = this.getClass().getResource("RegexTestSQL.sql");
+        java.nio.file.Path resPath = java.nio.file.Paths.get(url.toURI());
+        String example = new String(java.nio.file.Files.readAllBytes(resPath), "UTF8"); 
+        
+      Pattern pattern = Pattern.compile("/\\*|\\*/|--|[\\r\\n]+|[A-z0-9_$#]+");
     // In case you would like to ignore case sensitivity you could use this
     // statement
     // Pattern pattern = Pattern.compile("\\s+", Pattern.CASE_INSENSITIVE);
-    Matcher matcher = pattern.matcher(EXAMPLE_TEST);
+    Matcher matcher = pattern.matcher(example);
     // Check all occurance
     while (matcher.find()) {
       System.out.print("Start index: " + matcher.start());
