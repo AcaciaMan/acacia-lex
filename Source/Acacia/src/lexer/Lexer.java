@@ -71,4 +71,27 @@ public interface Lexer {
     public void setInput(java.io.File f) throws java.io.FileNotFoundException, java.io.IOException;
 
     public StringBuilder replace(java.util.Map<String,Object> m);
+    
+    /**
+     * @return the line
+     */
+    public int getLine();
+
+    /**
+     * @param line the line to set
+     */
+    public void setLine(int line);
+
+    /**
+     * @return the lineStart
+     */
+    public int getLineStart();
+
+    /**
+     * @param lineStart the lineStart to set
+     */
+    public void setLineStart(int lineStart);
+    
+    public int getColumn();
+    
 }
