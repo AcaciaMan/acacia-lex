@@ -70,6 +70,8 @@ public class ImplLexer implements Lexer {
      * Empty token for searching process initialization
      */
     protected Token emptyToken = new Token();
+    protected int line = 1;
+    protected int lineStart = 1; // as in notepad++
 
     public ImplLexer() {
     }
@@ -350,5 +352,42 @@ public class ImplLexer implements Lexer {
       }
 
         return emptyToken;
+    }
+
+    /**
+     * @return the line
+     */
+    @Override
+    public int getLine() {
+        return line;
+    }
+
+    /**
+     * @param line the line to set
+     */
+    @Override
+    public void setLine(int line) {
+        this.line = line;
+    }
+
+    /**
+     * @return the lineStart
+     */
+    @Override
+    public int getLineStart() {
+        return lineStart;
+    }
+
+    /**
+     * @param lineStart the lineStart to set
+     */
+    @Override
+    public void setLineStart(int lineStart) {
+        this.lineStart = lineStart;
+    }
+    
+    @Override
+    public int getColumn() {
+        return this.getToken().getStart()-this.getLineStart()+1;
     }
 }
