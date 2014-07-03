@@ -7,6 +7,8 @@
             <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/test/test/common/RegexTestSQL.sql</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/test/test/common/StringReplaceTest.java</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/test/test/common/RegexTest.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/lexer/Lexer.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/src/impl/lexer/ImplLexer.java</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/test/test/common/InitTest.java</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/Acacia/test/test/common/FlipBuffer.java</file>
         </group>

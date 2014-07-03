@@ -27,11 +27,11 @@ public class SqlState {
     private boolean commentSingle = false;
     private boolean commented = false;
     
-    @ann.lexer.AnnToken(type = "Spec", value = "/\\*|\\*/|--|[\\r\\n]+")
+    @ann.lexer.AnnToken(type = "Spec", value = "/\\*|\\*/|--|\\r\\n|\\n|;")
     public String setCommentStart(lexer.Lexer lexer) {
         String result = lexer.getToken().getString();
         
-        if(result.contains("\\r")||result.contains("\\n")) {
+        if(result.contains("\\n")) {
             lexer.setLine(lexer.getLine()+1);
             lexer.setLineStart(lexer.getToken().getEnd());
         }
