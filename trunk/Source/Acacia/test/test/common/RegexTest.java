@@ -66,7 +66,7 @@ public class RegexTest {
         java.nio.file.Path resPath = java.nio.file.Paths.get(url.toURI());
         String example = new String(java.nio.file.Files.readAllBytes(resPath), "UTF8"); 
         
-      Pattern pattern = Pattern.compile("/\\*|\\*/|--|[\\r\\n]+|[A-z0-9_$#]+");
+      Pattern pattern = Pattern.compile("/\\*|\\*/|--|\\r\\n|\\n|[A-z0-9_$#]+");
     // In case you would like to ignore case sensitivity you could use this
     // statement
     // Pattern pattern = Pattern.compile("\\s+", Pattern.CASE_INSENSITIVE);
