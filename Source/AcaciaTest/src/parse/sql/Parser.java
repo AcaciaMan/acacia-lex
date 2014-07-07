@@ -26,8 +26,8 @@ import lexer.Token;
 
 public class Parser {
    
-    private TreeSet<Token> sToken = new TreeSet<Token>();
-    Lexer lexer;
+    private TreeSet<Pars> sPars = new TreeSet<Pars>();
+    private Lexer lexer;
 
     public Parser(Lexer lexer) {
         this.lexer = lexer;
@@ -36,22 +36,36 @@ public class Parser {
     public void parse() {
                 Token token;
         while ((token = lexer.findNext()).isFound()) {
-            if("Ident".equals(token.getType())) sToken.add(new Token(token));
+            if("Ident".equals(token.getType())) sPars.add(new Pars(token, lexer));
         }
     }
 
     /**
-     * @return the sToken
+     * @return the sPars
      */
-    public TreeSet<Token> getsToken() {
-        return sToken;
+    public TreeSet<Pars> getsPars() {
+        return sPars;
     }
 
     /**
-     * @param sToken the sToken to set
+     * @param sPars the sPars to set
      */
-    public void setsToken(TreeSet<Token> sToken) {
-        this.sToken = sToken;
+    public void setsPars(TreeSet<Pars> sPars) {
+        this.sPars = sPars;
+    }
+
+    /**
+     * @return the lexer
+     */
+    public Lexer getLexer() {
+        return lexer;
+    }
+
+    /**
+     * @param lexer the lexer to set
+     */
+    public void setLexer(Lexer lexer) {
+        this.lexer = lexer;
     }
     
 }
