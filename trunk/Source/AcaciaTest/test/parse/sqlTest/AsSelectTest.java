@@ -21,11 +21,9 @@
 package parse.sqlTest;
 
 import common.Common;
-import impl.lexer.lex.LexClassFactory;
-import impl.lexer.lex.LexClassImpl;
 import java.io.File;
-import java.io.IOException;
-import org.apache.log4j.Level;
+import java.util.TreeSet;
+import lexer.Token;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -69,7 +67,7 @@ public class AsSelectTest {
     public void run() throws Exception {
     
         org.apache.log4j.BasicConfigurator.configure();
-
+        TreeSet<String> sTokens = new TreeSet<String>();
         
         SqlLexFactory factory = new SqlLexFactory();
         SqlLexImpl lexer = factory.getSqlLexImpl();
@@ -77,7 +75,16 @@ public class AsSelectTest {
         java.net.URL url = this.getClass().getResource("all_tables.sql");
         File f = new File(url.getFile());
         lexer.setInput(f);
-        lexer.run();
+//        lexer.run();
+        
+                Token token;
+        while ((token = lexer.findNext()).isFound()) {
+            if("Ident".equals(token.getType())) sTokens.add(token.getString(lexer).toUpperCase());
+        }
+
+        for(String s:sTokens) {
+            System.out.println(s);
+        }
         
         assertTrue(true);
     
