@@ -3,11 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaLex/src/sql/lexer/SqlState.java</file>
-            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaLex/src/sql/lexer/SqlLex.java</file>
-            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaLex/src/url/lexer/UrlLex.java</file>
-            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaLex/src/url/lexer/UrlState.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
