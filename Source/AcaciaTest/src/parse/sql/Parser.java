@@ -20,18 +20,38 @@
 
 package parse.sql;
 
-import common.Common;
-import org.apache.log4j.Logger;
+import java.util.TreeSet;
+import lexer.Lexer;
+import lexer.Token;
 
-public class AsSelect {
+public class Parser {
+   
+    private TreeSet<Token> sToken = new TreeSet<Token>();
+    Lexer lexer;
 
-    final public Logger log = Logger.getLogger(Common.class.getName());
-
-    public AsSelect() {
-        String fromObj;
-        String toObj;
+    public Parser(Lexer lexer) {
+        this.lexer = lexer;
     }
     
-    
+    public void parse() {
+                Token token;
+        while ((token = lexer.findNext()).isFound()) {
+            if("Ident".equals(token.getType())) sToken.add(new Token(token));
+        }
+    }
+
+    /**
+     * @return the sToken
+     */
+    public TreeSet<Token> getsToken() {
+        return sToken;
+    }
+
+    /**
+     * @param sToken the sToken to set
+     */
+    public void setsToken(TreeSet<Token> sToken) {
+        this.sToken = sToken;
+    }
     
 }
