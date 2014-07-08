@@ -20,7 +20,7 @@
 
 package impl.lexer.lex;
 
-@ann.lexer.AnnLexer
+@ann.lexer.AnnLexer(bSout = true)
 public class LexClass {
 
     @ann.lexer.AnnStartState

@@ -19,14 +19,34 @@
  */ 
 package make.lexer;
 
+import ann.lexer.AnnLexer;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.TypeElement;
+import javax.tools.Diagnostic;
 
 public class MakeLexer extends MakeManager {
+
+    final String B_SOUT = "bSout";
 
     public MakeLexer(TypeElement clazz, ProcessingEnvironment processingEnv, EnumMakeClass enumMakeClass) {
         super(clazz, processingEnv, enumMakeClass);
     }
 
+    @Override
+    public void replaceImplParameters() {
+        super.replaceImplParameters();
+        
+        AnnLexer annLexer = this.getClazz().getAnnotation(AnnLexer.class);
+
+        if (!annLexer.bSout()) {
+        String message = "Removing System.out.println ... ";
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+        String replace = getReplacements().getFragment(B_SOUT);
+        replace = " ";
+        getReplacements().replaceAllIdentified(B_SOUT, replace);
+        }
+    
+    }
+    
 
 }
