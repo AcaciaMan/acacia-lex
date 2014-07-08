@@ -19,7 +19,7 @@
  */
 package url.lexer;
 
-@ann.lexer.AnnLexer
+@ann.lexer.AnnLexer(bSout = true)
 public class UrlLex {
     
     @ann.lexer.AnnStartState

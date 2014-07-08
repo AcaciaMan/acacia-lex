@@ -160,7 +160,10 @@ public class ImplLexer implements Lexer {
                 curToken.getMethodNum());
         curToken.setObject(curTokenObject);
 
+        //@bSout
         System.out.println("FOUND " + curToken.toString());
+        //\@bSout
+
     }
 
     @Override
@@ -179,8 +182,9 @@ public class ImplLexer implements Lexer {
     public void run() {
         Token token;
         while ((token = this.findNext()).isFound()) {
+            //@bSout
             System.out.println("LEXER RES = " + token.toString());
-
+            //\@bSout
         }
     }
 
