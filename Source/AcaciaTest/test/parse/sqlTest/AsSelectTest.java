@@ -31,6 +31,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import parse.sql.Parser;
 import sql.lexer.SqlLexFactory;
 import sql.lexer.SqlLexImpl;
 
@@ -85,6 +86,28 @@ public class AsSelectTest {
         for(String s:sTokens) {
             System.out.println(s);
         }
+        
+        assertTrue(true);
+    
+    
+    }
+    
+    
+    @Test
+    public void parse() throws Exception {
+    
+        org.apache.log4j.BasicConfigurator.configure();
+        
+        SqlLexFactory factory = new SqlLexFactory();
+        SqlLexImpl lexer = factory.getSqlLexImpl();
+
+        java.net.URL url = this.getClass().getResource("all_tables.sql");
+        File f = new File(url.getFile());
+        lexer.setInput(f);
+//        lexer.run();
+        
+        Parser parser = new Parser(lexer);
+        parser.parse();
         
         assertTrue(true);
     

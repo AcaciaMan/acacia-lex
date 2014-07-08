@@ -34,9 +34,20 @@ public class Parser {
     }
     
     public void parse() {
-                Token token;
+        Token token;
         while ((token = lexer.findNext()).isFound()) {
-            if("Ident".equals(token.getType())) sPars.add(new Pars(token, lexer));
+            if ("Ident".equals(token.getType())) {
+                sPars.add(new Pars(token, lexer));
+            }
+            if ("Spec".equals(token.getType())
+                    && ";".equals(token.getString(lexer))) {
+                sPars.add(new Pars(token, lexer));
+            }
+
+        }
+        
+        for(Pars p:sPars) {
+            System.out.println(p.toString());
         }
     }
 
