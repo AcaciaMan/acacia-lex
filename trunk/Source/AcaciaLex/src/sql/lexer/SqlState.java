@@ -31,19 +31,19 @@ public class SqlState {
     public String setCommentStart(lexer.Lexer lexer) {
         String result = lexer.getToken().getString();
         
-        if(result.contains("\\n")) {
+        if(result.contains("\n")) {
             lexer.setLine(lexer.getLine()+1);
             lexer.setLineStart(lexer.getToken().getEnd());
         }
         
         if(!isCommented()) {
-            if("/\\*".equals(result)) setCommentMulti(true);
+            if("/*".equals(result)) setCommentMulti(true);
             if("--".equals(result)) setCommentSingle(true);
         }
 
         if(isCommented()) {
-            if("\\*/".equals(result)) setCommentMulti(false);
-            if(result.contains("\\r")||result.contains("\\n")) setCommentSingle(false);
+            if("*/".equals(result)) setCommentMulti(false);
+            if(result.contains("\r")||result.contains("\n")) setCommentSingle(false);
         }
         
         return result;

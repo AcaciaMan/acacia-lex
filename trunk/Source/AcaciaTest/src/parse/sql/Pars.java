@@ -35,6 +35,8 @@ public class Pars implements Comparable<Pars>{
     
     private int line;
     private int column;
+    
+    private Lexer lexer;
 
     public Pars() {
     }
@@ -46,6 +48,7 @@ public class Pars implements Comparable<Pars>{
         this.object = t.getObject();
         this.line = l.getLine();
         this.column = l.getColumn();
+        this.lexer = l;
     }
 
     public int getLength() {
@@ -164,6 +167,29 @@ public class Pars implements Comparable<Pars>{
      */
     public void setColumn(int column) {
         this.column = column;
+    }
+
+    /**
+     * @return the lexer
+     */
+    public Lexer getLexer() {
+        return lexer;
+    }
+
+    /**
+     * @param lexer the lexer to set
+     */
+    public void setLexer(Lexer lexer) {
+        this.lexer = lexer;
+    }
+    
+    public String getString() {
+        return lexer.getInput().subSequence(getStart(), getEnd()).toString();
+    }
+
+    @Override
+    public String toString() {
+        return getString()+" Ln:"+getLine()+" Col:"+getColumn(); 
     }
     
 }
