@@ -24,5 +24,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 public @interface AnnLexer {
-
+    /*
+    Print System.out.println from generated Lexer code
+    */
+    boolean bSout() default false;
 }
