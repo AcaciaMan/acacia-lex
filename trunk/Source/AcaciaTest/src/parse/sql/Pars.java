@@ -22,10 +22,8 @@ package parse.sql;
 
 import lexer.Lexer;
 import lexer.Token;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class Pars implements Comparable<Pars>{
+public class Pars{
     
     private String type;
     private int start = 0;
@@ -53,36 +51,6 @@ public class Pars implements Comparable<Pars>{
 
     public int getLength() {
         return end - start;
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 31). // two randomly chosen prime numbers
-            // if deriving: appendSuper(super.hashCode()).
-            append(this.start).
-            toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-       if (!(obj instanceof Pars))
-            return false;
-        if (obj == this)
-            return true;
-
-        Pars rhs = (Pars) obj;
-        return new EqualsBuilder().
-            // if deriving: appendSuper(super.equals(obj)).
-            append(this.start, rhs.start).
-            isEquals();
-    
-    }
-
-    @Override
-    public int compareTo(Pars p) {
-
-        return start - p.start;
-    
     }
 
     /**
@@ -183,13 +151,13 @@ public class Pars implements Comparable<Pars>{
         this.lexer = lexer;
     }
     
-    public String getString() {
-        return lexer.getInput().subSequence(getStart(), getEnd()).toString();
+    public CharSequence getCharSequence() {
+        return lexer.getInput().subSequence(getStart(), getEnd());
     }
 
     @Override
     public String toString() {
-        return getString()+" Ln:"+getLine()+" Col:"+getColumn(); 
+        return getCharSequence()+" Ln:"+getLine()+" Col:"+getColumn(); 
     }
     
 }

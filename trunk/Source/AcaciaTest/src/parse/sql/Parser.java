@@ -20,14 +20,18 @@
 
 package parse.sql;
 
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.HashMap;
 import lexer.Lexer;
 import lexer.Token;
 
 public class Parser {
    
-    private TreeSet<Pars> sPars = new TreeSet<Pars>();
+    private ArrayList<Pars> sPars = new ArrayList<Pars>();
+    private HashMap<Integer, Integer> parsIdx = new HashMap<Integer, Integer>();
     private Lexer lexer;
+    private Parsable parsable = new Parsable(this, 0, null);
+    private ArrayList<SqlStatement> sqlStats = new ArrayList<SqlStatement>();
 
     public Parser(Lexer lexer) {
         this.lexer = lexer;
@@ -35,13 +39,18 @@ public class Parser {
     
     public void parse() {
         Token token;
+        int prevStatementEnd = 0;
+        CharSequence ch;
         while ((token = lexer.findNext()).isFound()) {
             if ("Ident".equals(token.getType())) {
-                sPars.add(new Pars(token, lexer));
+                addPars(new Pars(token, lexer));
             }
-            if ("Spec".equals(token.getType())
+            else if ("Spec".equals(token.getType())
                     && ";".equals(token.getString(lexer))) {
-                sPars.add(new Pars(token, lexer));
+                addPars(new Pars(token, lexer));
+                ch = this.parsable.getSb();
+                sqlStats.add(new SqlStatement(this, prevStatementEnd, ch.subSequence(prevStatementEnd, ch.length())));
+                prevStatementEnd = ch.length();
             }
 
         }
@@ -49,20 +58,11 @@ public class Parser {
         for(Pars p:sPars) {
             System.out.println(p.toString());
         }
-    }
-
-    /**
-     * @return the sPars
-     */
-    public TreeSet<Pars> getsPars() {
-        return sPars;
-    }
-
-    /**
-     * @param sPars the sPars to set
-     */
-    public void setsPars(TreeSet<Pars> sPars) {
-        this.sPars = sPars;
+        
+        System.out.println("######## Statements:");
+        for(SqlStatement s:sqlStats) {
+            System.out.println(s.getSb().toString());
+        }
     }
 
     /**
@@ -77,6 +77,54 @@ public class Parser {
      */
     public void setLexer(Lexer lexer) {
         this.lexer = lexer;
+    }
+
+    /**
+     * @return the sPars
+     */
+    public ArrayList<Pars> getsPars() {
+        return sPars;
+    }
+
+    /**
+     * @param sPars the sPars to set
+     */
+    public void setsPars(ArrayList<Pars> sPars) {
+        this.sPars = sPars;
+    }
+
+    /**
+     * @return the parsIdx
+     */
+    public HashMap<Integer, Integer> getParsIdx() {
+        return parsIdx;
+    }
+
+    /**
+     * @param parsIdx the parsIdx to set
+     */
+    public void setParsIdx(HashMap<Integer, Integer> parsIdx) {
+        this.parsIdx = parsIdx;
+    }
+
+    /**
+     * @return the parsable
+     */
+    public Parsable getParsable() {
+        return parsable;
+    }
+
+    /**
+     * @param parsable the parsable to set
+     */
+    public void setParsable(Parsable parsable) {
+        this.parsable = parsable;
+    }
+    
+    public void addPars(Pars pars) {
+        sPars.add(pars);
+        parsIdx.put(parsable.getSb().length(), sPars.size()-1);
+        parsable.getSb().append(pars.getCharSequence()+" ");
     }
     
 }
