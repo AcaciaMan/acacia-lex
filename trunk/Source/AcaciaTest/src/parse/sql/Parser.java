@@ -31,13 +31,13 @@ public class Parser {
     private HashMap<Integer, Integer> parsIdx = new HashMap<Integer, Integer>();
     private Lexer lexer;
     private Parsable parsable = new Parsable(this, 0, null);
-    private ArrayList<SqlStatement> sqlStats = new ArrayList<SqlStatement>();
+
 
     public Parser(Lexer lexer) {
         this.lexer = lexer;
     }
     
-    public void parse() {
+    public void parse(SqlManager mgr) {
         Token token;
         int prevStatementEnd = 0;
         CharSequence ch;
@@ -49,7 +49,7 @@ public class Parser {
                     && ";".equals(token.getString(lexer))) {
                 addPars(new Pars(token, lexer));
                 ch = this.parsable.getSb();
-                sqlStats.add(new SqlStatement(this, prevStatementEnd, ch.subSequence(prevStatementEnd, ch.length())));
+                mgr.getSqlStats().add(new SqlStatement(this, prevStatementEnd, ch.subSequence(prevStatementEnd, ch.length())));
                 prevStatementEnd = ch.length();
             }
 
@@ -59,10 +59,6 @@ public class Parser {
             System.out.println(p.toString());
         }
         
-        System.out.println("######## Statements:");
-        for(SqlStatement s:sqlStats) {
-            System.out.println(s.getSb().toString());
-        }
     }
 
     /**

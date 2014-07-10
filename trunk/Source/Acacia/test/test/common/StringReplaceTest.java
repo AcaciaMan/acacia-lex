@@ -77,4 +77,24 @@ public class StringReplaceTest {
     assertTrue(true);
   }
 
+    @Test
+   public void createView() {
+
+      final String EXAMPLE_TEST = "CREATE OR REPLACE FORCE VIEW SYS ALL_TABLES  AS select u name o name decode bitand t property 2151678048 0 ts name ;";
+
+      Pattern pattern = Pattern.compile("create .*? view (.*?) as select (.*)", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(EXAMPLE_TEST);
+    // Check all occurance
+    while (matcher.find()) {
+      System.out.print("Start index: " + matcher.start());
+      System.out.print(" End index: " + matcher.end() + " ");
+      System.out.println(matcher.group());
+        System.out.println(matcher.group(1));
+        System.out.println(matcher.group(2));
+    }
+
+    assertTrue(true);
+   
+   }
+    
 }
