@@ -22,7 +22,7 @@ package parse.sql;
 
 public class Parsable {
     
-    private StringBuilder sb = new StringBuilder();
+    public StringBuilder sb = new StringBuilder();
     
     private Parser parser;
     

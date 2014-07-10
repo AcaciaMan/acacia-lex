@@ -32,6 +32,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import parse.sql.Parser;
+import parse.sql.SqlManager;
 import sql.lexer.SqlLexFactory;
 import sql.lexer.SqlLexImpl;
 
@@ -106,9 +107,9 @@ public class AsSelectTest {
         lexer.setInput(f);
 //        lexer.run();
         
-        Parser parser = new Parser(lexer);
-        parser.parse();
+        SqlManager sm = new SqlManager(new Parser(lexer));
         
+        sm.parse();
         assertTrue(true);
     
     
