@@ -21,10 +21,11 @@
 package parse.sql;
 
 public class DBObject {
-    public CharSequence name;
-    public int type;
 
-    public DBObject(CharSequence name, int type) {
+    public CharSequence name;
+    public DBObjectType type;
+
+    public DBObject(CharSequence name, DBObjectType type) {
         this.name = name;
         this.type = type;
     }

@@ -24,6 +24,8 @@ package sql.lexer;
 public class SqlState {
     
     public static final int COMMENTED = 0x01;
+    public static final int SQL_ENDED = 0x02;
+    
     
     private boolean commentMulti = false;
     private boolean commentSingle = false;
@@ -31,6 +33,7 @@ public class SqlState {
     
     @ann.lexer.AnnToken(type = "Spec", value = "/\\*|\\*/|--|\\r\\n|\\n|;")
     public String setCommentStart(lexer.Lexer lexer) {
+        int cats = 0;
         String result = lexer.getToken().getString();
         
         if(result.contains("\n")) {
@@ -48,7 +51,10 @@ public class SqlState {
             if(result.contains("\r")||result.contains("\n")) setCommentSingle(false);
         }
         
-        if (isCommented()) lexer.getToken().setCats(COMMENTED);
+        if (isCommented()) cats = cats | COMMENTED;
+        if (";".equals(result)&&!isCommented()) cats = cats | SQL_ENDED;
+            
+        lexer.getToken().setCats(cats);
         
         return result;
     }

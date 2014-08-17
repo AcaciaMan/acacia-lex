@@ -20,19 +20,16 @@
 
 package parse.sql;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Parsable {
+
+    public ArrayList<Pars> sPars = new ArrayList<Pars>();
+    public HashMap<Integer, Integer> parsIdx = new HashMap<Integer, Integer>();
     
     public StringBuilder sb = new StringBuilder();
-    
-    private Parser parser;
-    
-    private int start;
 
-    public Parsable(Parser parser, int start, CharSequence ch) {
-        this.parser = parser;
-        this.start = start;
-        if(ch != null) this.sb.append(ch);
-    }
 
     /**
      * @return the sb
@@ -49,33 +46,37 @@ public class Parsable {
     }
 
     /**
-     * @return the parser
+     * @return the sPars
      */
-    public Parser getParser() {
-        return parser;
+    public ArrayList<Pars> getsPars() {
+        return sPars;
     }
 
     /**
-     * @param parser the parser to set
+     * @param sPars the sPars to set
      */
-    public void setParser(Parser parser) {
-        this.parser = parser;
+    public void setsPars(ArrayList<Pars> sPars) {
+        this.sPars = sPars;
     }
 
     /**
-     * @return the start
+     * @return the parsIdx
      */
-    public int getStart() {
-        return start;
+    public HashMap<Integer, Integer> getParsIdx() {
+        return parsIdx;
     }
 
     /**
-     * @param start the start to set
+     * @param parsIdx the parsIdx to set
      */
-    public void setStart(int start) {
-        this.start = start;
+    public void setParsIdx(HashMap<Integer, Integer> parsIdx) {
+        this.parsIdx = parsIdx;
     }
     
-    
+    public void addPars(Pars pars) {
+        sPars.add(pars);
+        parsIdx.put(sb.length(), sPars.size()-1);
+        sb.append(pars.getCharSequence()).append(" ");
+    }
     
 }
