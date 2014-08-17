@@ -23,6 +23,8 @@ package sql.lexer;
 @ann.lexer.AnnState
 public class SqlState {
     
+    public static final int COMMENTED = 0x01;
+    
     private boolean commentMulti = false;
     private boolean commentSingle = false;
     private boolean commented = false;
@@ -46,11 +48,14 @@ public class SqlState {
             if(result.contains("\r")||result.contains("\n")) setCommentSingle(false);
         }
         
+        if (isCommented()) lexer.getToken().setCats(COMMENTED);
+        
         return result;
     }
 
     @ann.lexer.AnnToken(type = "Ident", value = "[A-z0-9_$#]+")
     public String getStr(lexer.Lexer lexer) {
+        if (isCommented()) lexer.getToken().setCats(COMMENTED);
         return " ";
     }
 

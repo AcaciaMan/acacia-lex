@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import lexer.Lexer;
 import lexer.Token;
+import sql.lexer.SqlState;
 
 public class Parser {
    
@@ -42,6 +43,8 @@ public class Parser {
         int prevStatementEnd = 0;
         CharSequence ch;
         while ((token = lexer.findNext()).isFound()) {
+            if((token.getCats()&SqlState.COMMENTED)==SqlState.COMMENTED) continue;
+            
             if ("Ident".equals(token.getType())) {
                 addPars(new Pars(token, lexer));
             }

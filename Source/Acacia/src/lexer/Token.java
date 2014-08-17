@@ -53,6 +53,10 @@ public class Token implements Comparable<Token>{
      * token order number in status class
      */
     private int orderNum;
+    /**
+     * token categories, assigned during lexing
+     */
+    private int cats;
     
     private TokenStatus status = TokenStatus.NOT_MATCHED;
 
@@ -307,6 +311,20 @@ public class Token implements Comparable<Token>{
         
         return d;
     
+    }
+
+    /**
+     * @return the cats
+     */
+    public int getCats() {
+        return cats;
+    }
+
+    /**
+     * @param cats the cats to set
+     */
+    public void setCats(int cats) {
+        this.cats = cats;
     }
 
 }
