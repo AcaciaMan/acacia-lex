@@ -49,11 +49,6 @@ public class SqlManager {
     
     public void parse() {
         parser.parse(this);
-        System.out.println("######## Statements:");
-        for(SqlStatement s:sqlStats) {
-            System.out.println(s.getSb().toString());
-        }
-    
     }
 
     public void loadObjects(File f) {

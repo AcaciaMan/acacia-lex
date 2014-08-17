@@ -33,6 +33,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import parse.sql.Parser;
 import parse.sql.SqlManager;
+import parse.sql.SqlStatement;
 import sql.lexer.SqlLexFactory;
 import sql.lexer.SqlLexImpl;
 import sql.lexer.SqlState;
@@ -115,6 +116,13 @@ public class AsSelectTest {
         SqlManager sm = new SqlManager(new Parser(lexer));
         
         sm.parse();
+        
+        System.out.println("######## Statements:");
+        for(SqlStatement s: sm.getSqlStats()) {
+            System.out.println(s.getSb().toString());
+        }
+        
+        
         assertTrue(true);
     
     
