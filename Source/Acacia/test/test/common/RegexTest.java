@@ -81,4 +81,24 @@ public class RegexTest {
     assertTrue(true);
 }
 
+    @Test
+    public void date() throws Exception {
+    
+          final String EXAMPLE_TEST = "2014-07-10 09:14:00 > Ok...";
+        
+      Pattern pattern = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-5][0-9]:[0-5][0-9] > ");
+    // In case you would like to ignore case sensitivity you could use this
+    // statement
+    // Pattern pattern = Pattern.compile("\\s+", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(EXAMPLE_TEST);
+    // Check all occurance
+    while (matcher.find()) {
+      System.out.print("Start index: " + matcher.start());
+      System.out.print(" End index: " + matcher.end() + " ");
+      System.out.println(matcher.group());
+    }
+
+    assertTrue(true);
+}
+    
 }
