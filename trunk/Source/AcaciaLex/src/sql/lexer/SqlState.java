@@ -51,7 +51,7 @@ public class SqlState {
 
     @ann.lexer.AnnToken(type = "Ident", value = "[A-z0-9_$#]+")
     public String getStr(lexer.Lexer lexer) {
-        return lexer.getToken().getString();
+        return " ";
     }
 
     /**
