@@ -28,11 +28,7 @@ import sql.lexer.SqlState;
 
 public class Parser {
    
-    private ArrayList<Pars> sPars = new ArrayList<Pars>();
-    private HashMap<Integer, Integer> parsIdx = new HashMap<Integer, Integer>();
     private Lexer lexer;
-    private Parsable parsable = new Parsable(this, 0, null);
-
 
     public Parser(Lexer lexer) {
         this.lexer = lexer;
@@ -41,25 +37,17 @@ public class Parser {
     public void parse(SqlManager mgr) {
         Token token;
         int prevStatementEnd = 0;
-        CharSequence ch;
+        CharSequence cs;
         while ((token = lexer.findNext()).isFound()) {
             if((token.getCats()&SqlState.COMMENTED)==SqlState.COMMENTED) continue;
             
             if ("Ident".equals(token.getType())) {
-                addPars(new Pars(token, lexer));
+                mgr.addPars(new Pars(token, lexer));
             }
-            else if ("Spec".equals(token.getType())
-                    && ";".equals(token.getString(lexer))) {
-                addPars(new Pars(token, lexer));
-                ch = this.parsable.getSb();
-                mgr.getSqlStats().add(new SqlStatement(this, prevStatementEnd, ch.subSequence(prevStatementEnd, ch.length())));
-                prevStatementEnd = ch.length();
+            else if ((token.getCats()&SqlState.SQL_ENDED)==SqlState.SQL_ENDED) {
+                mgr.addPars(new Pars(token, lexer));
             }
 
-        }
-        
-        for(Pars p:sPars) {
-            System.out.println(p.toString());
         }
         
     }
@@ -76,54 +64,6 @@ public class Parser {
      */
     public void setLexer(Lexer lexer) {
         this.lexer = lexer;
-    }
-
-    /**
-     * @return the sPars
-     */
-    public ArrayList<Pars> getsPars() {
-        return sPars;
-    }
-
-    /**
-     * @param sPars the sPars to set
-     */
-    public void setsPars(ArrayList<Pars> sPars) {
-        this.sPars = sPars;
-    }
-
-    /**
-     * @return the parsIdx
-     */
-    public HashMap<Integer, Integer> getParsIdx() {
-        return parsIdx;
-    }
-
-    /**
-     * @param parsIdx the parsIdx to set
-     */
-    public void setParsIdx(HashMap<Integer, Integer> parsIdx) {
-        this.parsIdx = parsIdx;
-    }
-
-    /**
-     * @return the parsable
-     */
-    public Parsable getParsable() {
-        return parsable;
-    }
-
-    /**
-     * @param parsable the parsable to set
-     */
-    public void setParsable(Parsable parsable) {
-        this.parsable = parsable;
-    }
-    
-    public void addPars(Pars pars) {
-        sPars.add(pars);
-        parsIdx.put(parsable.getSb().length(), sPars.size()-1);
-        parsable.getSb().append(pars.getCharSequence()+" ");
     }
     
 }

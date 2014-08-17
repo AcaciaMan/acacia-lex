@@ -29,16 +29,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sql.lexer.SqlState;
 
 public class SqlManager {
-    
-    public static final int TYPE_ALL = 1;
-    public static final int TYPE_TABLE = 2;
-    public static final int TYPE_VIEW = 4;
     
     private HashMap<CharSequence, DBObject> mObj = new HashMap<CharSequence, DBObject>();
     
     private ArrayList<SqlStatement> sqlStats = new ArrayList<SqlStatement>();
+    
+    private SqlManagerState state = SqlManagerState.FIRST;
+    private SqlManagerAction action = SqlManagerAction.SKIP;
+    private SqlStatement statement;
 
     private Parser parser;
 
@@ -54,22 +55,19 @@ public class SqlManager {
         }
     
     }
-    
 
-
-    
     public void loadObjects(File f) {
         
         String[] parts;
-        int type = TYPE_TABLE;
+        DBObjectType type = DBObjectType.ANY;
         
         try {
             BufferedReader br = new BufferedReader(new FileReader(f));
             for(String line = br.readLine(); line != null; line = br.readLine()) {
                 parts = line.split(",");
                 if(parts.length==2){
-                    type = TYPE_TABLE;
-                    if("VIEW".equalsIgnoreCase(parts[1])) type = TYPE_VIEW;
+                    type = DBObjectType.TABLE;
+                    if("VIEW".equalsIgnoreCase(parts[1])) type = DBObjectType.VIEW;
                     mObj.put(parts[0], new DBObject(parts[0], type));
                 }
             }
@@ -83,10 +81,11 @@ public class SqlManager {
 
     }
     
-    public DBObject getDBObject(CharSequence ch,int type) {
+    
+    public DBObject getDBObject(CharSequence ch,DBObjectType type) {
         DBObject result = mObj.get(ch);
         
-        if(type==TYPE_ALL) return result;
+        if(DBObjectType.ANY.equals(type)) return result;
         
         if(result!=null && result.type != type) return null; 
         
@@ -119,6 +118,34 @@ public class SqlManager {
      */
     public void setSqlStats(ArrayList<SqlStatement> sqlStats) {
         this.sqlStats = sqlStats;
+    }
+    
+    public void addPars(Pars p) {
+        if (SqlManagerState.FIRST.equals(state)) {
+            action = SqlManagerAction.SKIP;
+            if ("CREATE".equalsIgnoreCase(p.getCharSequence().toString())) {
+                action = SqlManagerAction.APPEND;
+                statement = new SqlStatement();
+            }
+        }
+
+        if(SqlManagerAction.APPEND.equals(action)) {
+            statement.addPars(p);
+        }
+        
+        if ((p.getCats() & SqlState.SQL_ENDED) == SqlState.SQL_ENDED) {
+            if (SqlManagerAction.APPEND.equals(action)) {
+                sqlStats.add(statement);
+            }
+            state = SqlManagerState.LAST;
+        }
+
+        if (SqlManagerState.FIRST.equals(state)) {
+            state = SqlManagerState.MIDDLE;
+        }
+        if (SqlManagerState.LAST.equals(state)) {
+            state = SqlManagerState.FIRST;
+        }
     }
     
 }
