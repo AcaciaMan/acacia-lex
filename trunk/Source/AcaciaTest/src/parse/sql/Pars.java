@@ -33,6 +33,10 @@ public class Pars{
     
     private int line;
     private int column;
+    /**
+     * token category
+     */
+    private int cats;
     
     private Lexer lexer;
 
@@ -44,6 +48,7 @@ public class Pars{
         this.start = t.getStart();
         this.end = t.getEnd();
         this.object = t.getObject();
+        this.cats = t.getCats();
         this.line = l.getLine();
         this.column = l.getColumn();
         this.lexer = l;
@@ -158,6 +163,20 @@ public class Pars{
     @Override
     public String toString() {
         return getCharSequence()+" Ln:"+getLine()+" Col:"+getColumn(); 
+    }
+
+    /**
+     * @return the cats
+     */
+    public int getCats() {
+        return cats;
+    }
+
+    /**
+     * @param cats the cats to set
+     */
+    public void setCats(int cats) {
+        this.cats = cats;
     }
     
 }

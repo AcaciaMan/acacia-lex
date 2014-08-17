@@ -155,6 +155,7 @@ public class ImplLexer implements Lexer {
         if(curToken.getMethodNum()<0) return;
         
         //Execute token state method
+        curToken.setCats(0);
         Object curTokenObject = curToken.getDesc().executeMethod(
                 states.peek().getInstance(),
                 curToken.getMethodNum());

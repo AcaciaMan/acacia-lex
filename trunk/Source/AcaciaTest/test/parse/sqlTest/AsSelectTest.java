@@ -35,6 +35,7 @@ import parse.sql.Parser;
 import parse.sql.SqlManager;
 import sql.lexer.SqlLexFactory;
 import sql.lexer.SqlLexImpl;
+import sql.lexer.SqlState;
 
 public class AsSelectTest {
 
@@ -77,12 +78,16 @@ public class AsSelectTest {
         java.net.URL url = this.getClass().getResource("all_tables.sql");
         File f = new File(url.getFile());
         lexer.setInput(f);
+        int countCommented = 0;
 //        lexer.run();
         
                 Token token;
         while ((token = lexer.findNext()).isFound()) {
+            if((token.getCats()&SqlState.COMMENTED)==SqlState.COMMENTED) countCommented++;
             if("Ident".equals(token.getType())) sTokens.add(token.getString(lexer).toUpperCase());
         }
+        
+        System.out.println("Count commented: " + countCommented);
 
         for(String s:sTokens) {
             System.out.println(s);
