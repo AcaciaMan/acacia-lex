@@ -21,12 +21,12 @@
 package parse.sql;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 public class Parsable {
 
     public ArrayList<Pars> sPars = new ArrayList<Pars>();
-    public TreeMap<Integer, Integer> parsIdx = new TreeMap<Integer, Integer>();
+    public HashMap<Integer, Integer> parsIdx = new HashMap<Integer, Integer>();
     
     public StringBuilder sb = new StringBuilder().append(" ");
 
@@ -62,14 +62,14 @@ public class Parsable {
     /**
      * @return the parsIdx
      */
-    public TreeMap<Integer, Integer> getParsIdx() {
+    public HashMap<Integer, Integer> getParsIdx() {
         return parsIdx;
     }
 
     /**
      * @param parsIdx the parsIdx to set
      */
-    public void setParsIdx(TreeMap<Integer, Integer> parsIdx) {
+    public void setParsIdx(HashMap<Integer, Integer> parsIdx) {
         this.parsIdx = parsIdx;
     }
     
