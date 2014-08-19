@@ -28,7 +28,7 @@ public class SqlStatement extends Parsable {
     
     public void findAsSelect() {
 
-      Pattern pattern = Pattern.compile("create .* view .* as select ", Pattern.CASE_INSENSITIVE);
+      Pattern pattern = Pattern.compile("create .*? view .*? as select ", Pattern.CASE_INSENSITIVE);
     // In case you would like to ignore case sensitivity you could use this
     // statement
     // Pattern pattern = Pattern.compile("\\s+", Pattern.CASE_INSENSITIVE);
