@@ -22,6 +22,7 @@ package parse.sqlTest;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.After;
@@ -114,10 +115,12 @@ public class SqlStatementTest {
     @Test
     public void getPars() {
         
-        for(Integer i:statement.getParsIdx().keySet()){
+        TreeMap<Integer,Integer> treeMap = new TreeMap<Integer, Integer>(statement.parsIdx);
+        
+        for(Integer i:treeMap.keySet()){
             System.out.println("i: " + i 
-                    + " pars: " + statement.parsIdx.get(i)
-                    + " text: " + statement.sPars.get(statement.parsIdx.get(i))
+                    + " pars: " + treeMap.get(i)
+                    + " text: " + statement.sPars.get(treeMap.get(i))
             );
         };
         
