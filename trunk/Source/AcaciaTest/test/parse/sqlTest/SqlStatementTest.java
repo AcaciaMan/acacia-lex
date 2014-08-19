@@ -22,6 +22,8 @@ package parse.sqlTest;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -84,6 +86,42 @@ public class SqlStatementTest {
     public void counts() {
         
         System.out.println("Pars count: " + statement.sPars.size());
+        assertTrue(true);
+    }
+
+    
+    @Test
+    public void getRelations() {
+        
+        //statement.findAsSelect();
+      Pattern pattern = Pattern.compile("create .*? view (.*?) as select ", Pattern.CASE_INSENSITIVE);
+    // In case you would like to ignore case sensitivity you could use this
+    // statement
+    // Pattern pattern = Pattern.compile("\\s+", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(statement.sb);
+    // Check all occurance
+    while (matcher.find()) {
+      System.out.print("Start index: " + matcher.start());
+      System.out.print(" End index: " + matcher.end() + " ");
+      System.out.println(matcher.group(1));
+    }
+
+        
+        
+        assertTrue(true);
+    }
+    
+    @Test
+    public void getPars() {
+        
+        for(Integer i:statement.getParsIdx().keySet()){
+            System.out.println("i: " + i 
+                    + " pars: " + statement.parsIdx.get(i)
+                    + " text: " + statement.sPars.get(statement.parsIdx.get(i))
+            );
+        };
+        
+        
         assertTrue(true);
     }
     
