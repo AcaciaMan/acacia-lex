@@ -31,6 +31,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import parse.sql.DBObject;
+import parse.sql.DBObjectType;
 import parse.sql.Parser;
 import parse.sql.SqlManager;
 import parse.sql.SqlStatement;
@@ -39,6 +41,7 @@ import sql.lexer.SqlLexImpl;
 
 public class SqlStatementTest {
     
+    SqlManager manager;
     SqlStatement statement;
     
     public SqlStatementTest() {
@@ -65,11 +68,19 @@ public class SqlStatementTest {
         lexer.setInput(f);
 //        lexer.run();
         
-        SqlManager sm = new SqlManager(new Parser(lexer));
+        manager = new SqlManager(new Parser(lexer));
         
-        sm.parse();
+        manager.parse();
+        
+        
+        // load db objects
+        java.net.URL urlDb = this.getClass().getResource("objects.csv");
+        File fDb = new File(urlDb.getFile());
 
-        statement = sm.getSqlStats().get(0);
+        manager.loadObjects(fDb);
+        
+
+        statement = manager.getSqlStats().get(0);
         
     }
     
@@ -95,7 +106,7 @@ public class SqlStatementTest {
     public void getRelations() {
         
         //statement.findAsSelect();
-      Pattern pattern = Pattern.compile("create .*? view (.*?) as select ", Pattern.CASE_INSENSITIVE);
+      Pattern pattern = Pattern.compile("create .*? view (.*? )as select ", Pattern.CASE_INSENSITIVE);
     // In case you would like to ignore case sensitivity you could use this
     // statement
     // Pattern pattern = Pattern.compile("\\s+", Pattern.CASE_INSENSITIVE);
@@ -103,7 +114,13 @@ public class SqlStatementTest {
     // Check all occurance
     while (matcher.find()) {
       System.out.print("Start index: " + matcher.start());
-      System.out.print(" End index: " + matcher.end() + " ");
+      System.out.println(" End index: " + matcher.end() + " ");
+      System.out.print("Start index1: " + matcher.start(1));
+      System.out.println(" End index1: " + matcher.end(1) + " ");
+      System.out.println("Start pars: " + statement.parsIdx.get(matcher.start(1)));
+      System.out.println("Start text: " + statement.sPars.get(statement.parsIdx.get(matcher.start(1))).toString());
+      System.out.println("End pars: " + statement.parsIdx.get(matcher.end(1)));
+      System.out.println("End text: " + statement.sPars.get(statement.parsIdx.get(matcher.end(1))).toString());
       System.out.println(matcher.group(1));
     }
 
@@ -111,6 +128,45 @@ public class SqlStatementTest {
         
         assertTrue(true);
     }
+
+    @Test
+    public void findDBObjects() {
+        
+        Integer startIdx = 0;
+        Integer endIdx = 0;
+        
+        
+        //statement.findAsSelect();
+      Pattern pattern = Pattern.compile("create .*? view (.*? )as select ", Pattern.CASE_INSENSITIVE);
+    // In case you would like to ignore case sensitivity you could use this
+    // statement
+    // Pattern pattern = Pattern.compile("\\s+", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(statement.sb);
+    // Check all occurance
+    if (matcher.find()) {
+      startIdx = statement.parsIdx.get(matcher.start(1));
+      endIdx = statement.parsIdx.get(matcher.end(1));
+    } else {
+        assertTrue("Not found CREATE statement",false);
+    }
+
+        DBObject obj = null;
+        for (Integer i = startIdx; i < endIdx; i++) {
+            if ((obj
+                    = manager.getDBObject(statement.sPars.get(i).getCharSequence().toString().toUpperCase(),
+                            DBObjectType.VIEW)) != null) {
+                break;
+            };
+        }
+        if(obj!=null){
+            System.out.println("View: " + obj.name);
+        } else {
+            assertTrue("VIEW not found", false);
+        }
+        
+        assertTrue(true);
+    }
+    
     
     @Test
     public void getPars() {
@@ -127,6 +183,23 @@ public class SqlStatementTest {
         
         assertTrue(true);
     }
+    
+    @Test
+    public void loadDBObjects() {
+        
+        java.net.URL url = this.getClass().getResource("objects.csv");
+        File f = new File(url.getFile());
+
+        manager.loadObjects(f);
+        
+        for(CharSequence cs: manager.getDbObjects().keySet()) {
+            System.out.print("DB Objects: " + cs);
+            System.out.println(" type: " + manager.getDbObjects().get(cs).type);
+    }
+        
+        assertTrue(true);
+    }
+    
     
     
 }

@@ -33,7 +33,7 @@ import sql.lexer.SqlState;
 
 public class SqlManager {
     
-    private HashMap<CharSequence, DBObject> mObj = new HashMap<CharSequence, DBObject>();
+    private HashMap<CharSequence, DBObject> dbObjects = new HashMap<CharSequence, DBObject>();
     
     private ArrayList<SqlStatement> sqlStats = new ArrayList<SqlStatement>();
     
@@ -63,7 +63,7 @@ public class SqlManager {
                 if(parts.length==2){
                     type = DBObjectType.TABLE;
                     if("VIEW".equalsIgnoreCase(parts[1])) type = DBObjectType.VIEW;
-                    mObj.put(parts[0], new DBObject(parts[0], type));
+                    dbObjects.put(parts[0], new DBObject(parts[0], type));
                 }
             }
             br.close();
@@ -77,8 +77,8 @@ public class SqlManager {
     }
     
     
-    public DBObject getDBObject(CharSequence ch,DBObjectType type) {
-        DBObject result = mObj.get(ch);
+    public DBObject getDBObject(CharSequence cs,DBObjectType type) {
+        DBObject result = dbObjects.get(cs);
         
         if(DBObjectType.ANY.equals(type)) return result;
         
@@ -88,17 +88,17 @@ public class SqlManager {
     }
 
     /**
-     * @return the mObj
+     * @return the dbObjects
      */
-    public HashMap<CharSequence, DBObject> getmObj() {
-        return mObj;
+    public HashMap<CharSequence, DBObject> getDbObjects() {
+        return dbObjects;
     }
 
     /**
-     * @param mObj the mObj to set
+     * @param dbObjects the dbObjects to set
      */
-    public void setmObj(HashMap<CharSequence, DBObject> mObj) {
-        this.mObj = mObj;
+    public void setDbObjects(HashMap<CharSequence, DBObject> dbObjects) {
+        this.dbObjects = dbObjects;
     }
 
     /**
