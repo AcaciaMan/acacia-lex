@@ -22,6 +22,7 @@ package parse.sqlTest;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -63,7 +64,7 @@ public class SqlStatementTest {
         SqlLexFactory factory = new SqlLexFactory();
         SqlLexImpl lexer = factory.getSqlLexImpl();
 
-        java.net.URL url = this.getClass().getResource("all_tables.sql");
+        java.net.URL url = this.getClass().getResource("all_objects.sql");
         File f = new File(url.getFile());
         lexer.setInput(f);
 //        lexer.run();
@@ -134,6 +135,7 @@ public class SqlStatementTest {
         
         Integer startIdx = 0;
         Integer endIdx = 0;
+        Integer endStatementIdx = 0;
         
         
         //statement.findAsSelect();
@@ -146,8 +148,9 @@ public class SqlStatementTest {
     if (matcher.find()) {
       startIdx = statement.parsIdx.get(matcher.start(1));
       endIdx = statement.parsIdx.get(matcher.end(1));
+      endStatementIdx = statement.parsIdx.get(matcher.end());
     } else {
-        assertTrue("Not found CREATE statement",false);
+        fail("Not found CREATE statement");
     }
 
         DBObject obj = null;
@@ -156,12 +159,30 @@ public class SqlStatementTest {
                     = manager.getDBObject(statement.sPars.get(i).getCharSequence().toString().toUpperCase(),
                             DBObjectType.VIEW)) != null) {
                 break;
-            };
+            }
         }
         if(obj!=null){
             System.out.println("View: " + obj.name);
         } else {
-            assertTrue("VIEW not found", false);
+            fail("VIEW not found");
+        }
+
+        // get related db objects
+        DBObject objRelated = null;
+        ArrayList<DBObject> objects = new ArrayList<DBObject>();
+        for (Integer i = endStatementIdx; i < statement.sPars.size(); i++) {
+            if ((objRelated
+                    = manager.getDBObject(statement.sPars.get(i).getCharSequence().toString().toUpperCase(),
+                            DBObjectType.ANY)) != null) {
+                objects.add(objRelated);
+            
+            }
+        }
+        
+        if(objects.isEmpty()) fail("No related objects");
+        
+        for(DBObject o:objects) {
+           System.out.println("objRelated: " + o.name + " " + o.type);
         }
         
         assertTrue(true);
@@ -178,8 +199,7 @@ public class SqlStatementTest {
                     + " pars: " + treeMap.get(i)
                     + " text: " + statement.sPars.get(treeMap.get(i))
             );
-        };
-        
+        }
         
         assertTrue(true);
     }
