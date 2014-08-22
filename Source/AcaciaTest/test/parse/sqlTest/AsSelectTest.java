@@ -113,9 +113,9 @@ public class AsSelectTest {
         lexer.setInput(f);
 //        lexer.run();
         
-        SqlManager sm = new SqlManager(new Parser(lexer));
-        
-        sm.parse();
+        SqlManager sm = new SqlManager();
+        Parser parser = new Parser(lexer);
+        parser.parse(sm);
         
         System.out.println("######## Statements:");
         for(SqlStatement s: sm.getSqlStats()) {

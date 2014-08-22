@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lexer.Lexer;
 import sql.lexer.SqlState;
 
 public class SqlManager {
@@ -42,13 +43,9 @@ public class SqlManager {
     private SqlStatement statement;
 
     private Parser parser;
-
-    public SqlManager(Parser parser) {
-        this.parser = parser;
-    }
+    private Lexer lexer;
     
-    public void parse() {
-        parser.parse(this);
+    public SqlManager() {
     }
 
     public void loadObjects(File f) {
@@ -141,6 +138,34 @@ public class SqlManager {
         if (SqlManagerState.LAST.equals(state)) {
             state = SqlManagerState.FIRST;
         }
+    }
+
+    /**
+     * @return the parser
+     */
+    public Parser getParser() {
+        return parser;
+    }
+
+    /**
+     * @param parser the parser to set
+     */
+    public void setParser(Parser parser) {
+        this.parser = parser;
+    }
+
+    /**
+     * @return the lexer
+     */
+    public Lexer getLexer() {
+        return lexer;
+    }
+
+    /**
+     * @param lexer the lexer to set
+     */
+    public void setLexer(Lexer lexer) {
+        this.lexer = lexer;
     }
     
 }
