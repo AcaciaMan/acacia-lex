@@ -20,6 +20,7 @@
 
 package parse.sql;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,7 +30,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import lexer.Lexer;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import sql.lexer.SqlLexFactory;
+import sql.lexer.SqlLexImpl;
 import sql.lexer.SqlState;
 
 public class SqlManager {
@@ -43,9 +49,14 @@ public class SqlManager {
     private SqlStatement statement;
 
     private Parser parser;
-    private Lexer lexer;
+    
+    private SqlLexFactory factory = new SqlLexFactory();
+    private SqlLexImpl lexer = factory.getSqlLexImpl();
+    private SimpleAttributeSet messageGreen = new SimpleAttributeSet();
+
     
     public SqlManager() {
+         StyleConstants.setForeground(messageGreen, Color.GREEN);
     }
 
     public void loadObjects(File f) {
@@ -153,19 +164,14 @@ public class SqlManager {
     public void setParser(Parser parser) {
         this.parser = parser;
     }
+    
+    public void parse(File file, StyledDocument doc) throws IOException, BadLocationException {
+        lexer.setInput(file);
+        Parser parser = new Parser(lexer);
+        parser.parse(this);
 
-    /**
-     * @return the lexer
-     */
-    public Lexer getLexer() {
-        return lexer;
-    }
-
-    /**
-     * @param lexer the lexer to set
-     */
-    public void setLexer(Lexer lexer) {
-        this.lexer = lexer;
+        doc.insertString(doc.getLength(), "Parsed " + file.getCanonicalPath() + "\n", messageGreen);
+        
     }
     
 }
