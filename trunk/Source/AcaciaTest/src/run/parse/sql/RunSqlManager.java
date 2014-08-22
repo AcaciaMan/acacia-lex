@@ -32,6 +32,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 import parse.sql.SqlManager;
 
 public class RunSqlManager extends javax.swing.JFrame {
@@ -72,9 +74,9 @@ public class RunSqlManager extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Run SQL Manager");
@@ -95,11 +97,9 @@ public class RunSqlManager extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
         jLabel2.setText("Progress:");
+
+        jScrollPane2.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,8 +112,8 @@ public class RunSqlManager extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
@@ -131,9 +131,9 @@ public class RunSqlManager extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,11 +156,17 @@ public class RunSqlManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        manager = new SqlManager();
-        jTextArea1.setText(null);
-        File folder = new File(jTextField1.getText());
-        listFilesForFolder(folder);
-        jTextArea1.append("Done!" + NEW_LINE);
+        try {
+            manager = new SqlManager();
+            jTextPane1.setText(null);
+            File folder = new File(jTextField1.getText());
+            listFilesForFolder(folder);
+            StyledDocument doc = jTextPane1.getStyledDocument();
+            doc.insertString(doc.getLength(), "Done!"+NEW_LINE, null );
+        } catch (BadLocationException ex) {
+            Logger.getLogger(RunSqlManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
@@ -182,8 +188,13 @@ public class RunSqlManager extends javax.swing.JFrame {
             }
         })) {
             try {
-                jTextArea1.append(fileEntry.getCanonicalPath() + NEW_LINE);
+                StyledDocument doc = jTextPane1.getStyledDocument();
+                doc.insertString(doc.getLength(), fileEntry.getCanonicalPath()+NEW_LINE, null );
+                
+                manager.parse(fileEntry, doc);
             } catch (IOException ex) {
+                Logger.getLogger(RunSqlManager.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (BadLocationException ex) {
                 Logger.getLogger(RunSqlManager.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -285,8 +296,8 @@ public class RunSqlManager extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
