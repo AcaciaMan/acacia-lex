@@ -5,6 +5,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/src/parse/sql/SqlStatement.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/test/parse/sqlTest/all_tables.sql</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/test/parse/sqlTest/all_objects.sql</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/src/parse/sql/SqlManager.java</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/src/parse/sql/DBObject.java</file>
