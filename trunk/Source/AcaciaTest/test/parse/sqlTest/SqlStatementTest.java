@@ -69,9 +69,9 @@ public class SqlStatementTest {
         lexer.setInput(f);
 //        lexer.run();
         
-        manager = new SqlManager(new Parser(lexer));
-        
-        manager.parse();
+        manager = new SqlManager();
+        Parser parser = new Parser(lexer);
+        parser.parse(manager);
         
         
         // load db objects
