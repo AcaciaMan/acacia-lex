@@ -53,11 +53,16 @@ public class SqlManager {
     
     private final SimpleAttributeSet messageGreen = new SimpleAttributeSet();
     private final SimpleAttributeSet messageRed = new SimpleAttributeSet();
+    private final SimpleAttributeSet messageYellow = new SimpleAttributeSet();
+    
+    private Integer createStatementCount;
+    private Integer otherStatementCount;
 
     
     public SqlManager() {
          StyleConstants.setForeground(messageGreen, Color.GREEN);
          StyleConstants.setForeground(messageRed, Color.RED);
+         StyleConstants.setForeground(messageYellow, Color.YELLOW);
     }
 
     public void loadObjects(File f) {
@@ -140,6 +145,9 @@ public class SqlManager {
         if ((p.getCats() & SqlState.SQL_ENDED) == SqlState.SQL_ENDED) {
             if (SqlManagerAction.APPEND.equals(action)) {
                 sqlStats.add(statement);
+                createStatementCount++;
+            } else {
+                otherStatementCount++;
             }
             state = SqlManagerState.LAST;
         }
@@ -153,11 +161,22 @@ public class SqlManager {
     }
     
     public void parse(File file, StyledDocument doc) throws IOException, BadLocationException {
+
+        createStatementCount = 0;
+        otherStatementCount = 0;
+        
         lexer.setInput(file);
         Parser parser = new Parser(lexer);
         parser.parse(this);
 
-        doc.insertString(doc.getLength(), "Parsed " + file.getCanonicalPath() + "\n", messageGreen);
+        
+        if(createStatementCount==0&&otherStatementCount==0) {
+           doc.insertString(doc.getLength(), "No SQL statements \n", messageRed);
+        } else if (createStatementCount==0) {
+           doc.insertString(doc.getLength(), "No CREATE statements \n", messageYellow);
+        } else {
+           doc.insertString(doc.getLength(), "Parsed CREATE statements " + createStatementCount  + "\n", messageGreen);
+        }
         
     }
 

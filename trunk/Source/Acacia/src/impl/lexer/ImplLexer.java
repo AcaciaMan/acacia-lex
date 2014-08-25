@@ -171,6 +171,9 @@ public class ImplLexer implements Lexer {
     public void setInput(CharSequence input) {
         this.input = input;
         this.position = 0;
+        for(Token t: this.tokens) {
+            t.init();
+        }  
         matcher.reset(input);
     }
 
