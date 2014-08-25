@@ -47,22 +47,23 @@ public class SqlManager {
     private SqlManagerState state = SqlManagerState.FIRST;
     private SqlManagerAction action = SqlManagerAction.SKIP;
     private SqlStatement statement;
-
-    private Parser parser;
     
-    private SqlLexFactory factory = new SqlLexFactory();
-    private SqlLexImpl lexer = factory.getSqlLexImpl();
-    private SimpleAttributeSet messageGreen = new SimpleAttributeSet();
+    private final SqlLexFactory factory = new SqlLexFactory();
+    private final SqlLexImpl lexer = factory.getSqlLexImpl();
+    
+    private final SimpleAttributeSet messageGreen = new SimpleAttributeSet();
+    private final SimpleAttributeSet messageRed = new SimpleAttributeSet();
 
     
     public SqlManager() {
          StyleConstants.setForeground(messageGreen, Color.GREEN);
+         StyleConstants.setForeground(messageRed, Color.RED);
     }
 
     public void loadObjects(File f) {
         
         String[] parts;
-        DBObjectType type = DBObjectType.ANY;
+        DBObjectType type;
         
         try {
             BufferedReader br = new BufferedReader(new FileReader(f));
@@ -150,20 +151,6 @@ public class SqlManager {
             state = SqlManagerState.FIRST;
         }
     }
-
-    /**
-     * @return the parser
-     */
-    public Parser getParser() {
-        return parser;
-    }
-
-    /**
-     * @param parser the parser to set
-     */
-    public void setParser(Parser parser) {
-        this.parser = parser;
-    }
     
     public void parse(File file, StyledDocument doc) throws IOException, BadLocationException {
         lexer.setInput(file);
@@ -172,6 +159,15 @@ public class SqlManager {
 
         doc.insertString(doc.getLength(), "Parsed " + file.getCanonicalPath() + "\n", messageGreen);
         
+    }
+
+    public void init(File file, StyledDocument doc) throws BadLocationException {
+        loadObjects(file);
+        if (this.dbObjects.size()>0) {
+            doc.insertString(doc.getLength(), "Loaded objects count: "+ this.dbObjects.size() + "\n", messageGreen );
+        } else {
+            doc.insertString(doc.getLength(), "No DB objects loaded!" + "\n", messageRed );
+        }
     }
     
 }
