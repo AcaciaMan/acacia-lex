@@ -327,4 +327,11 @@ public class Token implements Comparable<Token>{
         this.cats = cats;
     }
 
+    public void init() {
+        this.cats = 0;
+        this.end = 0;
+        this.start = 0;
+        this.status = TokenStatus.NOT_MATCHED;
+    }
+    
 }

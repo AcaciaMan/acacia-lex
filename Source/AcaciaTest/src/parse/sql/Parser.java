@@ -36,8 +36,6 @@ public class Parser {
     
     public void parse(SqlManager mgr) {
         Token token;
-        int prevStatementEnd = 0;
-        CharSequence cs;
         while ((token = lexer.findNext()).isFound()) {
             if((token.getCats()&SqlState.COMMENTED)==SqlState.COMMENTED) continue;
             
