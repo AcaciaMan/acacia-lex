@@ -20,26 +20,86 @@
 
 package parse.sql;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SqlStatement extends Parsable {
-
+    private DBObject obj = null;
+    private ArrayList<DBObject> objects = new ArrayList<DBObject>();
     
-    public void findAsSelect() {
+    public void findViewAsSelect(SqlManager manager) {
 
-      Pattern pattern = Pattern.compile("create .*? view .*? as select ", Pattern.CASE_INSENSITIVE);
+        Integer startIdx = 0;
+        Integer endIdx = 0;
+        Integer endStatementIdx = 0;
+        
+        
+        //statement.findAsSelect();
+      Pattern pattern = Pattern.compile("create .*? view (.*? )as select ", Pattern.CASE_INSENSITIVE);
     // In case you would like to ignore case sensitivity you could use this
     // statement
     // Pattern pattern = Pattern.compile("\\s+", Pattern.CASE_INSENSITIVE);
     Matcher matcher = pattern.matcher(sb);
     // Check all occurance
-    while (matcher.find()) {
-      System.out.print("Start index: " + matcher.start());
-      System.out.print(" End index: " + matcher.end() + " ");
-      System.out.println(matcher.group());
+    if (matcher.find()) {
+      startIdx = parsIdx.get(matcher.start(1));
+      endIdx = parsIdx.get(matcher.end(1));
+      endStatementIdx = parsIdx.get(matcher.end());
+    } else {
+        return;
     }
 
+        for (Integer i = startIdx; i < endIdx; i++) {
+            if ((obj
+                    = manager.getDBObject(sPars.get(i).getCharSequence().toString().toUpperCase(),
+                            DBObjectType.VIEW)) != null) {
+                break;
+            }
+        }
+        if(obj==null){
+           return;
+        }
+
+        // get related db objects
+        DBObject objRelated = null;
+        for (Integer i = endStatementIdx; i < sPars.size(); i++) {
+            if ((objRelated
+                    = manager.getDBObject(sPars.get(i).getCharSequence().toString().toUpperCase(),
+                            DBObjectType.ANY)) != null) {
+                objects.add(objRelated);
+            
+            }
+        }
+
+    }
+
+    /**
+     * @return the obj
+     */
+    public DBObject getObj() {
+        return obj;
+    }
+
+    /**
+     * @param obj the obj to set
+     */
+    public void setObj(DBObject obj) {
+        this.obj = obj;
+    }
+
+    /**
+     * @return the objects
+     */
+    public ArrayList<DBObject> getObjects() {
+        return objects;
+    }
+
+    /**
+     * @param objects the objects to set
+     */
+    public void setObjects(ArrayList<DBObject> objects) {
+        this.objects = objects;
     }
     
 }
