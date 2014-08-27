@@ -41,8 +41,8 @@ public class RunSqlManager extends javax.swing.JFrame {
 
     private final static String NEW_LINE = "\n";
     
-    Properties prop = new Properties();
-    SqlManager manager = new SqlManager();
+    private Properties prop = new Properties();
+    private SqlManager manager = new SqlManager();
     
     /**
      * Creates new form RunSqlManager
@@ -358,6 +358,34 @@ public class RunSqlManager extends javax.swing.JFrame {
 		}
  
 	}
+    }
+
+    /**
+     * @return the prop
+     */
+    public Properties getProp() {
+        return prop;
+    }
+
+    /**
+     * @param prop the prop to set
+     */
+    public void setProp(Properties prop) {
+        this.prop = prop;
+    }
+
+    /**
+     * @return the manager
+     */
+    public SqlManager getManager() {
+        return manager;
+    }
+
+    /**
+     * @param manager the manager to set
+     */
+    public void setManager(SqlManager manager) {
+        this.manager = manager;
     }
     
 
