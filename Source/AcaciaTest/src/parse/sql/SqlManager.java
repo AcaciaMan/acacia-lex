@@ -144,6 +144,7 @@ public class SqlManager {
         
         if ((p.getCats() & SqlState.SQL_ENDED) == SqlState.SQL_ENDED) {
             if (SqlManagerAction.APPEND.equals(action)) {
+                statement.findViewAsSelect(this);
                 sqlStats.add(statement);
                 createStatementCount++;
             } else {
