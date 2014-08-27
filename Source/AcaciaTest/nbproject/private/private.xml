@@ -6,6 +6,7 @@
         <group>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/src/parse/sql/SqlStatement.java</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/src/parse/sql/SqlManager.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/src/run/parse/sql/RunSqlManager.java</file>
             <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/test/parse/sqlTest/SqlStatementTest.java</file>
         </group>
     </open-files>
