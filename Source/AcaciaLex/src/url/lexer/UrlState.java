@@ -28,19 +28,19 @@ public class UrlState {
     @ann.lexer.AnnToken(type = "Comment start", value = "<![ \\r\\n\\t]*-")
     public String setCommentStart(lexer.Lexer lexer) {
         commented = true;
-        return lexer.getToken().getString();
+        return " ";
     }
 
     @ann.lexer.AnnToken(type = "Comment end", value = "-[ \\r\\n\\t]*>")
     public String setCommentEnd(lexer.Lexer lexer) {
         commented = false;
-        return lexer.getToken().getString();
+        return " ";
     }
     
     
     @ann.lexer.AnnToken(type = "URL", value = "http:[A-z0-9./~%]+")
     public String getStr(lexer.Lexer lexer) {
-        return lexer.getToken().getString();
+        return " ";
     }
     
 }

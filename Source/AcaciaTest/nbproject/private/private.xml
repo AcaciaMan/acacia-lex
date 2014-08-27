@@ -4,10 +4,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/src/parse/sql/SqlStatement.java</file>
-            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/src/parse/sql/SqlManager.java</file>
-            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/src/run/parse/sql/RunSqlManager.java</file>
-            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/test/parse/sqlTest/SqlStatementTest.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/test/commonTest/TestCommon.java</file>
+            <file>file:/C:/Tools/acacia_lex/trunk/Source/AcaciaTest/src/common/Common.java</file>
         </group>
     </open-files>
 </project-private>
