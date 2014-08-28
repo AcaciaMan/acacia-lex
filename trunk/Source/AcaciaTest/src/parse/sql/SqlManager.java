@@ -55,8 +55,8 @@ public class SqlManager {
     private final SimpleAttributeSet messageRed = new SimpleAttributeSet();
     private final SimpleAttributeSet messageYellow = new SimpleAttributeSet();
     
-    private Integer createStatementCount;
-    private Integer otherStatementCount;
+    private Integer createStatementCount = 0;
+    private Integer otherStatementCount = 0;
 
     
     public SqlManager() {
@@ -73,7 +73,7 @@ public class SqlManager {
         try {
             BufferedReader br = new BufferedReader(new FileReader(f));
             for(String line = br.readLine(); line != null; line = br.readLine()) {
-                parts = line.split(",");
+                parts = line.split(";");
                 if(parts.length==2){
                     type = DBObjectType.TABLE;
                     if("VIEW".equalsIgnoreCase(parts[1])) type = DBObjectType.VIEW;

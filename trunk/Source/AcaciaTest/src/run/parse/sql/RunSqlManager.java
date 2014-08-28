@@ -61,6 +61,33 @@ public class RunSqlManager extends javax.swing.JFrame {
         });
     
     }
+    
+    
+    public void loadManager() {
+            jTextPane1.setText(null);
+            StyledDocument doc = jTextPane1.getStyledDocument();
+        
+        try {
+
+            manager = new SqlManager();
+            File csv = new File(jTextField2.getText());
+            manager.init(csv, doc);
+
+            File folder = new File(jTextField1.getText());
+            listFilesForFolder(folder);
+
+            doc.insertString(doc.getLength(), "Done!"+NEW_LINE, null );
+        } catch (Exception ex) {
+                try {
+                    doc.insertString(doc.getLength(),
+                            ex.getLocalizedMessage() +NEW_LINE, null );
+                } catch (BadLocationException ex1) {
+                    Logger.getLogger(RunSqlManager.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+            Logger.getLogger(RunSqlManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -184,29 +211,7 @@ public class RunSqlManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            jTextPane1.setText(null);
-            StyledDocument doc = jTextPane1.getStyledDocument();
-        
-        try {
-
-            manager = new SqlManager();
-            File csv = new File(jTextField2.getText());
-            manager.init(csv, doc);
-
-            File folder = new File(jTextField1.getText());
-            listFilesForFolder(folder);
-
-            doc.insertString(doc.getLength(), "Done!"+NEW_LINE, null );
-        } catch (Exception ex) {
-                try {
-                    doc.insertString(doc.getLength(),
-                            ex.getLocalizedMessage() +NEW_LINE, null );
-                } catch (BadLocationException ex1) {
-                    Logger.getLogger(RunSqlManager.class.getName()).log(Level.SEVERE, null, ex1);
-                }
-            Logger.getLogger(RunSqlManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        loadManager();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

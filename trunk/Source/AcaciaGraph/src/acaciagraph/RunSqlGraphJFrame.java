@@ -21,6 +21,7 @@
 package acaciagraph;
 
 import javax.swing.JFrame;
+import parse.sql.SqlManager;
 import run.parse.sql.RunSqlManager;
 
 public class RunSqlGraphJFrame extends javax.swing.JFrame {
@@ -94,6 +95,9 @@ public class RunSqlGraphJFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         SqlGraphJFrame graphJFrame = new SqlGraphJFrame();
         graphJFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
+        if(runSqlManager.getManager().getSqlStats().isEmpty()) runSqlManager.loadManager();
+        
         graphJFrame.loadDirected(runSqlManager.getManager());
         graphJFrame.showDirected();
         
@@ -117,19 +121,14 @@ public class RunSqlGraphJFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RunSqlGraphJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RunSqlGraphJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RunSqlGraphJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(RunSqlGraphJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new RunSqlGraphJFrame().setVisible(true);
             }
