@@ -37,7 +37,7 @@ public class AcaciaGraph {
      */
     public static void main(String[] args) {
     DirectedSparseGraph g = new DirectedSparseGraph();
-    g.addVertex("USER$");
+    g.addVertex("<html>USER$<br>12</html>");
     g.addVertex("ALL_OBJECTS");
     g.addVertex("OBJAUTH$");
     g.addVertex("OBJ$");
