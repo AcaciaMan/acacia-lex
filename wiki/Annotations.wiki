@@ -1,5 +1,5 @@
+#summary Annotations Free Mind Map
 #labels Featured
-#Annotations Free Mind Map
 
 <p>Annotations
 <ul><li>Declaration
