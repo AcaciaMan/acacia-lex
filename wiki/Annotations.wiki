@@ -1,6 +1,8 @@
 #summary Annotations Free Mind Map
 #labels Featured
 
+https://acacia-lex.googlecode.com/svn/wiki/FreeMind/Annotations.png
+
 <p>Annotations
 <ul><li>Declaration
 <ul><li>Project AcaciaAnn
