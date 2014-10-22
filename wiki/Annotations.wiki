@@ -1,0 +1,61 @@
+#labels Featured
+#Annotations Free Mind Map
+
+<p>Annotations
+<ul><li>Declaration
+<ul><li>Project AcaciaAnn
+ 
+</li>
+<li>AnnState.java
+<br>
+AnnToken.java
+<br>
+AnnTokens.java
+<br>
+AnnUnknown.java
+<br>
+AnnLexer.java
+<br>
+AnnStartState.java
+ 
+</li>
+ 
+</ul>
+</li>
+<li>Processor
+<ul><li>Walk through
+ 
+</li>
+<li>Copy and Replace Implementation
+ 
+</li>
+<li>Output
+ 
+</li>
+ 
+</ul>
+</li>
+<li>Docs
+<ul><li><p>Source -&gt; Browse -&gt; svn -&gt; doc
+<p>AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting.htm
+<p>Code Generation using Annotation Processors in the Java language &#8211;&nbsp;part 2 Annotation Processors dr. macphail's trance.htm
+<p>Lexer.java
+<p>Writing a Lexer in Java 1.7 using Regex Named Capturing Groups.htm
+</li>
+</ul>
+</li>
+<li>Lexer
+<ul><li>Interface
+ 
+</li>
+<li>Implementation
+ 
+</li>
+<li>Interface usage
+ 
+</li>
+ 
+</ul>
+</li>
+ 
+</ul>
