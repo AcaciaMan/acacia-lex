@@ -24,7 +24,7 @@ AnnStartState.java
  
 
  
-</ul>
+
 
 <li>Processor
 <ul><li>Walk through
@@ -49,7 +49,7 @@ AnnStartState.java
  
 
  
-</ul>
+
 
 <li>Creates Lexer implementation classes
 <ul><li>Project AcaciaLex
@@ -57,7 +57,7 @@ AnnStartState.java
  
 
  
-</ul>
+
 
 <li>UrlLexFactory.java
  
@@ -69,13 +69,13 @@ AnnStartState.java
  
 
  
-</ul>
+
 
  
-</ul>
+
 
  
-</ul>
+
 
 <li>Output
 <ul><li><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message = "Ended annotation processing ... ";
@@ -84,10 +84,10 @@ AnnStartState.java
 <br>
  
 
-</ul>
+
 
  
-</ul>
+
 
 <li>Docs
 <ul><li><p>Source -&gt; Browse -&gt; svn -&gt; doc
@@ -96,7 +96,7 @@ AnnStartState.java
 <p>Lexer.java
 <p>Writing a Lexer in Java 1.7 using Regex Named Capturing Groups.htm
 
-</ul>
+
 
 <li>Lexer
 <ul><li>Interfaces
@@ -119,7 +119,7 @@ AnnStartState.java
  
 
  
-</ul>
+
 
 <li>Implementations
 <ul><li>Project Accacia Package impl.lexer
@@ -130,24 +130,24 @@ AnnStartState.java
  
 
  
-</ul>
+
 
 <li>ImplState.java
 <ul><li>implements StateDesc
  
 
  
-</ul>
+
 
 <li>ImplLexerFactory.java
 <ul><li>calls implemented Lexer
  
 
  
-</ul>
+
 
  
-</ul>
+
 
 <li>Definitions
 <ul><li>Project AcaciaLex
@@ -167,10 +167,10 @@ AnnStartState.java
  
 
  
-</ul>
+
 
  
-</ul>
+
 
 <li>Interface usages
 <ul><li>Project AcaciaTest Package commonTest
@@ -190,13 +190,12 @@ AnnStartState.java
  
 
  
-</ul>
+
 
  
-</ul>
+
 
  
-</ul>
+
 
  
-</ul>
