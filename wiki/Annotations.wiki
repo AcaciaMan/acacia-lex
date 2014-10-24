@@ -6,10 +6,10 @@ https://acacia-lex.googlecode.com/svn/wiki/FreeMind/Annotations.png
 https://acacia-lex.googlecode.com/svn/wiki/FreeMind/Annotations.mm
 
 <p>Annotations
-<ul><li>Declaration
+<ul><li>Declarations
 <ul><li>Project AcaciaAnn
  
-</li>
+
 <li>AnnState.java
 <br>
 AnnToken.java
@@ -22,44 +22,181 @@ AnnLexer.java
 <br>
 AnnStartState.java
  
-</li>
+
  
 </ul>
-</li>
+
 <li>Processor
 <ul><li>Walk through
+<ul><li>Project Acacia Package proc.lexer
  
-</li>
-<li>Copy and Replace Implementation
+
+<li>ProcessAnnLexer.java
+<ul><li>Finds annotated State and Lexer clases
  
-</li>
-<li>Output
+
+<li>Makes copies of implemented interfaces ImplLexer.java and ImplState.java
  
-</li>
+
+<li>Replace everything between markers //@... and //\@...
+<ul><li>//@addToken
+ 
+
+<li>text to replace from Lexer definition
+ 
+
+<li>//\@addToken
+ 
+
  
 </ul>
-</li>
+
+<li>Creates Lexer implementation classes
+<ul><li>Project AcaciaLex
+<ul><li>Folder build/classes
+ 
+
+ 
+</ul>
+
+<li>UrlLexFactory.java
+ 
+
+<li>UrlLexImpl.java
+ 
+
+<li>UrlStateImpl.java
+ 
+
+ 
+</ul>
+
+ 
+</ul>
+
+ 
+</ul>
+
+<li>Output
+<ul><li><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message = "Ended annotation processing ... ";
+<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
+<br>
+ 
+
+</ul>
+
+ 
+</ul>
+
 <li>Docs
 <ul><li><p>Source -&gt; Browse -&gt; svn -&gt; doc
 <p>AnnotationProcessing_Eclipse - acris - How to setup annotation processors with eclipse - Web framework for building applications, web sites and portals using Google Web Toolkit - Google Project Hosting.htm
 <p>Code Generation using Annotation Processors in the Java language &#8211;&nbsp;part 2 Annotation Processors dr. macphail's trance.htm
 <p>Lexer.java
 <p>Writing a Lexer in Java 1.7 using Regex Named Capturing Groups.htm
-</li>
+
 </ul>
-</li>
+
 <li>Lexer
-<ul><li>Interface
+<ul><li>Interfaces
+<ul><li>Project Accacia Package lexer
  
-</li>
-<li>Implementation
+
+<li>Lexer.java
  
-</li>
-<li>Interface usage
+
+<li>Token.java
  
-</li>
+
+<li>Status.java
+ 
+
+<li>StateDesc.java
+ 
+
+<li>StateInst.java
+ 
+
  
 </ul>
-</li>
+
+<li>Implementations
+<ul><li>Project Accacia Package impl.lexer
+ 
+
+<li>ImplLexer.java
+<ul><li>implements Lexer
+ 
+
+ 
+</ul>
+
+<li>ImplState.java
+<ul><li>implements StateDesc
+ 
+
+ 
+</ul>
+
+<li>ImplLexerFactory.java
+<ul><li>calls implemented Lexer
+ 
+
+ 
+</ul>
+
+ 
+</ul>
+
+<li>Definitions
+<ul><li>Project AcaciaLex
+ 
+
+<li>Packages
+<ul><li>ebnf
+ 
+
+<li>impl
+ 
+
+<li>sql
+ 
+
+<li>url
+ 
+
+ 
+</ul>
+
+ 
+</ul>
+
+<li>Interface usages
+<ul><li>Project AcaciaTest Package commonTest
+ 
+
+<li>TestCommon.java
+<ul><li>initRun()
+ 
+
+<li>exprRun()
+ 
+
+<li>ebnfRun()
+ 
+
+<li>urlRun()
+ 
+
+ 
+</ul>
+
+ 
+</ul>
+
+ 
+</ul>
+
  
 </ul>
