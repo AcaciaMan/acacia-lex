@@ -1,0 +1,98 @@
+# Introduction #
+
+Lexer specification and usage example.
+
+
+# Details #
+
+## Lexer, State and Tokens ##
+
+Lexer and States will be specified in following way (see examples below):
+```
+// ============ Lexer ===================
+package impl.lexer.lex;
+
+@ann.lexer.AnnLexer
+public class LexClass {
+
+    @ann.lexer.AnnStartState
+    LexStateClass stateClass;
+
+}
+
+// ============ State ===================
+package impl.lexer.lex;
+
+import impl.lexer.common.SimpleToken;
+
+@ann.lexer.AnnState
+public class LexStateClass {
+
+    @ann.lexer.AnnTokens({
+        @ann.lexer.AnnToken(type = SimpleToken.DOT, value = SimpleToken.DOT),
+        @ann.lexer.AnnToken(type = SimpleToken.FROM, value = SimpleToken.FROM),
+        @ann.lexer.AnnToken(type = SimpleToken.SELECT, value = SimpleToken.SELECT)
+    })
+    public String getConst(lexer.Lexer lexer) {
+        return lexer.getToken().getString();
+    }
+
+    @ann.lexer.AnnToken(type=LexToken.WORD, value="\\w")
+    public void getName(lexer.Lexer lexer) {
+        lexer.getStatus().setNoObject(true);
+        return lexer.getToken().getString();
+    }
+
+}
+
+// ============== Token =======================
+package impl.lexer.common;
+public class SimpleToken {
+
+    static public final String SELECT = "Select";
+    static public final String FROM = "From";
+    static public final String DOT = "DOT";
+
+}
+```
+
+## Usage ##
+
+Following is an example of Lexer usage class:
+```
+package common;
+
+import impl.lexer.lex.LexClassFactory;
+import impl.lexer.lex.LexClassImpl;
+import java.io.File;
+import java.io.IOException;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+public class Common {
+
+    final public Logger log = Logger.getLogger(Common.class.getName());
+
+    public Common() {
+    }
+
+    public void initRun() {
+        LexClassFactory factory = new LexClassFactory();
+        LexClassImpl lexer = factory.getLexClassImpl();
+        //CharSequence charSequence = "SELECT FROM ... ELSE";
+
+        File f = new File("c:/Darbs/Acacia/Source/Acacia/src/impl/lexer/ImplLexerFactory.java");
+        try {
+            lexer.setInput(f);
+        } catch (IOException ex) {
+            log.log(Level.FATAL, "IOException", ex);
+        }
+        lexer.run();
+    }
+
+}
+```
+
+# Documents #
+
+In Source there is docs folder containing some useful references to related documents.

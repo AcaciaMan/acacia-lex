@@ -1,0 +1,74 @@
+# Introduction #
+
+Real life example is taken from web article written by Carlo Cielo http://www.giocc.com/writing-a-lexer-in-java-1-7-using-regex-named-capturing-groups.html
+As input is used expression "11 + 22 + 33" and lexer returns following tokens:
+  * NUMBER 11
+  * BINARYOP +
+  * NUMBER 22
+  * BINARYOP -
+  * NUMBER 33
+
+# Details #
+
+## Lexer and State ##
+Lexer and State is specified in AcaciaLex project:
+```
+//====================== ExprLex.java ====================== 
+
+package impl.lexer.lex;
+
+@ann.lexer.AnnLexer
+public class ExprLex {
+
+    @ann.lexer.AnnStartState
+    ExprState stateClass;
+
+}
+
+//============================== ExprState.java ======================
+
+package impl.lexer.lex;
+
+@ann.lexer.AnnState
+public class ExprState {
+
+    @ann.lexer.AnnTokens({
+        @ann.lexer.AnnToken(type = "NUMBER", value = "-?[0-9]+"),
+        @ann.lexer.AnnToken(type = "BINARYOP", value = "[*|/|+|-]"),
+        @ann.lexer.AnnToken(type = "WHITESPACE", value = "[ \t\f\r\n]+")
+    })
+    public String getStr(lexer.Lexer lexer) {
+        return lexer.getToken().getString();
+    }
+}
+
+```
+
+## Run Lexer ##
+Lexer is run from AcaciaTest project:
+```
+//======================= Common.java =====================
+
+    public void exprRun() {
+        ExprLexFactory factory = new ExprLexFactory();
+        ExprLexImpl lexer = factory.getExprLexImpl();
+        CharSequence charSequence = "11 + 22 + 33";
+        lexer.setInput(charSequence);
+        lexer.run();
+    }
+```
+
+## Test Lexer ##
+Lexer is tested in AcaciaTest project:
+```
+//=================== TestCommon.java ======================
+
+    @Test
+    public void exprRun() {
+
+        org.apache.log4j.BasicConfigurator.configure();
+        Common common = new Common();
+        common.exprRun();
+        assertTrue(true);
+    }
+```
